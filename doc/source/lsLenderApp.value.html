@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="../">
+    <title>JSDoc: source : app.config.js</title>
+    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">
+    <link href="css/site.css" type="text/css" rel="stylesheet">
+  </head>
+  <body ng-app="">
+    <nav id="toc">
+      <input placeholder="Filter" id="filter-input" class="col12 block field" type="text">
+      <div class="nav-wrapper">
+      <h2><a href="index.html">Index</a></h2>
+      <ul class="module">
+        <!-- undefined -->
+        <h2 class="module">
+          <a chref="" ng-click="moduleundefined = !moduleundefined">
+            module: undefined
+          </a>
+          <i ng-cloak="" ng-show="moduleundefined">+</i>
+        </h2>
+        <li id="undefined" ng-hide="moduleundefined">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="undefinedundefined = !undefinedundefined">
+                undefined
+              </a>
+              <i ng-cloak="" ng-show="undefinedundefined">+</i>
+            </h2>
+            <ul ng-hide="undefinedundefined">
+              <li>
+                <a href="IntroJs.html">IntroJs</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul><ul class="module">
+        <!-- ls_ender_pp -->
+        <h2 class="module">
+          <a chref="" ng-click="modulels_ender_pp = !modulels_ender_pp">
+            module: lsLenderApp
+          </a>
+          <i ng-cloak="" ng-show="modulels_ender_pp">+</i>
+        </h2>
+        <li id="lsLenderApp" ng-hide="modulels_ender_pp">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppconstant = !ls_ender_ppconstant">
+                constant
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppconstant">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppconstant">
+              <li>
+                <a href="lsLenderApp.API_ENDPOINT.html">API_ENDPOINT</a>
+              </li><li>
+                <a href="lsLenderApp.APP_CONSTANT.html">APP_CONSTANT</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppfactory = !ls_ender_ppfactory">
+                factory
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppfactory">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppfactory">
+              <li>
+                <a href="lsLenderApp.appFactory.html">appFactory</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppservice = !ls_ender_ppservice">
+                service
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppservice">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppservice">
+              <li>
+                <a href="lsLenderApp.dataservice.html">dataservice</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppvalue = !ls_ender_ppvalue">
+                value
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppvalue">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppvalue">
+              <li>
+                <a href="lsLenderApp.value.html">value</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </nav>
+    <div id="content" class="page-wrap">
+      <h1 class="title">
+        source : app.config.js
+      </h1>
+      <div id="main" class="big-container">
+        <!-- source code html -->
+        <article>
+          <pre class="prettyprint source linenums"><code>(function(angular){	"use strict";	/**    * @memberof lsLenderApp    * @ngdoc value    * @name value    * @param {String} $routerRootComponent set default component value 'shellComp' to $routerRootComponent    */	angular.module('lsLenderApp').value('$routerRootComponent', 'shellComp');	/*		.config(['$routeProvider',function($routeProvider) {			$routeProvider.when('/',{				template: ''		});	*/	angular.module('lsLenderApp')		.run(function($http) {			$http.defaults.headers.common = 'application/json';		});/*	angular.module('lsLenderApp')		.run(['$rootScope', '$location', 'appFactory', 'APP_CONSTANT', function ($rootScope, $location, appFactory, APP_CONSTANT) {	        	console.info($rootScope);	        $rootScope.$on('$routeChangeStart', function (event) {	        	console.info('inside route change start ');	        	console.info(localStorage.getItem('login_status'));			        if (localStorage.getItem('login_status') === null || localStorage.getItem('login_status') === undefined) {			          console.log('DENY : Redirecting to HOME if not login');			          event.preventDefault();			          $location.path('/');			        }			        else {			          console.log('ALLOW');			        }			  });	    }]);*/	angular.module('lsLenderApp')		.config(['dynamicNumberStrategyProvider', function(dynamicNumberStrategyProvider){			dynamicNumberStrategyProvider.addStrategy('price', {				// numInt: 3,				numFract: 2,				numSep: '.',				numPos: true,				numNeg: false,				numRound: 'floor',				numThousand: true			});	}]);})(window.angular);</code></pre>
+        </article>
+        <!-- index.html -->
+        <!-- class files -->
+      </div>
+      <footer style="clear:both">
+        Documentation generated by
+        <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a>
+        using
+        <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>
+      </footer>
+    </div>
+    <script src="js/prettify.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/site.js"></script>
+    <!--%= prettyJson %-->
+    <script>
+      prettyPrint();
+      var lineNo = window.location.hash.match(/#line([0-9]+)$/);
+      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();
+    </script>
+  </body>
+</html>

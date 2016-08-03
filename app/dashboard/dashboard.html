@@ -1,0 +1,89 @@
+<!-- for sub section/child components -->
+<div class="app-section fade-in-up ng-enter ng-enter-active">
+    <article class="app-content">
+        <div class="app-content-inner__child clearfix">
+            <section id="dashboard-sec" class="table-data-parent">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 padd-top-40">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                    <div class="one-forth-box interest-widget">
+                                        <img class="pull-right" src="img/info.png" />
+                                        <img class="pull-left" src="img/interestEarned.png" />
+                                        <div class="bec">
+                                            <h6>Interest Earned</h6>
+                                            <h4><i class="fa fa-inr" aria-hidden="true"></i> {{dashboardCtrl.borrowerData.interest_earned}}</h4>
+                                        </div>
+                                        <p class="date-band">as on <span>{{dashboardCtrl.date | date:'LLLL dd yyyy'}}</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                    <div class="one-forth-box roi-widget">
+                                        <img class="pull-right" src="img/info.png" />
+                                        <img class="pull-left" src="img/avgROI.png" />
+                                        <div class="bec">
+                                            <h6>Avg. ROI</h6>
+                                            <h4></i> {{dashboardCtrl.borrowerData.average_roi}}%</h4>
+                                        </div>
+                                        <p class="date-band">as on <span>{{dashboardCtrl.date | date:'LLLL dd yyyy'}}</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                    <div class="one-forth-box projected-widget">
+                                        <img class="pull-right" src="img/info.png" />
+                                        <img class="pull-left" src="img/projectedInterest.png" />
+                                        <div class="bec">
+                                            <h6>Projected Interest</h6>
+                                            <h4><i class="fa fa-inr" aria-hidden="true"></i> {{dashboardCtrl.borrowerData.projected_interest}}</h4>
+                                        </div>
+                                        <p class="date-band">as on <span>{{dashboardCtrl.date | date:'LLLL dd yyyy'}}</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                    <div class="one-forth-box invest-widget">
+                                        <img class="pull-right" src="img/info.png" />
+                                        <img class="pull-left" src="img/amountInvested.png" />
+                                        <div class="bec">
+                                            <h6>Amount Invested</h6>
+                                            <h4><i class="fa fa-inr" aria-hidden="true"></i> {{dashboardCtrl.borrowerData.amount_invested}}</h4>
+                                        </div>
+                                        <p class="date-band">as on <span>{{dashboardCtrl.date | date:'LLLL dd yyyy'}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <table datatable="" dt-options="dashboardCtrl.dtOptions" dt-columns="dashboardCtrl.dtColumns" dt-instance="dashboardCtrl.dtInstance" class="borrower-table table datatable dt-responsive" id="dashboard-table"></table>
+                           <!--  <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>#Loan No</th>
+                                        <th>Borrower name</th>
+                                        <th><i class="fa fa-inr" aria-hidden="true"></i> Amount</th>
+                                        <th>EMI</th>
+                                        <th>Interst rate</th>
+                                        <th>Tenure</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tiger</td>
+                                        <td>Nixon</td>
+                                        <td>System Architect</td>
+                                        <td>Edinburgh</td>
+                                        <td>61</td>
+                                        <td>2011/04/25</td>
+                                        <td><i class="fa fa-arrow-circle-down" aria-hidden="true"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table> -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- app-content-inner__child end -->
+    </article>
+    <!-- app-content end -->
+</div>
+<!-- app-section -->

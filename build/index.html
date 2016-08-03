@@ -1,0 +1,50 @@
+<!doctype html>
+<html class="no-js" lang="" ng-app="lsLenderApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Loan Singh - Lender Portal</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="css/main.min.css"/>
+    <!-- build-NOT-IN-USE-CURRENTLY :[src] js/ -->
+    <!-- later needs to modifiy -->
+    <script src="libs/modernizr-2.8.3.min.js"></script>
+    <script src="libs/jQuery/jquery-1.12.0.min.js"></script>
+    <script src="libs/data_tables/jquery.dataTables.min.js"></script>
+    <script src="libs/angular/angular.min.js"></script>
+    <!-- Load up the router library - normally you might use npm and host it locally -->
+    <script src="libs/angular/angular-route-component.js"></script>
+    <script src="libs/angular/angular-route.min.js"></script>
+    <!-- /build-NOT-IN-USE -->
+    <!-- IE required polyfills, in this exact order to make angular-component wokring -->
+    <!--[if IE]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.33.3/es6-shim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.20/system-polyfills.js"></script>
+        <script src="https://npmcdn.com/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <!--[if lt IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <shell-comp></shell-comp>
+    
+    <!-- Replace many script tags into one.using grunt-processhtml tool -->
+    <script src="app.libs.min.js"></script>
+
+    <!--  required for grunt-processhtml -->
+    <!-- Replace many script tags into one.using grunt-processhtml tool -->
+    <script src="app.min.js"></script>
+    <!--  required for grunt-processhtml -->
+    <!-- adding templates cache output to refer the template after all the app JS files loaded -->
+    <script src="app.templates.js"></script>
+    <!--  required for grunt-processhtml -->
+</body>
+
+</html>

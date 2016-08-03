@@ -1,0 +1,108 @@
+<!-- for sub section/child components -->
+<div class="app-section fade-in-up ng-enter ng-enter-active">
+    <article class="app-content">
+        <div class="app-content-inner__child clearfix portfolio-section">
+            <section class="payment-sec page-section">
+                <div class="container">
+                    <!-- <h1>Payment Page</h1> -->
+                    <div class="row">
+
+                        <div class="payment-info">
+                            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+                            <p ng-if="!paymentCtrl.modSuccessPayment"> THANK YOU!  For making disbursement we will verify the transaction and get back to you.<br/>You can now track your <a class="btn btn-default" ng-link="['Dashboard']">Dashboard</a></p>
+                            
+                            <div ng-if="paymentCtrl.modSuccessPayment">
+                                <!-- <h4>THANK YOU!</h4> -->
+                                <p>Thank you for making disbursement. We will verify the transaction and get back to you.</p>
+                            </div>
+                        </div>
+
+                        <div class="heading">
+                            <p>Borrower's Payment</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="payment-details-sec col-md-12 no-padding">
+                            <div class="col-md-4 bank-details-sec">
+                                <p class="beneficiary-border">Beneficiary Details</p>
+                                <div class="beneficiary-data beneficiary-border" ng-repeat="data in paymentCtrl.beneficiary">
+                                    <p>{{data.dispName}}:</p>
+                                    <p>{{data.value}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-8 borrower-details-sec">
+                                <div ng-show="paymentCtrl.paymentObj.length == 0" class="cart_empty">Looks like your cart is empty!<br/>You can<br/><a class="btn btn-primary" ng-link="['Invest']">Click To Invest</a><a class="btn btn-round-corner-tb" ng-link="['Dashboard']">See Dashboard</a></div>
+                                <div ng-show="paymentCtrl.paymentObj.length != 0" class="detail-container">
+                                    <div class="detail-table">
+                                        <div class="borrower-info-wrapper ">
+                                            <div class="details-row top-row">
+                                                <div class="details-column">
+                                                    <p><img src="img/profile_icon.png"/> Name</p>
+                                                </div>
+                                                <div class="details-column">
+                                                    <p style="text-align:right;width: 50%;"><img src="img/rupee_icon.png"/> Amount
+                                                </div>
+                                                <div class="details-column">
+                                                    <p><img src="img/tenure_icon.png"/> Tenure</p>
+                                                </div>
+                                                <div class="details-column">
+                                                    <p><img src="img/interest_icon.png"/> Interest</p></p>
+                                                </div>
+                                                <div class="details-column">        
+                                                </div>
+                                            </div>
+                                            <div class="details-row" ng-repeat="data in paymentCtrl.paymentObj">
+                                                <div class="details-column">
+                                                    <p>{{data.name}}</p>
+                                                </div>
+                                                <div class="details-column">
+                                                    <p style="text-align:right;width: 50%;">{{data.invested_amount}}</p>
+                                                </div>
+                                                <div class="details-column">
+                                                    <p>{{data.tenure}} Months</p>
+                                                </div>
+                                                <div class="details-column">
+                                                    <p>{{data.rate_of_interest}}%</p>
+                                                </div>
+                                                <div class="details-column">
+                                                    <button class="delBut" type="button" ng-click="paymentCtrl.deleteBorrower(data.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="borrower-info-wrapper" ng-if="paymentCtrl.paymentObj.length>0">
+                                        <div class="details-row">
+                                            <div class="details-column">
+                                                <p>LoanSingh Fees</p>
+                                            </div>
+                                            <div class="details-column">
+                                                <p style="text-align:right;width: 50%;">500</p>
+                                            </div>
+                                            <div class="details-column">
+                                                <p></p>
+                                            </div>
+                                            <div class="details-column">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fee-content pull-right" ng-if="paymentCtrl.paymentObj.length>0">
+                                        <p><span>Total</span><span>{{paymentCtrl.totalAmount}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="payment-confirm">
+                            <input type="checkbox" ng-model="paymentCtrl.paymentDone" name="chkPaymentAcceptance" id="chkPaymentAcceptance" />
+                            <button type="button" class="btn btn-success" ng-class="{'disabled': !paymentCtrl.paymentDone}" ng-model="paymentCtrl.modSuccessPayment" ng-click="paymentCtrl.modSuccessPayment = true">I have successfully made the payment</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- app-content-inner__child end -->
+    </article>
+    <!-- app-content end -->
+</div>
+<!-- app-section -->

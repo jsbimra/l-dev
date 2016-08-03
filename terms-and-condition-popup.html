@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="lsTermsApp"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" ng-app="lsTermsApp"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" ng-app="lsTermsApp"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="lsTermsApp">
+<!--<![endif]-->
+
+<head>
+    <!-- Meta-Information -->
+    <title>Loan Singh</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="  ">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link type="text/css" href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/loan-singh.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.8/font-awesome-animation.min.css">
+    <link type="text/css" href="css/change.css" rel="stylesheet">
+    <link type="text/css" href="css/lib/mediaquery.css" rel="stylesheet">
+     <!--[if lt IE 8]>
+        <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- <base href="/"> -->
+    
+    <style type="text/css">
+        .terms-page .container-sect{padding-top: 0;}
+        .terms-page .footer{min-height: 70px;}
+    </style>
+
+</head>
+
+<body class="loan-singh terms-page" ng-controller="TermsController as vm">
+    <!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+    <!-- Header template -->
+    <nav class="navbar navbar-default navbar-fixed-top nomargin hide">
+        <div class="container">
+            <div class="col-lg-12 nopadding">
+            </div>
+        </div>
+    </nav>
+    <div class="clearfix"></div>
+    <!-- Loading view template -->
+    <div class="view-container">
+        <section ng-include="vm.termsLink" class="fade-in-up-big"></section>
+    </div>
+    <!-- Footer template -->
+
+    <div class="footer container">
+        <div class="col-lg-12  nopadding">&nbsp;</div>
+        <div class="clearfix"></div>
+        <br />
+        <br />
+        <p class="copyright">© 2016 Loan Singh</p>
+    </div>
+    
+
+    <!-- Scripts Inclusions -->
+    <script type="text/javascript" src="js/lib/jQuery/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/lib/angular/angular.min.js"></script>
+    <script src="js/lib/angular/angular-animate.min.js"></script>
+    
+    <!-- App files -->
+    <script type="text/javascript" src="app/terms-condition.module.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="../">
+    <title>JSDoc: source : app.constant.js</title>
+    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">
+    <link href="css/site.css" type="text/css" rel="stylesheet">
+  </head>
+  <body ng-app="">
+    <nav id="toc">
+      <input placeholder="Filter" id="filter-input" class="col12 block field" type="text">
+      <div class="nav-wrapper">
+      <h2><a href="index.html">Index</a></h2>
+      <ul class="module">
+        <!-- undefined -->
+        <h2 class="module">
+          <a chref="" ng-click="moduleundefined = !moduleundefined">
+            module: undefined
+          </a>
+          <i ng-cloak="" ng-show="moduleundefined">+</i>
+        </h2>
+        <li id="undefined" ng-hide="moduleundefined">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="undefinedundefined = !undefinedundefined">
+                undefined
+              </a>
+              <i ng-cloak="" ng-show="undefinedundefined">+</i>
+            </h2>
+            <ul ng-hide="undefinedundefined">
+              <li>
+                <a href="IntroJs.html">IntroJs</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul><ul class="module">
+        <!-- ls_ender_pp -->
+        <h2 class="module">
+          <a chref="" ng-click="modulels_ender_pp = !modulels_ender_pp">
+            module: lsLenderApp
+          </a>
+          <i ng-cloak="" ng-show="modulels_ender_pp">+</i>
+        </h2>
+        <li id="lsLenderApp" ng-hide="modulels_ender_pp">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppconstant = !ls_ender_ppconstant">
+                constant
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppconstant">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppconstant">
+              <li>
+                <a href="lsLenderApp.API_ENDPOINT.html">API_ENDPOINT</a>
+              </li><li>
+                <a href="lsLenderApp.APP_CONSTANT.html">APP_CONSTANT</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppfactory = !ls_ender_ppfactory">
+                factory
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppfactory">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppfactory">
+              <li>
+                <a href="lsLenderApp.appFactory.html">appFactory</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppservice = !ls_ender_ppservice">
+                service
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppservice">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppservice">
+              <li>
+                <a href="lsLenderApp.dataservice.html">dataservice</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppvalue = !ls_ender_ppvalue">
+                value
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppvalue">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppvalue">
+              <li>
+                <a href="lsLenderApp.value.html">value</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </nav>
+    <div id="content" class="page-wrap">
+      <h1 class="title">
+        source : app.constant.js
+      </h1>
+      <div id="main" class="big-container">
+        <!-- source code html -->
+        <article>
+          <pre class="prettyprint source linenums"><code>(function(angular) {	"use strict";    /**    * @name APP_CONSTANT    * @memberof lsLenderApp    * @ngdoc constant     * @param {object} object list of properties defined as constants    * @desc defining constants to be used for entire applications    */    angular.module('lsLenderApp')        .constant('APP_CONSTANT', {            "LOGIN_TOKEN"            : 'token',            "LOGIN_STATUS"           : 'login_status',            "INVEST_NOW_BTN"         : 'invest_now_btn',            "COUNT_DOWN_VALUE"       : 10,            "POOL_CREATION_STATUS"   : 'pool_created',            "PORTFOLIO_PREF"         : 'portfolio_pref',            "RATE_RISKS"             : [                                        {name: 'Low', code: 1, class: 'low', value: '12-16%'},                                        {name: 'Medium', code: 2, class: 'medium', value: '16-20%'},                                        {name: 'High', code: 3, class: 'high', value: '20-24%'}                                       ],            "LENDER_INFO"            : 'lender_info' ,            "ADDRESS_DOCUMENT_LISTS" : [                                        { name: 'Passport', value: 'PASSPORT' },                                        { name: 'Driving License', value: 'DRIVINGLICENSE' },                                        { name: 'Voter ID', value: 'VOTERID' },                                        { name: 'Aadhaar', value: 'AADHAAR' },                                        { name: 'Bank Statement', value: 'BANKSTATEMENT' }                                       ],        })})(window.angular);</code></pre>
+        </article>
+        <!-- index.html -->
+        <!-- class files -->
+      </div>
+      <footer style="clear:both">
+        Documentation generated by
+        <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a>
+        using
+        <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>
+      </footer>
+    </div>
+    <script src="js/prettify.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/site.js"></script>
+    <!--%= prettyJson %-->
+    <script>
+      prettyPrint();
+      var lineNo = window.location.hash.match(/#line([0-9]+)$/);
+      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();
+    </script>
+  </body>
+</html>

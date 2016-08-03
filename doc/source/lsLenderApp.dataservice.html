@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="../">
+    <title>JSDoc: source : app.service.js</title>
+    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">
+    <link href="css/site.css" type="text/css" rel="stylesheet">
+  </head>
+  <body ng-app="">
+    <nav id="toc">
+      <input placeholder="Filter" id="filter-input" class="col12 block field" type="text">
+      <div class="nav-wrapper">
+      <h2><a href="index.html">Index</a></h2>
+      <ul class="module">
+        <!-- undefined -->
+        <h2 class="module">
+          <a chref="" ng-click="moduleundefined = !moduleundefined">
+            module: undefined
+          </a>
+          <i ng-cloak="" ng-show="moduleundefined">+</i>
+        </h2>
+        <li id="undefined" ng-hide="moduleundefined">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="undefinedundefined = !undefinedundefined">
+                undefined
+              </a>
+              <i ng-cloak="" ng-show="undefinedundefined">+</i>
+            </h2>
+            <ul ng-hide="undefinedundefined">
+              <li>
+                <a href="IntroJs.html">IntroJs</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul><ul class="module">
+        <!-- ls_ender_pp -->
+        <h2 class="module">
+          <a chref="" ng-click="modulels_ender_pp = !modulels_ender_pp">
+            module: lsLenderApp
+          </a>
+          <i ng-cloak="" ng-show="modulels_ender_pp">+</i>
+        </h2>
+        <li id="lsLenderApp" ng-hide="modulels_ender_pp">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppconstant = !ls_ender_ppconstant">
+                constant
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppconstant">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppconstant">
+              <li>
+                <a href="lsLenderApp.API_ENDPOINT.html">API_ENDPOINT</a>
+              </li><li>
+                <a href="lsLenderApp.APP_CONSTANT.html">APP_CONSTANT</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppfactory = !ls_ender_ppfactory">
+                factory
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppfactory">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppfactory">
+              <li>
+                <a href="lsLenderApp.appFactory.html">appFactory</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppservice = !ls_ender_ppservice">
+                service
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppservice">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppservice">
+              <li>
+                <a href="lsLenderApp.dataservice.html">dataservice</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppvalue = !ls_ender_ppvalue">
+                value
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppvalue">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppvalue">
+              <li>
+                <a href="lsLenderApp.value.html">value</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </nav>
+    <div id="content" class="page-wrap">
+      <h1 class="title">
+        source : app.service.js
+      </h1>
+      <div id="main" class="big-container">
+        <!-- source code html -->
+        <article>
+          <pre class="prettyprint source linenums"><code>(function() {    'use strict';    /**    * Data service to     * @ngdoc service    * @memberOf lsLenderApp    * @name dataservice    * @param {service} $http service to make ajax call and get the response    * @param {object} Upload service to upload the files    */    /* @ngInject */    function dataservice($http,Upload) {        return {            getData: getData,            postData: postData,            uploadDocument: uploadDocument,            xdelete: xdelete,        };        /**         * get result of data from query request         * @memberof dataservice         * @param {string} serviceURL end point url to fetch data         * @param {object} data to sent along with the $http request         * @returns {object} response data         */        function getData(serviceURL, data, config) {            if (data != undefined && angular.isObject(data)) {                return $http.get(serviceURL, config)                    .then(getDataComplete)                    .catch(getDataFailed);            } else {                return $http.get(serviceURL)                    .then(getDataComplete)                    .catch(getDataFailed);            }            function getDataComplete(response) {                return response.data;            }            function getDataFailed(error) {                return error.data;                //console.log('XHR Failed for fetch page data.' + error.data);            }        }        /**         * post data to server         * @memberof dataservice         * @param {string} serviceURL end point url to fetch data         * @param {object} data to sent along with the $http request         * @param {object} config object to sent along with the $http request         * @returns {object} response data         */        function postData(serviceURL, data, config) {            if (data != undefined && angular.isObject(data)) {                return $http.post(serviceURL, data, config)                    .then(getDataComplete)                    .catch(getDataFailed);            }            function getDataComplete(response) {                return response.data;            }            function getDataFailed(error) {                return error.data;               // console.log('XHR Failed for fetch page data.' + error.data);            }        }        /**         * uploading file to server         * @memberof dataservice         * @param {string} serviceURL end point url to fetch data         * @param {object} data to sent along with the $http request         * @param {object} config object to sent along with the $http request         * @returns {object} Upload object handles status of file upload success or failure results         */        function uploadDocument(serviceURL, data, config) {             if (data != undefined && angular.isObject(data)) {                return Upload.upload({url:serviceURL,                                      data:data,                                       transformRequest: angular.identity,                                      headers:config.headers                                    })                       .then(function (response) {                            return response.data;                        }, function (error) {                            return error.data;                        }, function (evt) {                            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);                           // console.log(progressPercentage );                            return progressPercentage;                        });/*then(getDataComplete, getEventProgress)                                     .catch(getDataFailed);*/             }             /***Find a method to write this way//////             function getDataComplete(response) {                return response.data;            }            function getDataFailed(error) {                return error.data;                console.log('XHR Failed for fetch page data.' + error.data);            }            ****/         }        /**         * deleting file from server         * @memberof dataservice         * @param {string} serviceURL end point url to fetch data         * @param {object} data to sent along with the $http request         * @param {object} config object to sent along with the $http request         * @returns {service} $http service delete method to delete the file         */         function xdelete(serviceURL, data, config) {             if (data != undefined && angular.isObject(data)) {                return $http.delete(serviceURL, config)                    .then(getDataComplete)                    .catch(getDataFailed);            }            function getDataComplete(response) {                return response.data;            }            function getDataFailed(error) {                console.log('XHR Failed for fetch page data.' + error.data);                return error.data;            }         }     }    dataservice.$inject = ['$http','Upload'];    angular.module('lsLenderApp').factory('dataservice', dataservice);})();</code></pre>
+        </article>
+        <!-- index.html -->
+        <!-- class files -->
+      </div>
+      <footer style="clear:both">
+        Documentation generated by
+        <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a>
+        using
+        <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>
+      </footer>
+    </div>
+    <script src="js/prettify.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/site.js"></script>
+    <!--%= prettyJson %-->
+    <script>
+      prettyPrint();
+      var lineNo = window.location.hash.match(/#line([0-9]+)$/);
+      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();
+    </script>
+  </body>
+</html>

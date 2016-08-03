@@ -1,0 +1,473 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JSDoc: appFactory</title>
+    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">
+    <link href="css/site.css" type="text/css" rel="stylesheet">
+  </head>
+  <body ng-app="">
+    <nav id="toc">
+      <input placeholder="Filter" id="filter-input" class="col12 block field" type="text">
+      <div class="nav-wrapper">
+      <h2><a href="index.html">Index</a></h2>
+      <ul class="module">
+        <!-- undefined -->
+        <h2 class="module">
+          <a chref="" ng-click="moduleundefined = !moduleundefined">
+            module: undefined
+          </a>
+          <i ng-cloak="" ng-show="moduleundefined">+</i>
+        </h2>
+        <li id="undefined" ng-hide="moduleundefined">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="undefinedundefined = !undefinedundefined">
+                undefined
+              </a>
+              <i ng-cloak="" ng-show="undefinedundefined">+</i>
+            </h2>
+            <ul ng-hide="undefinedundefined">
+              <li>
+                <a href="IntroJs.html">IntroJs</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul><ul class="module">
+        <!-- ls_ender_pp -->
+        <h2 class="module">
+          <a chref="" ng-click="modulels_ender_pp = !modulels_ender_pp">
+            module: lsLenderApp
+          </a>
+          <i ng-cloak="" ng-show="modulels_ender_pp">+</i>
+        </h2>
+        <li id="lsLenderApp" ng-hide="modulels_ender_pp">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppconstant = !ls_ender_ppconstant">
+                constant
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppconstant">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppconstant">
+              <li>
+                <a href="lsLenderApp.API_ENDPOINT.html">API_ENDPOINT</a>
+              </li><li>
+                <a href="lsLenderApp.APP_CONSTANT.html">APP_CONSTANT</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppfactory = !ls_ender_ppfactory">
+                factory
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppfactory">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppfactory">
+              <li>
+                <a href="lsLenderApp.appFactory.html">appFactory</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppservice = !ls_ender_ppservice">
+                service
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppservice">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppservice">
+              <li>
+                <a href="lsLenderApp.dataservice.html">dataservice</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="ls_ender_ppvalue = !ls_ender_ppvalue">
+                value
+              </a>
+              <i ng-cloak="" ng-show="ls_ender_ppvalue">+</i>
+            </h2>
+            <ul ng-hide="ls_ender_ppvalue">
+              <li>
+                <a href="lsLenderApp.value.html">value</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </nav>
+    <div id="content" class="page-wrap">
+      <h3 style="float:right; color:#ccc">
+        Angular factory
+      </h3>
+      <h1 class="title">
+        appFactory
+        <a class="name-link signature-attributes" href="source/lsLenderApp.appFactory.html#line5">source</a>
+      </h1>
+      <div id="main" class="big-container">
+        <!-- source code html -->
+        <!-- index.html -->
+        <!-- class files -->
+        <div>
+          <div><div class="container-overview">
+  <ul class="chips">
+  </ul>
+  <div class="clearfix"></div>
+  <div class="description">
+    <h4>Description</h4>
+    <p>appFactory hold the system utility methods</p>
+  </div>
+  <div class="details"></div>
+  <div>
+    <h4>Parameters</h4>
+    <table class="params">
+      <thead>
+        <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name" nowrap="">
+            <a id="$timeout"></a>
+            $timeout
+          </td>
+          <td class="type"><span class="param-type">
+            <a href="service.html">service</a>
+          </span></td>
+          <td class="description last">
+            <span>
+              <p>angular window.setTimeout service</p>
+            </span>
+          </td>
+        </tr><tr>
+          <td class="name" nowrap="">
+            <a id="APP_CONSTANT"></a>
+            APP_CONSTANT
+          </td>
+          <td class="type"><span class="param-type">
+            object
+          </span></td>
+          <td class="description last">
+            <span>
+              <p>constants defined at application levels</p>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="functions">
+  <h3 class="subsection-title">Methods</h3>
+  <dl>
+    <dt>
+      <a href="source/lsLenderApp.appFactory.html#line58" class="name-link" id="getLocalStorageData">
+        <h4 class="name">
+          getLocalStorageData
+          <span class="signature">(key)</span>
+          <span class="type-signature">
+            -&gt; object
+          </span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>get localStorage value</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">key</td>
+              <td class="type"><span class="param-type">
+                string
+              </span></td>
+              <td class="description last">
+                <span>
+                  <p>holding name of the local storage key to fetch the value</p>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Returns</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type">
+                <span class="param-type">
+                  object
+                </span>
+              </td>
+              <td class="description last">
+                <span>
+                  <p>value holding json data</p>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="source/lsLenderApp.appFactory.html#line105" class="name-link" id="scrollToTop">
+        <h4 class="name">
+          scrollToTop
+          <span class="signature">()</span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>scroll page to top of the view port</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="source/lsLenderApp.appFactory.html#line41" class="name-link" id="setLocalStorageData">
+        <h4 class="name">
+          setLocalStorageData
+          <span class="signature">(key, val)</span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>set value to browser localStorage in key value pair, function requires two parameter one key and other value</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">key</td>
+              <td class="type"><span class="param-type">
+                string
+              </span></td>
+              <td class="description last">
+                <span>
+                  <p>holding name of the local storage key</p>
+                </span>
+              </td>
+            </tr><tr>
+              <td class="name">val</td>
+              <td class="type"><span class="param-type">
+                object
+              </span></td>
+              <td class="description last">
+                <span>
+                  <p>holding json data object</p>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="source/lsLenderApp.appFactory.html#line74" class="name-link" id="setToken">
+        <h4 class="name">
+          setToken
+          <span class="signature">()</span>
+          <span class="type-signature">
+            -&gt; object
+          </span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>set token for each $http request</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Returns</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type">
+                <span class="param-type">
+                  object
+                </span>
+              </td>
+              <td class="description last">
+                <span>
+                  <p>config object holding header</p>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="source/lsLenderApp.appFactory.html#line117" class="name-link" id="showSignUpModal">
+        <h4 class="name">
+          showSignUpModal
+          <span class="signature">()</span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>to show the login-signup modal with signup tab enabled by default</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="source/lsLenderApp.appFactory.html#line31" class="name-link" id="timerCountDown">
+        <h4 class="name">
+          timerCountDown
+          <span class="signature">()</span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>Timer counter to count down the default value</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="source/lsLenderApp.appFactory.html#line88" class="name-link" id="userLoggedIn">
+        <h4 class="name">
+          userLoggedIn
+          <span class="signature">()</span>
+          <span class="type-signature">
+            -&gt; boolean
+          </span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>check if login status of user logged in or not</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Returns</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type">
+                <span class="param-type">
+                  boolean
+                </span>
+              </td>
+              <td class="description last">
+                <span>
+                  <p>return false if user is logged in or not</p>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl>
+</div></div>
+        </div>
+      </div>
+      <footer style="clear:both">
+        Documentation generated by
+        <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a>
+        using
+        <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>
+      </footer>
+    </div>
+    <script src="js/prettify.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/site.js"></script>
+    <!--%= prettyJson %-->
+    <script>
+      prettyPrint();
+      var lineNo = window.location.hash.match(/#line([0-9]+)$/);
+      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();
+    </script>
+  </body>
+</html>

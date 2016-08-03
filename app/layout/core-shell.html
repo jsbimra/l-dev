@@ -1,0 +1,28 @@
+<div class="app app-header-fixed">
+
+    <ng-include src="'app/layout/header.html'"></ng-include>
+    <!-- header -->
+</div>
+
+<div class="main-wrapper" role="main">
+
+        <ng-outlet></ng-outlet>
+
+</div><!-- container -->
+
+
+<!-- for sub section/child components -->
+ <!-- <div class="app-section container">
+    <article class="app-content">
+    </article> --><!-- app-content end -->
+<!-- </div> --><!-- app-section -->
+
+        
+<!-- footer -->
+<footer id="footer" class="app-footer" role="footer">
+    <ng-include src="'app/layout/footer.html'"></ng-include>
+</footer>
+
+<!-- Login modal for sign in -->
+<login-component></login-component>
+<borrowerinfo-component></borrowerinfo-component>

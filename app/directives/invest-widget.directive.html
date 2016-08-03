@@ -1,0 +1,64 @@
+<div class="ib-container">
+    <form name="$ctrl.prefForm" id="$ctrl.prefForm" novalidate ng-submit="$ctrl.prefForm.$valid && $ctrl.goToDirectiveInvest()">
+        <div class="form-pref-group-TEMP invest-data-wrapper">
+            <div class="amount_wrapper">
+                <h3 ng-bind="$ctrl.widgetText[0]"></h3>
+                <div class="ib-amountbox">
+                    <i class="fa fa-inr" aria-hidden="true"></i>
+                    <input type="text" name="amounttoinvest" placeholder="Amount" ng-model="$ctrl.userPreference.amounttoinvest" required awnum="price" />
+                </div>
+            </div>
+            
+            <div class="rate-container form-pref-group">
+                <h3 ng-bind="$ctrl.widgetText[1]"></h3>
+                <!-- <div class="rate-item" ng-repeat="risk in $ctrl.riskRates">
+            <button type="button" class="btn rate-button" ng-class="risk.class" ng-click="$ctrl.userPreference.rateRisk=risk.name"><i class="fa fa-check-circle-o" aria-hidden="true" ng-if="$ctrl.userPreference.rateRisk==risk.name"></i>{{risk.name}}</button>
+            <br/> {{risk.value}}
+        </div> -->
+                <div class="rate-item">
+                    <button type="button" class="btn rate-button low">Low</button>
+                        <br/> 16-20%
+                </div>
+                <div class="rate-item">
+                    <a href="javascript:void(0)" class="btn rate-button medium" data-toggle="tooltip" title="Stay tuned for the risk category">Medium</a>
+                        <br/> <span>20-24%</span>
+                </div>
+                <div class="rate-item">
+                    <a href="javascript:void(0)" class="btn rate-button high" data-toggle="tooltip" title="Stay tuned for the risk category">High</a>
+                        <br/> <span>24-28%</span>
+                </div>
+                <!-- <p>risk category <i class="fa fa-arrow-right" aria-hidden="true"></i></p> -->
+                <div class="error-msg" ng-show="$ctrl.prefForm.amounttoinvest.$error.required && $ctrl.prefForm.$submitted">
+                    Please enter a amount to invest.
+                </div>
+            </div>
+            <div class="tenure-container">
+                <h3 ng-bind="$ctrl.widgetText[2]"></h3>
+                <div class="tenure-slider">
+                    <rzslider rz-slider-model="$ctrl.slider.min" rz-slider-high="$ctrl.slider.max" rz-slider-options="$ctrl.slider.options"></rzslider>
+                    <div class="row hide">
+                        <div class="col-xs-5">
+                            <input type="number" ng-model="$ctrl.slider.min" class="form-control" />
+                            <small class="pull-left">(months)</small>
+                        </div>
+                        <div class="col-xs-2 valign text-center">to</div>
+                        <div class="col-xs-5">
+                            <input type="number" ng-model="$ctrl.slider.max" class="form-control pull-right" />
+                            <small class="pull-right">(months)</small>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="nav nav-tabs hide relative jsTenureMonthsList tenure-monthly-list" role="tablist">
+                    <div class="tenure-band"></div>
+                    <li ng-repeat="item in $ctrl.tenureMonthsList">
+                        <a><span class="tenure-style">Months</span>
+                            <div class="steps" ng-click="$ctrl.tenureSelection(item, $event)"><span class="vis_sct jsItemText" ng-bind="item"></span></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button type="submit" class="btn btn-primary full-width">{{$ctrl.buttonText}}</button>
+        </div>
+    </form>
+</div>

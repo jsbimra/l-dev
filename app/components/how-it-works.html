@@ -1,0 +1,58 @@
+<div class="app-section fade-in-up ng-enter ng-enter-active">
+    <article class="app-content">
+        <div class="app-content-inner__child clearfix">
+            <section class="container static-container how-it-works-section">
+               <!--  <h1 class="text-center">How it works</h1> -->
+                
+                <div class="content-pane">
+                	<img src="../img/quick-sign-up-small.png" alt="quick-sign-up-small" class="pull-left image-icon-left" />
+                	<div class="bec desc">
+                		<h3><span>1</span> Quick Sign up</h3>
+                		<p>Sign up in a jiffy to access borrower profiles. You should be done signing up in less than a minute! </p>
+
+                        <button ng-if="!$hCtrl.parentCtrl.loggedIn" type="button" class="btn btn-default" ng-click="$hCtrl.showSignUpModal();">Sign Up</button>
+                	</div>
+                </div>
+
+                <div class="content-pane">
+                	<img src="../img/verify-option-small.png" alt="verify-option-small" class="pull-right image-icon-right" />
+                	<div class="bec-TEMP desc">
+                		<h3><span>2</span> Verified investment options</h3>
+                		<p>Browse through profiles based on your investment preferences. Go for our recommendations, or pick profiles individually to your liking. <a href="javascript:void(0)" class="arrow-link down-arrow jsHowItWorksArrowLink" ng-click="$hCtrl.toggleContent($event)">Show More</a></p>
+
+                		<div class="row toggle-content-view fade-in-up ng-enter jsToggleContentView" ng-show="$hCtrl.toggleContentView">
+                			<div class="cols-xs-12 col-md-6">
+	                			<ul class="bullet-points">
+	                				<li><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i> <span>Machine learning algorithm</span></li>
+	                				<li><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i> <span>Borrower verification and approval</span></li>
+	                				<li><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i> <span>Risk assessment and grading</span></li>
+	                				<li><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i> <span>Security documents</span></li>
+	                				<!-- <li><i class="fa fa-circle-o" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i> <span>Listed for funding</span></li> -->
+	                			</ul>
+	                		</div>
+                			<div class="cols-xs-12 col-md-6"><img src="../img/verify-machine.png" alt="verify-machine" class="pull-right" /></div>
+                		</div>
+                	</div>
+                </div>
+
+                <div class="content-pane">
+                	<img src="../img/easy-disbursal-small.png" alt="easy-disbursal-small" class="pull-left image-icon-left" />
+                	<div class="bec desc">
+                		<h3><span>3</span> Easy disbursal</h3>
+                		<p>Review repayment schedules and security documents, or ask us any questions directly. Post review, proceed with disbursement</p>
+                	</div>
+                </div>
+
+                <div class="content-pane">
+                	<img src="../img/enjoy-returns-small.png" alt="enjoy-returns-small" class="pull-right image-icon-right" />
+                	<div class="bec desc">
+                		<h3><span>4</span> Enjoy returns</h3>
+                		<p>Enjoy monthly returns! Use our innovative dashboard to monitor your investments. For any queries reach out to us at <a href="mailto:LS@loansingh.com">LS@loansingh.com</a></p>
+                		
+                	</div>
+                </div>
+
+            </section>
+        </div>
+    </article>
+</div>

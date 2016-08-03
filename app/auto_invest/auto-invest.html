@@ -1,0 +1,32 @@
+<!-- for sub section/child components -->
+ <div class="app-section">
+    <article class="app-content">
+        <div class="app-content-inner__child clearfix portfolio-section">
+        <section class="portfolio-sec page-section">
+           <div class="container">
+             <h1>Build your portfolio in just one click</h1>
+            <div class="row portfolio-row">
+                <div class="col-md-6">
+                  <div class="auto-invest-padd-container">
+                    <invest-widget on-invest-now="autoCtrl.buildPortfolio()" button-text="BUILD PORTFOLIO"></invest-widget>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                   <portfolio-pool-component ng-if="autoCtrl.showPool" createdpool="autoCtrl.createdpool" userpref="autoCtrl.userPref" investnow="autoCtrl.investNow()" collapsible="false"></portfolio-pool-component><!--To be changed to component child routing-->
+                   <div class="portfolio-empty" ng-if="!autoCtrl.showPool">
+                      <div class="wrapper">
+                         <i class="fa fa-clipboard" aria-hidden="true"></i>
+                         <p>Your Portfolio<br>will appear here</p>
+                      </div>
+                   </div>
+                </div>
+                <p class="skip-link" ng-link=['Invest']>Skip</p>
+            </div>
+
+           </div>
+        </section>
+
+        
+        </div><!-- app-content-inner__child end -->
+    </article><!-- app-content end -->
+</div><!-- app-section -->

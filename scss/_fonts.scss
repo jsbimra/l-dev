@@ -1,0 +1,167 @@
+
+/*
+OLD CODE
+@font-face {
+    font-family: 'HelveticaNeueregular';
+    src: url('../fonts/HelveticaNeueLTPro-Blk.otf') format("opentype"),
+    src: url('../fonts/HelveticaNeue.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}*/
+
+/*
+@font-face {
+    font-family: 'HelveticaNeuelight';
+    src: url('../fonts/HelveticaNeueLTPro-Lt.otf') format("opentype"),
+    src: url('../fonts/HelveticaNeue-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}*/
+
+/*
+@font-face {
+    font-family: 'HelveticaNeuemedium';
+    src: url('../fonts/HelveticaNeueLTPro-Md. otf') format("opentype"),
+    src: url('../fonts/HelveticaNeue-Medium.ttf?2hhas5') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+*/
+/*
+@font-face {
+    font-family: 'HelveticaNeuebold';
+    src: url('../fonts/HelveticaNeueLTPro-Bd.otf') format("opentype"),
+    src: url('../fonts/HelveticaNeue-Bold.ttf') format('truetype');
+    src: url('../fonts/signika-bold.eot?#iefix') format('embedded-opentype'), url('../fonts/signika-bold.woff2') format('woff2'), url('../fonts/signika-bold.woff') format('woff'), url('../fonts/signika-bold.ttf') format('truetype'), url('../fonts/signika-bold.svg#HelveticaNeuebold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+*/
+
+@font-face {
+    font-family: 'HelveticaNeueregular';
+    src: url('../fonts/HelveticaNeue.eot');
+    src: url('../fonts/HelveticaNeue.woff2') format('woff2'),
+       url('../fonts/HelveticaNeue.woff') format('woff'),
+       url('../fonts/HelveticaNeue.ttf') format('truetype'),
+       url('../fonts/HelveticaNeue.svg#HelveticaNeue') format('svg'),
+       url('../fonts/HelveticaNeue.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeuelight';
+    src: url('../fonts/HelveticaNeue-Light.eot');
+    src: url('../fonts/HelveticaNeue-Light.woff2') format('woff2'),
+       url('../fonts/HelveticaNeue-Light.woff') format('woff'),
+       url('../fonts/HelveticaNeue-Light.ttf') format('truetype'),
+       url('../fonts/HelveticaNeue-Light.svg#HelveticaNeue-Light') format('svg'),
+       url('../fonts/HelveticaNeue-Light.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'HelveticaNeuemedium';
+    src: url('../fonts/HelveticaNeue-Medium.eot');
+    src: url('../fonts/HelveticaNeue-Medium.woff2') format('woff2'),
+       url('../fonts/HelveticaNeue-Medium.woff') format('woff'),
+       url('../fonts/HelveticaNeue-Medium.ttf') format('truetype'),
+       url('../fonts/HelveticaNeue-Medium.svg#HelveticaNeue-Medium') format('svg'),
+       url('../fonts/HelveticaNeue-Medium.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeuebold';
+    src: url('../fonts/HelveticaNeue-Bold.eot');
+    src: url('../fonts/HelveticaNeue-Bold.woff2') format('woff2'),
+       url('../fonts/HelveticaNeue-Bold.woff') format('woff'),
+       url('../fonts/HelveticaNeue-Bold.ttf') format('truetype'),
+       url('../fonts/HelveticaNeue-Bold.svg#HelveticaNeue-Bold') format('svg'),
+       url('../fonts/HelveticaNeue-Bold.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+/* ICO MOON FONT */
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot?2hhas5');
+    src: url('../fonts/icomoon.eot?2hhas5#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?2hhas5') format('truetype'), url('../fonts/icomoon.woff?2hhas5') format('woff'), url('../fonts/icomoon.svg?2hhas5#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+[class^="icon-"],
+[class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-call:before {
+    content: "\e900";
+}
+
+.icon-facebook:before {
+    content: "\e901";
+}
+
+.icon-gplus:before {
+    content: "\e902";
+}
+
+.icon-group:before {
+    content: "\e903";
+}
+
+.icon-quick:before {
+    content: "\e904";
+}
+
+.icon-rupee:before {
+    content: "\e905";
+}
+
+.icon-twitter:before {
+    content: "\e906";
+}
+
+.icon-datetime:before {
+    content: "\e907";
+}
+
+.icon-date:before {
+    content: "\e908";
+}
+
+.icon-percent:before {
+    content: "\e909";
+}
+
+.icon-in:before {
+    content: "\e90a";
+}
+
+.icon-mail:before {
+    content: "\e90b";
+}
+
+.icon-login:before {
+    content: "\e90c";
+}

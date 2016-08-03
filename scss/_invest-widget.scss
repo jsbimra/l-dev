@@ -1,0 +1,169 @@
+
+/* ==========================================================================
+   Investment Form Block
+   ========================================================================== */
+
+/*------------------------------------*\
+  #Investment Box CSS
+\*------------------------------------*/
+
+/* Variables */
+$ib-background-color: #ffffff;
+$ib-border-color: #bdbdbd;
+$ib-border-radius: 8px;
+
+
+
+/* invest now button style */
+.btn.btn-primary, .btn-primary {
+    font-size: 17px;
+    font-family: $HelveticaNeuemedium;
+    color: #fff;
+    background: #e74c3c;
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    border:none;
+    display: inline-block;
+
+    &:active, &:focus, &:hover{
+        text-decoration: none;
+        color: #fff;
+    }
+}
+
+.full-width {
+    width:100%;
+}
+
+/* invest-widget container styles */
+.ib-container {
+    /*width: 100%;*/
+    /*min-height: 20px;
+    background: $ib-background-color;
+    border: 1px solid $ib-border-color;
+    border-radius: $ib-border-radius;
+    text-align: center;
+    padding: 5px 0 20px 0;*/
+
+    h3{
+        font: {
+            size: 15px;
+            family: $HelveticaNeuemedium;
+        }
+        margin-top: 10px;
+        margin-bottom: 4px;
+    }
+
+
+    .ib-amountbox {
+        @extend .form-control;
+
+        margin: 5px 0;
+        width: 100%;
+        border-radius: $ib-border-radius;
+        padding: 12px 5px;
+        display: inline-block;
+        overflow: hidden;
+
+        &>input {
+            font: {
+                size: 13px;
+                family: $HelveticaNeuemedium;
+            }
+            border: 0px;
+            outline: 0px;
+            width: 80%;
+            -webkit-appearance: none;
+            color: #777777;
+
+            &:focus {
+                outline: 0px;
+            }
+        }
+
+        .fa-inr {
+            color: #777777;
+            font-size: 14px;
+            padding: 0 5px 0 10px;
+
+        }
+    }
+
+    .rate-container {
+        margin: 10px 0;
+
+        .rate-item {
+            color: #949595;
+            font-size: 12px;
+            text-align: center;
+            display: inline-block;
+            width: 32%;
+            font-weight: 900;
+            i {
+                color: darkgreen;
+                position: absolute;
+                right: 1px;
+                top: 1px;
+            }
+            &>span{
+                opacity: 0.4;
+            }
+            
+        }
+        p {
+            font-size: 16px;
+            line-height: 9px;
+            text-align: left;
+        }
+
+        .rate-button {
+            font-size: 13px;
+            font-family: $HelveticaNeuebold;
+            color: #ebedee;
+            border-radius: 5px;
+            text-align: center;
+            padding: 10px 21px;
+            margin: 10px 1px;
+            position: relative;
+            width: 100%;
+            text-transform: uppercase;
+            
+
+            &.low { background-color: #f1c40f; }
+            &.medium { background-color: #c6dcea; }
+            &.high { background-color: #c6dcea; }
+        }
+    } /* rate-container style end*/
+
+
+    .tenure-container {
+        margin: 20px 0;
+        .valign{
+            line-height: 34px;
+        }
+    } /* tenure-container style end*/
+
+} /* ib-container style end*/
+
+.tenure-slider {
+    padding: 0;
+
+    .form-control{
+        width: 50%;
+        text-align: center;
+    }
+
+    small{
+        display: block;
+        color: #949595;
+        font-size: 11px;
+        font-weight: normal;
+        margin-top: -16px;
+        clear: both;
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+}
+
+/* invest-widget container ends */

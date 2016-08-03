@@ -1,0 +1,170 @@
+
+/* ==========================================================================
+   iPhone 5 and below mobile devices media query for 320x480 viewport devices
+   Right after iPhone 6 media queries
+   ========================================================================== */
+@media screen and (min-width: 320px) and (max-width: 480px){
+    header {
+        .head-top {
+            img {
+                height: 38px;
+                margin-top: 11px;
+            }
+        }
+    }
+    .app-section {
+        .app-content {
+            .app-content-inner__child {
+                .padd-top-40{
+                    padding-top: 10px;
+                }
+                .padd-top-90 {
+                    padding-top: 20px;
+                }
+                .bullet-points {
+                    font-size: 12px;
+                    line-height: 18px;
+                }
+                .fa-check {
+                    margin-top: -3px;
+                }
+                #home-sec{
+                    background-image: none;
+                    padding: 20px 0px 40px;
+                    h1 {
+                        font-size: 25px;
+                        line-height: 32px;
+                    }
+                }
+                #graph-sec {
+                    h1 {
+                        font-size: 25px;
+                        line-height: 32px;
+                    }
+                    .background-img {
+                        display: none;
+                    }
+                    .bar-data-value {
+                        top: -60px;
+                        font-size: 5px;
+                        line-height: 7px;
+                        margin-left: -8px;
+                        padding-left: 5px;
+                        padding-bottom: 14px;
+                        span {
+                            font-size: 7px;
+                            line-height: 10px;
+                        }
+                    }
+                    .graph-container {
+                        margin: 50px 0 0 0px;
+                    }
+                    img {
+                        display: none;
+                    }
+                    .inflation-line {
+                        width: 100%;
+                        top: 255px;
+                        font-size: 6px;
+                        text-indent: 5px;
+                    }
+                }
+                #scoring-model-sec {
+                    h1 {
+                        font-size: 25px;
+                        line-height: 32px;
+                    }
+
+                }
+                #infographic-sec {
+                    padding-bottom: 90px;
+                    text-align: center;
+                    h1 {
+                        font-size: 25px;
+                        line-height: 32px;
+                    }
+                    h6 {
+                        font-size: 18px;
+                        line-height: 25px;
+                        padding-bottom: 10px;
+                    }
+                    span {
+                        font-size: 12px;
+                        line-height: 20px;
+                        display: block;
+                    }
+                    .carousel-indicators > li:nth-child(1), .carousel-indicators > li:nth-child(2), .carousel-indicators > li:nth-child(3) {
+                        margin-right: 10%;
+                    }
+                    .carousel-indicators li::after{
+                        width: 15%;
+                    }
+                    .carousel-indicators {
+                        bottom: -60px;
+                    }
+                    .padd-top-90 {
+                        padding-top: 0px;
+                    }
+                    .carousel-indicators li {
+                        font-size: 18px;
+                        width: 34px;
+                        height: 34px;
+                    }
+                    
+                }
+            }
+        }
+    }
+    footer {
+        .footer-menu {
+            width: 100%;
+            li a {
+                padding: 2px 0px;
+            }
+        }
+        .nav>li {
+            position: relative;
+            display: inline-block;
+        }
+        .social-links {
+            text-align: center;
+        }
+        .copyright {
+            margin: 10px 0;
+        }
+    }    
+
+    /* contact us page */
+    .contact-us-section{
+        .contactus-wrapper{width:95%;}
+        /*.socialmedia-sec{width: auto;}*/
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .graph-container {
+        font-size: 0.26em;
+    }
+    #home-sec{
+        background-image: none;
+        padding: 20px 0px 40px;
+        h1 {
+            font-size: 25px;
+            line-height: 32px;
+        }
+    }
+}
+@media screen and (max-width: 375px) {
+    .graph-container {
+        font-size: 0.22em;
+    }
+}
+@media screen and (max-width: 320px) {
+    .graph-container {
+        font-size: 0.18em;
+    }
+    header .head-top img {
+        height: 26px;
+        margin-top: 20px;
+    }
+}
