@@ -56,7 +56,7 @@
         // begin at 0.8 and end at one segment width
         var startAngle;
         var endAngle;
-        var colorArray = ['#D6EAF8', '#F1C40F', '#C2C8CE'];
+        var colorArray = ['#88c61c', '#e29823', '#ec1a26'];
         var riskArray = [16, 20, 24];
         var riskPosition;
         var i = 0.9 + (vm.risk - 12) / 2;
@@ -65,6 +65,8 @@
         var lineAngleCircum;
         var lineEndAngleCircum;
         var showSegments;
+        var riskValue;
+        var riskNeedleReverse;
 
 
         /**Function to redraw meter when redirected**/
@@ -77,11 +79,14 @@
             showSegments = true;
             startAngle = 0.8;
             endAngle = (0.8 + segmentWidth);
-            lineAngle = 0.55;
-            lineEndAngle = 0.55;
+            if(!lineEndAngle)
+                lineAngle = 0.55;
+            else
+               lineAngle = lineEndAngle;
+            //lineEndAngle = 0.55;
             lineAngleCircum = 0.55;
             lineEndAngleCircum = 0.55;
-
+            riskNeedleReverse = false;
             layer1 = document.getElementById("layer1");
             ctx1 = layer1.getContext("2d");
             layer2 = document.getElementById("layer2");
@@ -89,13 +94,7 @@
             layer3 = document.getElementById("layer3");
             ctx3 = layer3.getContext("2d");
 
-            if (vm.risk == 0 || isNaN(vm.risk)) {
-                showSegments = false;
-                $('#layer2').addClass("hide");
-            } else {
-                $('#layer2').removeClass("hide");
-                lineEndAngle = ((((vm.risk - 12) / 2) * 0.23) + 0.55);
-            }
+            
             drawAll();
         }
 
@@ -107,7 +106,14 @@
 
         function drawAll() {
             drawGear();
-            $interval(drawRiskNeedle, 100, 1);
+            if (vm.risk == 0 || isNaN(vm.risk)) {
+                lineEndAngle = 0.55;
+            } else {
+                lineEndAngle = ((((vm.risk - 12) / 2) * 0.23) + 0.55);
+            }
+            if(lineEndAngle<lineAngle)
+                riskNeedleReverse = true;
+           $interval(drawRiskNeedle, 100, 1); 
         }
 
         function drawGear() {
@@ -131,16 +137,7 @@
             drawCircumLines();
 
             //Draw segments
-            if (showSegments) {
-                for (var j = 0; j < riskArray.length; j++) {
-                    if (vm.risk <= riskArray[j]) {
-                        riskPosition = j + 1;
-                        drawSegments();
-                        break;
-                    }
-                }
-            }
-
+            drawSegments();
 
         }
 
@@ -196,20 +193,26 @@
             ctx2.stroke();
             ctx2.restore();
             if (lineAngle != lineEndAngle) {
-                lineAngle += 0.17;
-                if (lineAngle < lineEndAngle) {
-
-                    $interval(drawRiskNeedle, 100, 1);
-                } else {
+                if (lineAngle+0.17 < lineEndAngle && !riskNeedleReverse) {
+                    lineAngle += 0.17;
+                } 
+                else if (lineAngle-0.17 > lineEndAngle && riskNeedleReverse) {
+                    lineAngle -= 0.17;
+                }else {
                     lineAngle = lineEndAngle;
-                    $interval(drawRiskNeedle, 100, 1);
+                    
                 }
+                $interval(drawRiskNeedle, 100, 1);
             }
+
+            //Store riskValue Angle to temperary variable
+            riskValue = lineEndAngle;
 
             //End needle
         }
 
         function drawSegments() {
+            riskPosition=3;
             for (var i = 0; i < riskPosition; i++) {
                 ctx1.save();
                 ctx1.beginPath();

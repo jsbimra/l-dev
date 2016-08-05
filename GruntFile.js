@@ -15,7 +15,7 @@ module.exports = function(grunt) {
             },
             build: {
                 files: ['*.html', 'GruntFile.js','app/*.js', 'app/**/*.js'],
-                tasks: ['clean', 'concat', 'cssmin', 'ngtemplates', 'ngAnnotate', 'uglify', 'processhtml', 'copy']
+                tasks: ['clean:contents', 'concat', 'cssmin', 'ngtemplates', 'ngAnnotate', 'uglify', 'processhtml', 'copy', 'clean:folder']
             }
         },
         sass: {
@@ -62,8 +62,8 @@ module.exports = function(grunt) {
             }
         },
         clean: {
-          contents: ['pre-build/*'],
-          contents: ['build/*']
+            contents: ['pre-build/*', 'build/*'],
+            folder: ['pre-build']
         },
         concat: {
             dist: {

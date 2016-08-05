@@ -53,6 +53,7 @@ $ib-border-radius: 8px;
         }
         margin-top: 10px;
         margin-bottom: 4px;
+        font-weight: 600;
     }
 
 
@@ -130,9 +131,9 @@ $ib-border-radius: 8px;
             text-transform: uppercase;
             
 
-            &.low { background-color: #f1c40f; }
-            &.medium { background-color: #c6dcea; }
-            &.high { background-color: #c6dcea; }
+            &.low { background-color: #88c61c; }
+            &.medium { background-color: #e29823; }/*#c6dcea - Disabled state color*/
+            &.high { background-color: #ec1a26; }
         }
     } /* rate-container style end*/
 

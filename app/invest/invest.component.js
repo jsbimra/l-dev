@@ -263,9 +263,29 @@
 
         /**Get set of all borrowers**/
         function getBorrowerTable() {
+/*        Dummy data for testing
+          var dummyArray = [];
+            var intRate = 13;
+            console.log(borrowerData.length);
+            if(borrowerData.length>0){
+              for (var i=0;i<10;i++) {
+                dummyArray[i]=borrowerData[0];
+            }
+           // borrowerData = [];
+
+            borrowerData = (JSON.parse(JSON.stringify(dummyArray)));
+
+            for(i in borrowerData){
+                 borrowerData[i]["loan_code"] = borrowerData[i]["loan_code"]+i;
+              borrowerData[i]["rate_of_interest"]= intRate+parseInt(i);
+            }
+
+          }*/
+
             vm.tableData = [];
 
             vm.tableData = (JSON.parse(JSON.stringify(borrowerData)));
+
             for (var i in vm.tableData) {
                 vm.tableData[i]["check"] = false;
                 vm.tableData[i]["tenure"] += " Months";
@@ -279,139 +299,6 @@
             deferred.resolve(vm.tableData);
             return deferred.promise;
 
-            /* dataSet=[{
-                   "check": true,
-                   "name": "Rahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 20,
-                       "remAmt": 150000
-                   }]
-               },{
-                   "check": true,
-                   "name": "Sahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 50,
-                       "remAmt": 150000
-                   }]
-               },{
-                   "check": true,
-                   "name": "Aahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 50,
-                       "remAmt": 150000
-                   }]
-               },{
-                   "check": true,
-                   "name": "Dahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 50,
-                       "remAmt": 150000
-                   }]
-               },{
-                   "check": true,
-                   "name": "Rahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 50,
-                       "remAmt": 150000
-                   }]
-               },{
-                   "check": true,
-                   "name": "Rahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 50,
-                       "remAmt": 150000
-                   }]
-               },{
-                   "check": true,
-                   "name": "Rahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 50,
-                       "remAmt": 150000
-                   }]
-               },{
-                   "check": true,
-                   "name": "Rahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 50,
-                       "remAmt": 150000
-                   }]
-               },{
-                   "check": true,
-                   "name": "Rahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 50,
-                       "remAmt": 150000
-                   }]
-               },{
-                   "check": true,
-                   "name": "Rahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 30,
-                       "remAmt": 150000
-                   }]
-               },{
-                   "check": true,
-                   "name": "Rahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 50,
-                       "remAmt": 150000
-                   }]
-               },{
-                   "check": true,
-                   "name": "Rahul asd",
-                   "purpose": "Education",
-                   "loan_amount": 75000,
-                   "tenure": 18,
-                   "rate_of_interest": 17,
-                   "status": [{
-                       "val": 70,
-                       "remAmt": 150000
-                   }]
-               }];*/
         }
 
         /*Function to change amount when borrower is selected from pool*/
@@ -447,7 +334,6 @@
                 console.log('Create pool API error');
             });
           
-          console.log(vm.createdpool);
         }
         
         /**Check for intro status**/

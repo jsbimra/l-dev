@@ -423,11 +423,11 @@ header {
 /* ==========================================================================
    IntroJs CSS
    ========================================================================== */
-.introjs-tooltiptext {
+.popover .popover-content {
   font-size: 12px;
   font-family: "HelveticaNeuelight";
   font-weight: 600; }
-  .introjs-tooltiptext b {
+  .popover .popover-content b {
     font-family: "HelveticaNeuebold"; }
 
 .introjs-bullets {
@@ -451,40 +451,42 @@ header {
 .introjs-button {
   letter-spacing: 1px; }
 
-.introjs-tooltip {
+.popover {
   min-width: 260px; }
 
-.introjs-skipbutton {
+.popover-navigation {
+  text-align: right;
+  white-space: nowrap;
+  float: right; }
+
+.popover[class*=tour-] .popover-navigation .btn {
   font-size: 12px;
-  border: 1px solid #303030;
   font-family: "HelveticaNeuelight";
-  color: #303030;
-  background: #fff;
   padding: 4px 16px;
   border-radius: 3px;
   text-decoration: none;
   display: inline-block;
   text-shadow: none;
   font-weight: 700; }
-  .introjs-skipbutton:hover, .introjs-skipbutton:active, .introjs-skipbutton:focus, .introjs-skipbutton:visited {
+
+.popover[class*=tour-] .popover-navigation .skip-btn[data-role=end] {
+  color: #303030;
+  background: #fff;
+  border: 1px solid #303030;
+  float: left;
+  margin-right: 5px; }
+  .popover[class*=tour-] .popover-navigation .skip-btn[data-role=end]:hover, .popover[class*=tour-] .popover-navigation .skip-btn[data-role=end]:active, .popover[class*=tour-] .popover-navigation .skip-btn[data-role=end]:focus, .popover[class*=tour-] .popover-navigation .skip-btn[data-role=end]:visited {
     color: #303030;
     text-decoration: none;
     box-shadow: 0px 1px 1px #e3e3e3;
     background: #fff;
     border: 1px solid #303030; }
 
-.introjs-nextbutton {
-  font-size: 12px;
-  font-family: "HelveticaNeuelight";
+.popover .popover-navigation .next-btn {
   color: #fff;
   background: #e74c3c;
-  padding: 4px 16px;
-  border-radius: 3px;
-  text-decoration: none;
-  border: none;
-  display: inline-block;
-  text-shadow: none; }
-  .introjs-nextbutton:hover, .introjs-nextbutton:active, .introjs-nextbutton:focus, .introjs-nextbutton:visited {
+  border: 1px solid #e74c3c; }
+  .popover .popover-navigation .next-btn:hover, .popover .popover-navigation .next-btn:active, .popover .popover-navigation .next-btn:focus, .popover .popover-navigation .next-btn:visited {
     color: #fff;
     border-color: #bcbcbc;
     text-decoration: none;
@@ -580,7 +582,7 @@ form label {
       color: #636363;
       font-size: 17px; }
     .app-section .app-content .app-content-inner__child .fa-check {
-      color: #3a9f6d;
+      color: #88c61c;
       font-size: 18px;
       margin-left: -12px;
       margin-top: 4px;
@@ -617,7 +619,7 @@ form label {
         font-family: "HelveticaNeuemedium";
         color: #95a5a6; }
       .app-section .app-content .app-content-inner__child #home-sec .bullet-points {
-        color: #e74c3c; }
+        color: #475455; }
       .app-section .app-content .app-content-inner__child #home-sec .red-highlight {
         color: #ee2e24; }
       .app-section .app-content .app-content-inner__child #home-sec img {
@@ -676,11 +678,18 @@ form label {
           font-size: 13px;
           font-family: "HelveticaNeuelight";
           list-style-type: none;
-          line-height: 17px; }
+          line-height: 17px;
+          padding-left: 0;
+          margin-top: 5px; }
           .app-section .app-content .app-content-inner__child #graph-sec .note ul li {
-            float: left; }
+            float: left;
+            padding-right: 10px;
+            border-right: 1px solid white;
+            padding-left: 10px; }
             .app-section .app-content .app-content-inner__child #graph-sec .note ul li:first-child {
-              text-indent: -40px; }
+              padding-left: 0; }
+            .app-section .app-content .app-content-inner__child #graph-sec .note ul li:last-child {
+              border-right: none; }
       .app-section .app-content .app-content-inner__child #graph-sec .text-indent {
         text-indent: 70px; }
       .app-section .app-content .app-content-inner__child #graph-sec img {
@@ -1924,7 +1933,8 @@ button[disabled]:active {
     font-size: 15px;
     font-family: "HelveticaNeuemedium";
     margin-top: 10px;
-    margin-bottom: 4px; }
+    margin-bottom: 4px;
+    font-weight: 600; }
   .ib-container .ib-amountbox {
     margin: 5px 0;
     width: 100%;
@@ -1976,13 +1986,14 @@ button[disabled]:active {
       margin: 10px 1px;
       position: relative;
       width: 100%;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      /*#c6dcea - Disabled state color*/ }
       .ib-container .rate-container .rate-button.low {
-        background-color: #f1c40f; }
+        background-color: #88c61c; }
       .ib-container .rate-container .rate-button.medium {
-        background-color: #c6dcea; }
+        background-color: #e29823; }
       .ib-container .rate-container .rate-button.high {
-        background-color: #c6dcea; }
+        background-color: #ec1a26; }
   .ib-container .tenure-container {
     margin: 20px 0; }
     .ib-container .tenure-container .valign {
@@ -2657,7 +2668,7 @@ table {
         margin: 5px 0;
         font-weight: 600; }
       .app-section .app-content .app-content-inner__child #dashboard-sec .one-forth-box p {
-        font-size: 12px;
+        font-size: 13px;
         font-family: "HelveticaNeuelight";
         color: #979797;
         text-align: center;
@@ -2790,81 +2801,228 @@ table {
 
 }
 */
+/*
+ 	Targeting mobile devices 
+ */
+@media screen and (min-width: 320px) and (max-width: 991px) {
+  .responsive-graph-container {
+    clear: both;
+    padding: 10px 0 5px;
+    margin: 25px 0 10px;
+    position: relative;
+    /* for Inflation bar */
+    z-index: 1;
+    /* Inflation line vertical */
+    /* bar-wrap end */ }
+    .responsive-graph-container:before {
+      content: ' ';
+      width: 65%;
+      height: 100%;
+      border-left: 3px dashed white;
+      position: absolute;
+      z-index: -1;
+      left: 29%;
+      top: 0; }
+    .responsive-graph-container h5 {
+      margin: 0;
+      padding: 0;
+      line-height: normal;
+      font-size: 20px;
+      font-family: "HelveticaNeuebold"; }
+    .responsive-graph-container span {
+      color: #6f777d;
+      font-size: 16px; }
+    .responsive-graph-container .inflation-text {
+      position: absolute;
+      top: -24px;
+      left: 29%;
+      padding: 0;
+      font-size: 22px;
+      margin-left: 19px; }
+      .responsive-graph-container .inflation-text > li {
+        text-indent: -6px; }
+      .responsive-graph-container .inflation-text h5 {
+        display: inline-block;
+        margin-left: 4px; }
+    .responsive-graph-container .range-1 .bar-box {
+      width: 100%;
+      background: #eb2226; }
+    .responsive-graph-container .range-1 .bar-content h5 {
+      color: #fc2d3d; }
+    .responsive-graph-container .range-2 .bar-box {
+      width: 73.44%;
+      background: #47712f; }
+    .responsive-graph-container .range-2 .bar-content h5 {
+      color: #80cc55; }
+    .responsive-graph-container .range-3 .bar-box {
+      width: 56.25%;
+      background: #075474; }
+    .responsive-graph-container .range-3 .bar-content h5 {
+      color: #3fadd1; }
+    .responsive-graph-container .range-4 .bar-box {
+      width: 50%;
+      background: #75500a; }
+    .responsive-graph-container .range-4 .bar-content h5 {
+      color: #fece0a; }
+    .responsive-graph-container .range-5 .bar-box {
+      width: 38.94%;
+      background: #742810; }
+    .responsive-graph-container .range-5 .bar-content {
+      margin-left: 31px; }
+      .responsive-graph-container .range-5 .bar-content h5 {
+        color: #ef5625; }
+    .responsive-graph-container .range-6 .bar-box {
+      width: 25%;
+      background: #592d65; }
+    .responsive-graph-container .range-6 .bar-content {
+      margin-left: 65px; }
+      .responsive-graph-container .range-6 .bar-content h5 {
+        color: #a800a7; }
+    .responsive-graph-container .bar-wrap {
+      overflow: hidden;
+      width: 100%;
+      /* bar-box end */
+      /*bar-content end */ }
+      .responsive-graph-container .bar-wrap .bar-box-holder {
+        width: 65%; }
+      .responsive-graph-container .bar-wrap .bar-box {
+        height: 50px;
+        margin-bottom: 25px;
+        float: left;
+        -webkit-transition: width 0.8s ease-out, bottom 0.8s ease-out;
+        -moz-transition: width 0.8s ease-out, bottom 0.8s ease-out;
+        -o-transition: width 0.8s ease-out, bottom 0.8s ease-out;
+        -ms-transition: width 0.8s ease-out, bottom 0.8s ease-out;
+        transition: width 0.8s ease-out, bottom 0.8s ease-out; }
+      .responsive-graph-container .bar-wrap .bar-content {
+        margin-left: 15px;
+        float: left; }
+      .responsive-graph-container .bar-wrap:last-child .bar-box {
+        margin-bottom: 0; }
+
+  /* responsive-graph-container */
+  .app-section .app-content .app-content-inner__child {
+    /* Home page graph style */
+    /* #graph-sec end */
+    /* Dashboard styles */ }
+    .app-section .app-content .app-content-inner__child #graph-sec .note {
+      padding-top: 30px; }
+      .app-section .app-content .app-content-inner__child #graph-sec .note ul > li {
+        float: none;
+        margin-bottom: 5px;
+        border: none;
+        padding-left: 0; }
+    .app-section .app-content .app-content-inner__child #graph-sec .bullet-points span {
+      font-size: 16px;
+      display: inline-block;
+      margin-bottom: 12px;
+      vertical-align: middle; }
+    .app-section .app-content .app-content-inner__child #graph-sec .bullet-points .fa-circle-o {
+      font-size: 22px; }
+    .app-section .app-content .app-content-inner__child #graph-sec .bullet-points .fa-check {
+      margin-top: 0;
+      margin-left: -14px;
+      font-size: 18px; }
+    .app-section .app-content .app-content-inner__child #dashboard-sec .one-forth-box h6 {
+      font-size: 16px; }
+    .app-section .app-content .app-content-inner__child #dashboard-sec .one-forth-box img.pull-left {
+      height: 38px;
+      padding-left: 5px;
+      padding-right: 10px; }
+
+  /* app-section end */
+  /* Mobile helper classes */
+  .separator-clearfix {
+    clear: both;
+    margin-bottom: 15px; }
+
+  .mob-no-right-pad {
+    padding-right: 0; } }
+/* meda query end */
+/* import above sm and xs devices scss files change to this name : xs_till_sm_target */
 /* ==========================================================================
    iPhone 6 and below mobile devices media query
    ========================================================================== */
 @media screen and (min-width: 761px) and (max-width: 992px) {
-  .app-section .app-content .app-content-inner__child .padd-top-40 {
-    padding-top: 10px; }
-  .app-section .app-content .app-content-inner__child .padd-top-90 {
-    padding-top: 20px; }
-  .app-section .app-content .app-content-inner__child .bullet-points {
-    font-size: 12px;
-    line-height: 18px; }
-  .app-section .app-content .app-content-inner__child .fa-check {
-    margin-top: -3px; }
-  .app-section .app-content .app-content-inner__child #home-sec {
-    background-image: none;
-    padding: 20px 0px 40px; }
-    .app-section .app-content .app-content-inner__child #home-sec h1 {
+  .app-section .app-content .app-content-inner__child {
+    /* Dashboard styles */ }
+    .app-section .app-content .app-content-inner__child .padd-top-40 {
+      padding-top: 10px; }
+    .app-section .app-content .app-content-inner__child .padd-top-90 {
+      padding-top: 20px; }
+    .app-section .app-content .app-content-inner__child .bullet-points {
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 700; }
+    .app-section .app-content .app-content-inner__child .fa-check {
+      margin-top: -3px; }
+    .app-section .app-content .app-content-inner__child #home-sec {
+      padding: 20px 0px 40px; }
+      .app-section .app-content .app-content-inner__child #home-sec h1 {
+        font-size: 25px;
+        line-height: 32px; }
+    .app-section .app-content .app-content-inner__child #graph-sec h1 {
       font-size: 25px;
       line-height: 32px; }
-  .app-section .app-content .app-content-inner__child #graph-sec h1 {
-    font-size: 25px;
-    line-height: 32px; }
-  .app-section .app-content .app-content-inner__child #graph-sec .background-img {
-    display: none; }
-  .app-section .app-content .app-content-inner__child #graph-sec .bar-data-value {
-    top: -117px;
-    font-size: 15px;
-    line-height: 15px;
-    margin-left: -8px;
-    padding-left: 5px;
-    padding-bottom: 14px; }
-    .app-section .app-content .app-content-inner__child #graph-sec .bar-data-value span {
-      font-size: 24px;
-      line-height: 40px; }
-  .app-section .app-content .app-content-inner__child #graph-sec .graph-container {
-    margin: 50px 0 0 0px;
-    font-size: 0.48em; }
-  .app-section .app-content .app-content-inner__child #graph-sec img {
-    display: none; }
-  .app-section .app-content .app-content-inner__child #graph-sec .inflation-line {
-    width: 100%;
-    top: 255px;
-    font-size: 6px;
-    text-indent: 5px; }
-  .app-section .app-content .app-content-inner__child #scoring-model-sec h1 {
-    font-size: 25px;
-    line-height: 32px; }
-  .app-section .app-content .app-content-inner__child #infographic-sec {
-    padding-bottom: 90px;
-    text-align: center; }
-    .app-section .app-content .app-content-inner__child #infographic-sec h1 {
+    .app-section .app-content .app-content-inner__child #graph-sec .background-img {
+      display: none; }
+    .app-section .app-content .app-content-inner__child #graph-sec .bar-data-value {
+      top: -117px;
+      font-size: 15px;
+      line-height: 15px;
+      margin-left: -8px;
+      padding-left: 5px;
+      padding-bottom: 14px; }
+      .app-section .app-content .app-content-inner__child #graph-sec .bar-data-value span {
+        font-size: 24px;
+        line-height: 40px; }
+    .app-section .app-content .app-content-inner__child #graph-sec .graph-container {
+      margin: 50px 0 0 0px;
+      font-size: 0.48em; }
+    .app-section .app-content .app-content-inner__child #graph-sec img {
+      display: none; }
+    .app-section .app-content .app-content-inner__child #graph-sec .inflation-line {
+      width: 100%;
+      top: 255px;
+      font-size: 6px;
+      text-indent: 5px; }
+    .app-section .app-content .app-content-inner__child #scoring-model-sec h1 {
       font-size: 25px;
       line-height: 32px; }
-    .app-section .app-content .app-content-inner__child #infographic-sec h6 {
-      font-size: 18px;
-      line-height: 25px;
-      padding-bottom: 10px; }
-    .app-section .app-content .app-content-inner__child #infographic-sec span {
-      font-size: 12px;
-      line-height: 20px;
-      display: block; }
-    .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(1),
-    .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(2),
-    .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(3) {
-      margin-right: 10%; }
-    .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators li::after {
-      width: 15%; }
-    .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators {
-      bottom: -60px; }
-    .app-section .app-content .app-content-inner__child #infographic-sec .padd-top-90 {
-      padding-top: 0px; }
-    .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators li {
-      font-size: 18px;
-      width: 34px;
-      height: 34px; }
+    .app-section .app-content .app-content-inner__child #infographic-sec {
+      padding-bottom: 90px;
+      text-align: center; }
+      .app-section .app-content .app-content-inner__child #infographic-sec h1 {
+        font-size: 25px;
+        line-height: 32px; }
+      .app-section .app-content .app-content-inner__child #infographic-sec h6 {
+        font-size: 18px;
+        line-height: 25px;
+        padding-bottom: 10px; }
+      .app-section .app-content .app-content-inner__child #infographic-sec span {
+        font-size: 12px;
+        line-height: 20px;
+        display: block; }
+      .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(1),
+      .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(2),
+      .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(3) {
+        margin-right: 10%; }
+      .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators li::after {
+        width: 15%; }
+      .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators {
+        bottom: -60px; }
+      .app-section .app-content .app-content-inner__child #infographic-sec .padd-top-90 {
+        padding-top: 0px; }
+      .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators li {
+        font-size: 18px;
+        width: 34px;
+        height: 34px; }
+    .app-section .app-content .app-content-inner__child #dashboard-sec .one-forth-box h6 {
+      font-size: 16px; }
+    .app-section .app-content .app-content-inner__child #dashboard-sec .one-forth-box img.pull-left {
+      height: auto;
+      padding-left: 15px;
+      padding-right: 20px; }
 
   header .head-top .pull-right {
     margin-top: 12px; }
@@ -2928,20 +3086,28 @@ table {
     margin-top: 11px; }
 
   .app-section .app-content .app-content-inner__child .padd-top-40 {
-    padding-top: 10px; }
+    padding-top: 5px; }
   .app-section .app-content .app-content-inner__child .padd-top-90 {
     padding-top: 20px; }
   .app-section .app-content .app-content-inner__child .bullet-points {
-    font-size: 12px;
-    line-height: 18px; }
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 700; }
   .app-section .app-content .app-content-inner__child .fa-check {
     margin-top: -3px; }
   .app-section .app-content .app-content-inner__child #home-sec {
-    background-image: none;
-    padding: 20px 0px 40px; }
+    background-size: 147%;
+    padding: 20px 0px 40px;
+    /*.bullet-points {
+        color: #475455;
+    }*/ }
     .app-section .app-content .app-content-inner__child #home-sec h1 {
       font-size: 25px;
-      line-height: 32px; }
+      line-height: 32px;
+      font-weight: 600; }
+    .app-section .app-content .app-content-inner__child #home-sec h6 {
+      font-size: 18px;
+      font-weight: lighter; }
   .app-section .app-content .app-content-inner__child #graph-sec h1 {
     font-size: 25px;
     line-height: 32px; }
@@ -2983,7 +3149,9 @@ table {
       font-size: 12px;
       line-height: 20px;
       display: block; }
-    .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(1), .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(2), .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(3) {
+    .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(1),
+    .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(2),
+    .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators > li:nth-child(3) {
       margin-right: 10%; }
     .app-section .app-content .app-content-inner__child #infographic-sec .carousel-indicators li::after {
       width: 15%; }
@@ -3033,5 +3201,52 @@ table {
   header .head-top img {
     height: 26px;
     margin-top: 20px; } }
+/* For devices less then ipad potrait view*/
+@media screen and (max-width: 767px) {
+  header {
+    min-height: 0; }
+    header .navbar-default {
+      background: #fff; }
+      header .navbar-default .navbar-header {
+        float: none;
+        padding: 5px 0px; }
+        header .navbar-default .navbar-header .navbar-toggle {
+          margin-left: 15px;
+          left: 0;
+          padding: 4px 10px;
+          border: 0;
+          outline: 0;
+          position: absolute; }
+          header .navbar-default .navbar-header .navbar-toggle .icon-bar {
+            background-color: #bdc3c7;
+            display: block;
+            width: 22px;
+            height: 3px;
+            border-radius: 0px; }
+        header .navbar-default .navbar-header a .logo-xs {
+          width: 180px; }
+        header .navbar-default .navbar-header a .log-img-xs {
+          width: 20px; }
+        header .navbar-default .navbar-header .log-xs {
+          position: absolute;
+          right: 20px;
+          margin-top: 14px; }
+      header .navbar-default .navbar-nav {
+        margin: 0; }
+        header .navbar-default .navbar-nav > li {
+          border: 0;
+          border-top: 1px solid #d3d3d3; }
+          header .navbar-default .navbar-nav > li > a {
+            font-family: "HelveticaNeueregular";
+            color: #333333;
+            margin: 10px 25px;
+            font-size: 16px; }
+            header .navbar-default .navbar-nav > li > a > img {
+              width: 20px;
+              margin-right: 15px; }
+            header .navbar-default .navbar-nav > li > a:hover {
+              color: #333333; }
+          header .navbar-default .navbar-nav > li .menu-icon {
+            padding-left: 10px; } }
 
 /*# sourceMappingURL=main.css.map */

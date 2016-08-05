@@ -4,7 +4,7 @@
             <section id="home-sec">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-sm-offset-3 col-sm-6 col-md-offset-0 col-md-12 col-lg-12">
                             <h1>Earn Big Returns by<br/>
                                 Financing Small Dreams</h1>
                            <!--  <img src="img/loansingh-mustache-trans_bac.png" /> -->
@@ -16,7 +16,7 @@
                             </p>
                             
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 ">
                                     <invest-widget on-invest-now="homeCtrl.submitInvestNow()" button-text="INVEST NOW"></invest-widget>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                             <input type="radio" name="paint-graph" id="graph-blue" checked="checked" />
                             <input type="radio" name="fill-graph" id="f-product1" />
                             
-                            <ul class="graph-container">
+                            <ul class="graph-container mobile-graph-container hidden-xs hidden-sm">
                                 <li>
                                     <!-- <span>2008</span> -->
 
@@ -123,18 +123,79 @@
                                 </li>
                             </ul>
                             
+                            <div class="responsive-graph-container visible-xs visible-sm hidden-md hidden-lg">
+                                <ul class="inflation-text" list-style-type="disc">
+                                    <li><span>Inflation</span> <h5>7%</h5></li>
+                                </ul>
+                                <div class="bar-wrap range-1">
+                                    <div class="bar-box-holder">
+                                        <div class="bar-box"></div>
+                                    </div>
+                                    <div class="bar-content">
+                                        <span>Logo here</span>
+                                        <h5>16%</h5>
+                                    </div>
+                                </div>
+                                <div class="bar-wrap range-2">
+                                    <div class="bar-box-holder">
+                                        <div class="bar-box"></div>
+                                    </div>
+                                    <div class="bar-content">
+                                        <span>Average Debit</span>
+                                        <h5>11.75%</h5>
+                                    </div>
+                                </div>
+                                <div class="bar-wrap range-3">
+                                    <div class="bar-box-holder">
+                                        <div class="bar-box"></div>
+                                    </div>
+                                    <div class="bar-content">
+                                        <span>Gold 5yrs</span>
+                                        <h5>9%</h5>
+                                    </div>
+                                </div>
+                                <div class="bar-wrap range-4">
+                                    <div class="bar-box-holder">
+                                        <div class="bar-box"></div>
+                                    </div>
+                                    <div class="bar-content">
+                                        <span>Fixed Deposit</span>
+                                        <h5>8%</h5>
+                                    </div>
+                                </div>
+                                <div class="bar-wrap range-5">
+                                    <div class="bar-box-holder">
+                                        <div class="bar-box"></div>
+                                    </div>
+                                    <div class="bar-content">
+                                        <span>Sensex (CAGR)</span>
+                                        <h5>6.23%</h5>
+                                    </div>
+                                </div>
+                                <div class="bar-wrap range-6">
+                                    <div class="bar-box-holder">
+                                        <div class="bar-box"></div>
+                                    </div>
+                                    <div class="bar-content">
+                                        <span>Saving Account</span>
+                                        <h5>4%</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
                             <!-- <img class="img-overlay" src="img/yellow.png" /> -->
                             <div class="note">
-                                Disclaimer: &nbsp;&nbsp; <br/>
+                                Disclaimer:
                                 <ul>
                                     <li>Past performance are not indicative of future returns. </li>
-                                    <li>&nbsp;&nbsp;| &nbsp;Annualized returns. </li>
-                                    <li>&nbsp;&nbsp;| &nbsp;Above returns have been collected from multiple sources over a period of time.</li>
+                                    <li>Annualized returns. </li>
+                                    <li>Above returns have been collected from multiple sources over a period of time.</li>
                                 </ul>
                             </div>
 
                         </div>
-                        <div class="inflation-line">
+                        <div class="inflation-line  hidden-xs hidden-sm visible-md visible-lg">
                             Inflation(7%)
                         </div>
                     </div>

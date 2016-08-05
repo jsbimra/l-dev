@@ -443,7 +443,7 @@ header {
    IntroJs CSS
    ========================================================================== */
 
-.introjs-tooltiptext {
+.popover .popover-content {
     font-size: 12px;
     font-family: "HelveticaNeuelight";
     font-weight: 600;
@@ -480,22 +480,30 @@ header {
     letter-spacing: 1px;
 }
 
-.introjs-tooltip {
+.popover {
     min-width: 260px;
 }
-
-.introjs-skipbutton {
+.popover-navigation{
+    text-align: right;
+    white-space: nowrap;
+    float: right;
+}
+.popover[class*=tour-] .popover-navigation .btn{
     font-size: 12px;
-    border: 1px solid #303030;
     font-family: "HelveticaNeuelight";
-    color: #303030;
-    background: #fff;
     padding: 4px 16px;
     border-radius: 3px;
     text-decoration: none;
     display: inline-block;
     text-shadow: none;
     font-weight: 700;
+}
+.popover[class*=tour-] .popover-navigation .skip-btn[data-role=end] {
+    color: #303030;
+    background: #fff;
+    border: 1px solid #303030;
+    float: left;
+    margin-right:5px;
     &:hover,
     &:active,
     &:focus,
@@ -508,17 +516,10 @@ header {
     }
 }
 
-.introjs-nextbutton {
-    font-size: 12px;
-    font-family: "HelveticaNeuelight";
+.popover .popover-navigation .next-btn {
     color: #fff;
     background: #e74c3c;
-    padding: 4px 16px;
-    border-radius: 3px;
-    text-decoration: none;
-    border: none;
-    display: inline-block;
-    text-shadow: none;
+    border: 1px solid #e74c3c;
     &:hover,
     &:active,
     &:focus,
@@ -650,7 +651,7 @@ form label {
                 font-size: 17px;
             }
             .fa-check {
-                color: #3a9f6d;
+                color: #88c61c;
                 font-size: 18px;
                 margin-left: -12px;
                 margin-top: 4px;
@@ -685,7 +686,7 @@ form label {
                     color: #95a5a6;
                 }
                 .bullet-points {
-                    color: #e74c3c;
+                    color: #475455;
                 }
                 .red-highlight {
                     color: #ee2e24;
@@ -763,11 +764,21 @@ form label {
                         font-family: $HelveticaNeuelight;
                         list-style-type: none;
                         line-height: 17px;
+                        padding-left: 0;
+                        margin-top: 5px;
 
                         li {
                             float: left;
+                            padding-right: 10px;
+                            border-right: 1px solid white;
+                            padding-left: 10px;
+                            
                             &:first-child {
-                                text-indent: -40px;
+                                padding-left:0;
+                            }
+
+                            &:last-child {
+                                border-right: none;
                             }
                         }
                     }
@@ -794,6 +805,7 @@ form label {
                     color: #bdc3c7;
                     font-size: 12px;
                 }
+
             }
             #scoring-model-sec {
                 width: 100%;
@@ -2350,5 +2362,6 @@ $pulse-duration: 750ms;
 }
 */
 
-@import "_sm_devices_target_styles";
-@import "_xs_devices_target_styles";
+@import "xs_till_sm_target"; /* import above sm and xs devices scss files change to this name : xs_till_sm_target */ 
+@import "sm_devices_target_styles";
+@import "xs_devices_target_styles";

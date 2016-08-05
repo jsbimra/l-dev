@@ -1856,7 +1856,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                            <div class=\"row\">\r" +
     "\n" +
-    "                                <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">\r" +
+    "                                <div class=\"col-xs-6 col-sm-6 col-md-3 col-lg-3 mob-no-right-pad\">\r" +
     "\n" +
     "                                    <div class=\"one-forth-box interest-widget\">\r" +
     "\n" +
@@ -1878,7 +1878,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                </div>\r" +
     "\n" +
-    "                                <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">\r" +
+    "                                <div class=\"col-xs-6 col-sm-6 col-md-3 col-lg-3\">\r" +
     "\n" +
     "                                    <div class=\"one-forth-box roi-widget\">\r" +
     "\n" +
@@ -1900,7 +1900,13 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                </div>\r" +
     "\n" +
-    "                                <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">\r" +
+    "                                \r" +
+    "\n" +
+    "                                <div class=\"visible-xs-block visible-sm-block separator-clearfix\"></div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                <div class=\"col-xs-6 col-sm-6 col-md-3 col-lg-3 mob-no-right-pad\">\r" +
     "\n" +
     "                                    <div class=\"one-forth-box projected-widget\">\r" +
     "\n" +
@@ -1922,7 +1928,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                </div>\r" +
     "\n" +
-    "                                <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">\r" +
+    "                                <div class=\"col-xs-6 col-sm-6 col-md-3 col-lg-3\">\r" +
     "\n" +
     "                                    <div class=\"one-forth-box invest-widget\">\r" +
     "\n" +
@@ -2206,7 +2212,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                    <div class=\"row\">\r" +
     "\n" +
-    "                        <div class=\"col-md-12\">\r" +
+    "                        <div class=\"col-sm-offset-3 col-sm-6 col-md-offset-0 col-md-12 col-lg-12\">\r" +
     "\n" +
     "                            <h1>Earn Big Returns by<br/>\r" +
     "\n" +
@@ -2230,7 +2236,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                            <div class=\"row\">\r" +
     "\n" +
-    "                                <div class=\"col-md-4\">\r" +
+    "                                <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-4 \">\r" +
     "\n" +
     "                                    <invest-widget on-invest-now=\"homeCtrl.submitInvestNow()\" button-text=\"INVEST NOW\"></invest-widget>\r" +
     "\n" +
@@ -2294,7 +2300,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                            \r" +
     "\n" +
-    "                            <ul class=\"graph-container\">\r" +
+    "                            <ul class=\"graph-container mobile-graph-container hidden-xs hidden-sm\">\r" +
     "\n" +
     "                                <li>\r" +
     "\n" +
@@ -2444,19 +2450,141 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                            \r" +
     "\n" +
+    "                            <div class=\"responsive-graph-container visible-xs visible-sm hidden-md hidden-lg\">\r" +
+    "\n" +
+    "                                <ul class=\"inflation-text\" list-style-type=\"disc\">\r" +
+    "\n" +
+    "                                    <li><span>Inflation</span> <h5>7%</h5></li>\r" +
+    "\n" +
+    "                                </ul>\r" +
+    "\n" +
+    "                                <div class=\"bar-wrap range-1\">\r" +
+    "\n" +
+    "                                    <div class=\"bar-box-holder\">\r" +
+    "\n" +
+    "                                        <div class=\"bar-box\"></div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                    <div class=\"bar-content\">\r" +
+    "\n" +
+    "                                        <span>Logo here</span>\r" +
+    "\n" +
+    "                                        <h5>16%</h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                <div class=\"bar-wrap range-2\">\r" +
+    "\n" +
+    "                                    <div class=\"bar-box-holder\">\r" +
+    "\n" +
+    "                                        <div class=\"bar-box\"></div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                    <div class=\"bar-content\">\r" +
+    "\n" +
+    "                                        <span>Average Debit</span>\r" +
+    "\n" +
+    "                                        <h5>11.75%</h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                <div class=\"bar-wrap range-3\">\r" +
+    "\n" +
+    "                                    <div class=\"bar-box-holder\">\r" +
+    "\n" +
+    "                                        <div class=\"bar-box\"></div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                    <div class=\"bar-content\">\r" +
+    "\n" +
+    "                                        <span>Gold 5yrs</span>\r" +
+    "\n" +
+    "                                        <h5>9%</h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                <div class=\"bar-wrap range-4\">\r" +
+    "\n" +
+    "                                    <div class=\"bar-box-holder\">\r" +
+    "\n" +
+    "                                        <div class=\"bar-box\"></div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                    <div class=\"bar-content\">\r" +
+    "\n" +
+    "                                        <span>Fixed Deposit</span>\r" +
+    "\n" +
+    "                                        <h5>8%</h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                <div class=\"bar-wrap range-5\">\r" +
+    "\n" +
+    "                                    <div class=\"bar-box-holder\">\r" +
+    "\n" +
+    "                                        <div class=\"bar-box\"></div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                    <div class=\"bar-content\">\r" +
+    "\n" +
+    "                                        <span>Sensex (CAGR)</span>\r" +
+    "\n" +
+    "                                        <h5>6.23%</h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                <div class=\"bar-wrap range-6\">\r" +
+    "\n" +
+    "                                    <div class=\"bar-box-holder\">\r" +
+    "\n" +
+    "                                        <div class=\"bar-box\"></div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                    <div class=\"bar-content\">\r" +
+    "\n" +
+    "                                        <span>Saving Account</span>\r" +
+    "\n" +
+    "                                        <h5>4%</h5>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
+    "                            \r" +
+    "\n" +
+    "\r" +
+    "\n" +
     "                            <!-- <img class=\"img-overlay\" src=\"img/yellow.png\" /> -->\r" +
     "\n" +
     "                            <div class=\"note\">\r" +
     "\n" +
-    "                                Disclaimer: &nbsp;&nbsp; <br/>\r" +
+    "                                Disclaimer:\r" +
     "\n" +
     "                                <ul>\r" +
     "\n" +
     "                                    <li>Past performance are not indicative of future returns. </li>\r" +
     "\n" +
-    "                                    <li>&nbsp;&nbsp;| &nbsp;Annualized returns. </li>\r" +
+    "                                    <li>Annualized returns. </li>\r" +
     "\n" +
-    "                                    <li>&nbsp;&nbsp;| &nbsp;Above returns have been collected from multiple sources over a period of time.</li>\r" +
+    "                                    <li>Above returns have been collected from multiple sources over a period of time.</li>\r" +
     "\n" +
     "                                </ul>\r" +
     "\n" +
@@ -2466,7 +2594,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                        </div>\r" +
     "\n" +
-    "                        <div class=\"inflation-line\">\r" +
+    "                        <div class=\"inflation-line  hidden-xs hidden-sm visible-md visible-lg\">\r" +
     "\n" +
     "                            Inflation(7%)\r" +
     "\n" +
@@ -3028,7 +3156,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\r" +
     "\n" +
-    "    <div class=\"head-top\">\r" +
+    "    <div class=\"head-top hidden-xs\">\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -3136,6 +3264,10 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "          </button>\r" +
     "\n" +
+    "          <a href=\"/\"><img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/logo.png\" /></a>\r" +
+    "\n" +
+    "          <a href=\"/\" class=\"hidden-sm hidden-md hidden-lg log-xs\" ng-show=\"!shellCtrl.loggedIn\" ng-click=\"shellCtrl.login()\"><img class=\"log-img-xs\" src=\"img/login-signup_ico.png\"/></a>\r" +
+    "\n" +
     "        </div>\r" +
     "\n" +
     "        <div id=\"navbar\" class=\"navbar-collapse collapse nav-overlay\">\r" +
@@ -3144,17 +3276,19 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "            \r" +
     "\n" +
-    "            <li ng-if=\"shellCtrl.loggedIn\"><a href ng-click=\"shellCtrl.getUserVisit()\" class=\"menu-icon invest-icon\">Invest Now</a></li>\r" +
+    "            <li ng-if=\"shellCtrl.loggedIn\"><a href ng-click=\"shellCtrl.getUserVisit()\" class=\"menu-icon invest-icon\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/invest_ico.png\" /> Invest Now</a></li>\r" +
     "\n" +
-    "            <li ng-if=\"shellCtrl.loggedIn\"><a href ng-link=\"['Dashboard']\" class=\"menu-icon dashboard-icon\">My Dashboard</a></li>\r" +
+    "            <li ng-if=\"shellCtrl.loggedIn\"><a href ng-link=\"['Dashboard']\" class=\"menu-icon dashboard-icon\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/dashboard_ico.png\" /> My Dashboard</a></li>\r" +
     "\n" +
-    "            <li ng-if=\"shellCtrl.loggedIn\"><a href ng-link=\"['Payment']\" class=\"menu-icon payment-icon\">My Payments</a></li>\r" +
+    "            <li ng-if=\"shellCtrl.loggedIn\"><a href ng-link=\"['Payment']\" class=\"menu-icon payment-icon\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/wallet_ico.png\" /> My Payments</a></li>\r" +
     "\n" +
     "\r" +
     "\n" +
-    "            <li><a href ng-link=\"['HowItWorks']\" class=\"menu-icon howitworks-icon\">HOW IT WORKS</a></li>\r" +
+    "            <li><a href ng-link=\"['HowItWorks']\" class=\"menu-icon howitworks-icon\">  <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/cog_ico.png\" />  HOW IT WORKS</a></li>\r" +
     "\n" +
-    "            <li><a href ng-link=\"['AboutUs']\"><i class=\"fa fa-users\" aria-hidden=\"true\"></i> ABOUT US</a></li>\r" +
+    "            <li><a href ng-link=\"['AboutUs']\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/about_ico.png\" /> ABOUT US</a></li>\r" +
+    "\n" +
+    "            <li class=\"hidden-sm hidden-md hidden-lg\"><a href=\"\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/phone_ico.png\" /> CALL US</a></li>\r" +
     "\n" +
     "          </ul>\r" +
     "\n" +
