@@ -33,10 +33,12 @@
             appFactory.scrollToTop();
 
 	    	/*Redirect user to Home if user not logged in */
-			appFactory.userLoggedIn();
-
-            init();
-            $scope.$broadcast('reDrawMeter');
+			var loggedStatus=appFactory.userLoggedIn();
+            if(loggedStatus){
+                init();
+                $scope.$broadcast('reDrawMeter');
+            }
+            
 		}
 
 
@@ -64,7 +66,7 @@
         }
 
         function buildPortfolio() {
-            console.info('build now button');
+            appFactory.scrollToDiv($('.scrollClass').offset().top);
             appFactory.setLocalStorageData(APP_CONSTANT.POOL_CREATION_STATUS, true);
             vm.userPref = JSON.parse(appFactory.getLocalStorageData(APP_CONSTANT.PORTFOLIO_PREF));
             postUserPreference();

@@ -12,7 +12,8 @@
     /* @ngInject */
     function borrowerAmountController($scope, $location, $timeout, appFactory, dataservice, APP_CONSTANT, API_ENDPOINT, $rootRouter) {
         var vm = this;
-
+         
+        vm.amountsSelected = true;
 
         vm.selectAmount  = selectAmount;
         vm.closeBorrower = closeBorrower;
@@ -26,8 +27,17 @@
         }
 
         /*Function to cancel amount selection*/
-        function closeBorrower(){
-            $('#borrowerAmountModal').modal('hide');
+        function closeBorrower(checkAmt){
+            if(checkAmt){
+                for(var i in vm.selectedborrowers){
+                    if(!vm.selectedborrowers[i].selected_amount){
+                        vm.amountsSelected=false;
+                    }
+                }
+            }
+            
+            if(vm.amountsSelected || !checkAmt)
+                $('#borrowerAmountModal').modal('hide');
         }
 
     };/* controller code end */

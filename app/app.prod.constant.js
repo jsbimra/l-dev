@@ -12,11 +12,6 @@
     */
     angular.module('lsLenderApp')
         
-
-       // .constant('API_ENDPOINT', 'http://192.168.200.222:8000/') //NAVNEET MACHINE IP
-        .constant('API_ENDPOINT', 'http://los.loansingh.com/')
-       // .constant('API_ENDPOINT', 'http://192.168.200.151:8000/') //YOGESH MACHINE IP
-
-     
+        .constant('API_ENDPOINT', 'http://api.loansingh.com/');
 
 })(window.angular);

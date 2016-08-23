@@ -19,8 +19,11 @@
             getLocalStorageData : getLocalStorageData,
             setToken            : setToken,
             userLoggedIn        : userLoggedIn,
+            hamburgerOpen       : hamburgerOpen,
             scrollToTop         : scrollToTop,
-            showSignUpModal     : showSignUpModal
+            showSignUpModal     : showSignUpModal,
+            scrollToDiv         : scrollToDiv,
+            detectIsMobile      : detectIsMobile
         };
 
         return factory;
@@ -97,6 +100,15 @@
             }
         }
 
+        /**
+         * check if dropdown menu on mobile is open or not
+         * @memberof appFactory
+         * @returns {boolean} return false if user is logged in or not
+        **/
+        function hamburgerOpen() {
+            $('#navbar').removeClass('in');
+            $('.navbar-toggle').removeClass('active');
+        }
 
 
         /**
@@ -104,7 +116,6 @@
          * @memberof appFactory
          */
         function scrollToTop() {
-            // console.info('scroll to fired');
             /* have to reduce the animation timeout from 1000 to 0 due to flickring issue when scrollbar is at bottom */
             $('html,body').animate({ scrollTop: $('body').offset().top }, 0);
             // return $('html,body').animate({scrollTop: $('body').offset().top }, 0); // causing  not to work scroll top
@@ -116,9 +127,25 @@
          * @memberof appFactory
          */
         function showSignUpModal() {
-            console.info('show signup modal fired');
             $('a[href="#signup-tab"]').tab('show'); // Select tab by name
             $('#loginSignupModal').modal('show');
+        }
+
+        /**
+         * scroll page to specific divs
+         * @memberof appFactory
+         */
+        function scrollToDiv(divPos) {
+          $('html,body').animate({ scrollTop: divPos }, 1000);
+        }
+
+
+        function detectIsMobile() {
+            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB10|PlayBook|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                return true;
+            }else{
+                return false;
+            }
         }
     };
 

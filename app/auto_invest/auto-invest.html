@@ -6,17 +6,18 @@
            <div class="container">
              <h1>Build your portfolio in just one click</h1>
             <div class="row portfolio-row">
-                <div class="col-md-6">
+                <div class="col-lg-offset-2 col-lg-4 col-md-offset-1 col-md-5 col-sm-6 col-xs-12">
                   <div class="auto-invest-padd-container">
-                    <invest-widget on-invest-now="autoCtrl.buildPortfolio()" button-text="BUILD PORTFOLIO"></invest-widget>
+                    <invest-widget on-invest-now="autoCtrl.buildPortfolio()" button-text="BUILD PORTFOLIO" button-color="#404040"></invest-widget>
                   </div>
                 </div>
-                <div class="col-md-6">
-                   <portfolio-pool-component ng-if="autoCtrl.showPool" createdpool="autoCtrl.createdpool" userpref="autoCtrl.userPref" investnow="autoCtrl.investNow()" collapsible="false"></portfolio-pool-component><!--To be changed to component child routing-->
-                   <div class="portfolio-empty" ng-if="!autoCtrl.showPool">
+                <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+                   <portfolio-pool-component ng-if="autoCtrl.showPool" createdpool="autoCtrl.createdpool" userpref="autoCtrl.userPref" investnow="autoCtrl.investNow()" collapsible="false" show-risk-data="true" class="auto-invest-pool scrollClass"></portfolio-pool-component><!--To be changed to component child routing-->
+                   <div class="portfolio-empty scrollClass" ng-if="!autoCtrl.showPool">
                       <div class="wrapper">
                          <i class="fa fa-clipboard" aria-hidden="true"></i>
                          <p>Your Portfolio<br>will appear here</p>
+
                       </div>
                    </div>
                 </div>

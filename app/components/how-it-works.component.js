@@ -20,6 +20,7 @@
 
         vm.$routerOnActivate = function(next,prev){
             appFactory.scrollToTop();
+            appFactory.hamburgerOpen();
         }
 
         /* parent variable/function available inside oninit method */

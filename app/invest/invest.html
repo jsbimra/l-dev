@@ -2,52 +2,85 @@
 <div class="app-section fade-in-up ng-enter ng-enter-active">
     <article class="app-content">
         <div class="app-content-inner__child clearfix">
-            <section id="auto-invest-sec" class="table-data-parent">
+            <section id="auto-invest-sec" class="table-data-parent invest-sec">
                 <div class="container">
                     <div class="row">
-                        <a class="btn btn-large btn-success hide" href="javascript:void(0);" onclick="startIntro();">Show me how</a>
                         <div class="col-md-12 padd-top-90">
                             <div class="row">
-                                <div class="one-forth-box" id="step1" >
-                                  <invest-widget on-invest-now="investCtrl.buildPool()" button-text="CREATE" invest-text="investCtrl.investWidgetString" class="invest-sec"></invest-widget>
-                                </div>
-                                <!--  <p>{{100000.0005}}</p>
+                                <div class="col-sm-6 col-md-12 ">
+                                    <div class="one-forth-box" id="step1">
+                                        <invest-widget on-invest-now="investCtrl.buildPool(true)" button-text="CREATE" invest-text="investCtrl.investWidgetString" button-color="#404040" class="invest-sec"></invest-widget>
+                                        <img class="ip-arrow-img" src="img/line.png" />
+                                    </div>
+                                    <!--  <p>{{100000.0005}}</p>
                                 <p>{{100000.0808|awnum:'price'}}</p> -->
-                            </div>
-
-                            <div class="row tableSection">
-                                <div class="col-md-8 tableColumn" id="step3">
-                                    <div class="invest-func-sec">
-                              
-                                  <button type="button" class="btn btn-primary pull-right" ng-click="investCtrl.addBorrowersToPool()" ng-disabled="investCtrl.borrowerNumber==0">ADD TO POOL</button>
-                                  <p class="pull-right"><span ng-bind="investCtrl.borrowerNumber"></span> Borrower Selected</p>
                                 </div>
-                                <table datatable="" dt-options="investCtrl.dtOptions" dt-columns="investCtrl.dtColumns" dt-instance="investCtrl.dtInstance" class="borrower-table table datatable dt-responsive"></table>
-                                    <!-- <table id="invest-datatable" datatable="" class="table datatable dt-responsive nowrap" cellspacing="0" width="100%" dt-options="investCtrl.dtOptions"> -->
-                                        <!-- <thead>
-                                          <th><input type="checkbox" id="select-all" name="rowSelected" id="rowSelected" ng-model="investCtrl.rowSelector" ng-change="investCtrl.selectAllBorrowers()"></th>
-                                          <th>Name</th>
-                                          <th>Purpose</th>
-                                          <th>Amount</th>
-                                          <th>Tenure</th>
-                                          <th>Interest</th>
-                                          <th>Status</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat="borrower in investCtrl.dataInfo track by $index">
-                                                <td><input type="checkbox" id="borrowerCheck" ng-checked="investCtrl.rowSelector" ng-model="borrower.check" ng-change="investCtrl.setCheckboxValue($index)"></td>
-                                                <td>{{ borrower.name }}</td>
-                                                <td>{{ borrower.purpose }}</td>
-                                                <td>{{ borrower.loan_amount }}</td>
-                                                <td>{{ borrower.tenure}} %</td>
-                                                <td>{{ borrower.rate_of_interest}} Months</td>
-                                                <td class="dt-body-status"><div class="status_wrapper"><p><span  ng-bind="borrower.status[0].val"></span> %</p><div class="progress progress-striped"><div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: borrower.status[0].val + '%'}"></div></div><p>need <span ng-bind="borrower.status[0].remAmt"></span> more</p></div></td>
-                                            </tr>
-                                        </tbody> -->
-                                    <!-- </table> -->
-                                </div>
-                                <div class="col-md-4 no-padding"  id="step2">
-                                    <portfolio-pool-component createdpool="investCtrl.createdpool" userpref="investCtrl.userPref"  investnow="investCtrl.investNow()" collapsible="true" changepoolpop="investCtrl.changePoolAmount(brwr)" deletepool="investCtrl.deleteFromPool(brwr)"></portfolio-pool-component>
+                                <div class="col-md-12 padd-top-40">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-4 col-xs-12 scrollClass pull-right mar-neg-10" id="step2">
+                                            <portfolio-pool-component createdpool="investCtrl.createdpool" userpref="investCtrl.userPref" investnow="investCtrl.investNow()" collapsible="true" changepoolpop="investCtrl.changePoolAmount(brwr)" deletepool="investCtrl.deleteFromPool(brwr)" show-risk-data="investCtrl.collapsePool"></portfolio-pool-component>
+                                        </div>
+                                        <div class="col-md-8 col-xs-12" id="step3">
+                                            <div class="invest-func-sec">
+                                                <div ng-show="investCtrl.borrowerNumber!=0">
+                                                    <button type="button" class="btn btn-primary btn-pool pull-right" ng-click="investCtrl.addBorrowersToPool(false)" ng-disabled="investCtrl.borrowerNumber==0">ADD TO POOL</button>
+                                                    <button type="button" class="btn btn-primary pull-right" ng-click="investCtrl.addBorrowersToPool(true)" ng-disabled="investCtrl.borrowerNumber==0">INVEST NOW</button>
+                                                </div>
+                                                <div ng-show="investCtrl.borrowerNumber==0">
+                                                    <a class="btn btn-primary btn-pool pull-right" data-toggle="tooltip" title="Please select a borrower from the list">ADD TO POOL</a>
+                                                    <a class="btn btn-primary pull-right" data-toggle="tooltip" title="Please select a borrower from the list">INVEST NOW</a>
+                                                </div>
+                                                <p class="pull-right"><span ng-bind="investCtrl.borrowerNumber"></span> Selected</p>
+                                            </div>
+                                            <!--Not going in current sprint - please dont delete-->
+                                            <!-- <div class="carousel-view" ng-hide=true>
+                                  <div id="borrower-view" class="owl-carousel">
+                                     <div class="borrower-data item" ng-repeat="brwr in investCtrl.tableData">
+                                          <div class="brwrName">
+                                            <p><img src="img/profile_icon.png"/><span ng-bind="brwr.name"></span></p>
+                                          </div>
+                                          <div class="borrower-details">
+                                            <div class="row">
+                                              <div class="col-md-6">
+                                                <img src="img/purpose_icon.png"/>
+                                                <p>Purpose</p>
+                                                <p ng-bind="brwr.purpose"></p>
+                                              </div>
+                                              <div class="col-md-6">
+                                                <img src="img/rupee_icon.png"/>
+                                                <p>Amount</p>
+                                                <p ng-bind="brwr.loan_amount"></p>
+                                              </div>
+                                            </div>
+                                            <div class="row">
+                                              <div class="col-md-6">
+                                                <img src="img/tenure_icon.png"/>
+                                                <p>Tenure</p>
+                                                <p ng-bind="brwr.tenure"></p>
+                                              </div>
+                                              <div class="col-md-6">
+                                                <img src="img/interest_icon.png"/>
+                                                <p>Interest</p>
+                                                <p ng-bind="brwr.rate_of_interest"></p>
+                                              </div>
+                                            </div>
+                                            <div class="row">
+                                              <div class="col-md-9">
+                                                <img src="img/status_icon.png"/>
+                                                <p>Status</p>
+                                                <p ng-bind="brwr.percent_invested"></p>
+                                                <div class="status_wrapper"><p><span  ng-bind="brwr.percent_invested"></span> %</p><div class="progress progress-striped"><div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (brwr.percent_invested) + '%'}"></div></div><p>need <span ng-bind="brwr.remaining_amount"></span> more</p></div>
+                                              </div>
+                                              <div class="col-md-3">
+                                              </div>
+                                            </div>
+                                          </div>
+                                     </div>
+                                  </div>
+                                </div> -->
+                                            <table id="investTable" datatable="" dt-options="investCtrl.dtOptions" dt-columns="investCtrl.dtColumns" dt-instance="investCtrl.dtInstance" class="borrower-table table datatable dt-responsive no-wrap" width="100%"></table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -60,4 +93,4 @@
     <!-- app-content end -->
 </div>
 <!-- app-section -->
-<borrower-amount-component selectedborrowers="investCtrl.selectedBorrowers" submit-amounts="investCtrl.submitedAmounts(borrowerArray)"></borrower-amount-component>
+<borrower-amount-component selectedborrowers="investCtrl.selectedBorrowers" submit-amounts="investCtrl.submitedAmounts(borrowerArray,addToInvest)"></borrower-amount-component>

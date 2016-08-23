@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- build:css  css/main.min.css -->
     <link rel="stylesheet" href="libs/assests/font-awesome/css/font-awesome.min.css" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -20,9 +20,13 @@
     <link rel="stylesheet" href="css/data_tables/datatables.min.css" />
     <link rel="stylesheet" href="css/data_tables/angular-datatables.min.css" />
     <link rel="stylesheet" href="css/data_tables/dataTables.responsive.css" />
-    <link rel="stylesheet" href="css/main.css" />
+
     <!-- On Board CSS Files -->
     <link rel="stylesheet" href="css/on-board/bootstrap-tour.min.css" />
+   <!--  Carousel CSS Files
+    <link rel="stylesheet" href="css/carousel/owl.carousel.css" /> -->
+    
+    <link rel="stylesheet" href="css/main.css" />
     <!-- /build -->
     <!-- build-NOT-IN-USE-CURRENTLY :[src] js/ -->
     <!-- later needs to modifiy -->
@@ -61,7 +65,7 @@
     <script src="libs/dynamic-number/custom-dynamic-number.js"></script>
     <script src="libs/bootstrap/bootstrap.min.js"></script>
     <script src="libs/bootstrap/ui-bootstrap-tpls-1.3.3.min.js"></script>
-    <script src="libs/intro.js"></script>
+    <script src="libs/jquery.mobile.custom.min.js"></script>
     <script src="libs/main.js"></script>
     <!-- Datatable Files -->
     <script src="libs/data_tables/angular-datatables.min.js"></script>
@@ -69,6 +73,8 @@
     <script src="libs/data_tables/dataTables.responsive.js"></script>
     <!-- On Board Files -->
     <script src="libs/on-board/custom-bootstrap-tour.js"></script>
+    <!-- Carousel Files -->
+    <!-- <script src="libs/carousel/owl.carousel.js"></script> -->
     <!-- /build -->
 
     <!--  required for grunt-processhtml -->
@@ -80,16 +86,17 @@
     <script src="app/app.constant.js"></script>
     <script src="app/app.factory.js"></script>
     <script src="app/app.service.js"></script>
-    <script src="app/app.prod.constant.js"></script>
+    <script src="app/app.staging.constant.js"></script>
     <script src="app/directives/invest-widget.directive.js"></script>
     <script src="app/directives/risk_meter/risk-meter.directive.js"></script>
+    <script src="app/directives/custom-validator.directive.js"></script>
     <script src="app/layout/core-shell.js"></script>
     <script src="app/home/home.component.js"></script>
     <script src="app/login/login.component.js"></script>
     <script src="app/dashboard/dashboard.component.js"></script>
     <script src="app/invest/invest.component.js"></script>
     <script src="app/auto_invest/auto-invest.component.js"></script>
-    <script src="app/borrower_info/borrower-info.component.js"></script>
+    <script src="app/lender_info/lender-info.component.js"></script>
     <script src="app/payment/payment.component.js"></script>
     <script src="app/components/pool_component/portfolio-pool.component.js"></script>
     <script src="app/components/tab_pane_component/tab.component.js"></script>

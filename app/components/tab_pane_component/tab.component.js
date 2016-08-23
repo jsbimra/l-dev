@@ -31,6 +31,15 @@
           panes.push(pane);
         };
 
+        $scope.$on('changePane', function (event, args) {
+             var paneID = args.paneNo;
+             for(var i in vm.panes){
+                if(parseInt(i) == paneID){
+                    vm.select(vm.panes[i]);
+                }
+             }
+        });
+
     }
 
     angular.module('lsLenderApp')

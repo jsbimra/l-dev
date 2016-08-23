@@ -3,7 +3,7 @@
         <div class="modal-content clearfix">
             <div class="modal-body">
                 <span class="modal-close-icon">
-                    <i class="fa fa-times font_2em" data-dismiss="modal" aria-hidden="true"></i>
+                    <i class="fa fa-times font_2em" data-dismiss="modal" ng-click="loginCtrl.setDefaultViewOffFlags()" aria-hidden="true"></i>
                 </span>
                 <div class="col-md-5 l-col hidden-sm hidden-xs">
                     <img src="../img/loansingh-mustache.png" alt="loansingh-mustache" class="mustache-img" />
@@ -31,9 +31,9 @@
                                 <div id="login-tab" class="tab-pane fade active in">
                                     <form name="loginCtrl.frmLogin" id="loginCtrl.frmLogin" novalidate>
                                         <div class="form-group">
-                                            <label for="txtUserMobileOrEmail">Enter your Mobile or Email</label>
-                                            <input type="text" id="txtUserMobileOrEmail" name="txtUserMobileOrEmail" ng-model="loginCtrl.user.mobOrEmail" class="form-control" placeholder="Mobile number"  autofocus required autocomplete="off"
-                                            ng-pattern="loginCtrl.regexMobileEmail" />
+                                            <label class="hidden-xs" for="txtUserMobileOrEmail">Enter your Mobile or Email</label>
+                                            <input type="text" id="txtUserMobileOrEmail" name="txtUserMobileOrEmail" ng-model="loginCtrl.user.mobOrEmail" class="form-control" placeholder="Mobile number or Email"  autofocus required autocomplete="off"
+                                            ng-pattern="loginCtrl.regexMobileEmail" ng-change="loginCtrl.loginServerErrorMsg=''" />
                                             
 
                                             <div class="error-msg" ng-messages="loginCtrl.frmLogin.$submitted && loginCtrl.frmLogin.txtUserMobileOrEmail.$error">
@@ -43,8 +43,8 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="txtPassword">Loan Singh Password</label>
-                                            <input type="password" id="txtPassword" name="txtPassword" ng-model="loginCtrl.user.password" class="form-control"  autofocus required placeholder="Password" />
+                                            <label class="hidden-xs" for="txtPassword">Loan Singh Password</label>
+                                            <input type="password" id="txtPassword" name="txtPassword" ng-model="loginCtrl.user.password" class="form-control"  autofocus required placeholder="Password" ng-change="loginCtrl.loginServerErrorMsg=''" />
                                             
                                             <div class="error-msg" ng-messages="loginCtrl.frmLogin.$submitted && loginCtrl.frmLogin.txtPassword.$error">
                                                 <div ng-message="required">Please enter password</div>
@@ -74,7 +74,7 @@
 
 
                                         <div class="form-group">
-                                            <label for="txtSignupMobileNo">Mobile number</label>
+                                            <label class="hidden-xs" for="txtSignupMobileNo">Mobile number</label>
                                             <input type="number" min="0" name="txtSignupMobileNo" id="txtSignupMobileNo" ng-model="loginCtrl.modSignup.mobileno" class="form-control" ng-maxlength="10" ng-minlength="10" required autocomplete="off" ng-pattern="/^\d*$/" placeholder="Mobile number"/>
 
                                             <div class="error-msg" ng-messages="loginCtrl.frmSignup.$submitted && loginCtrl.frmSignup.txtSignupMobileNo.$error">
@@ -86,7 +86,7 @@
                                             </div>
                                         </div>                                    
                                         <div class="form-group" ng-hide="loginCtrl.changeOTPMobileField">
-                                            <label for="txtSignupEmailId">Email ID</label>
+                                            <label class="hidden-xs" for="txtSignupEmailId">Email ID</label>
                                             <input type="email" name="txtSignupEmailId" id="txtSignupEmailId" ng-model="loginCtrl.modSignup.email" class="form-control" required placeholder="Email id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" />
 
                                             <div class="error-msg" ng-messages="loginCtrl.frmSignup.$submitted && loginCtrl.frmSignup.txtSignupEmailId.$error">
@@ -106,7 +106,7 @@
                                         </div> -->
 
                                         <div class="text-center center-block">
-                                            <button ng-hide="loginCtrl.changeOTPMobileField" type="submit" class="btn btn-modal-big" id="btnCreateAccount" ng-click="loginCtrl.submitSignup(loginCtrl.frmSignup,'saveSignup')" ng-disabled="loginCtrl.frmSignup.$submitted && loginCtrl.frmSignup.$invalid">Create your loan singh Account</button>
+                                            <button ng-hide="loginCtrl.changeOTPMobileField" type="submit" class="btn btn-modal-big" id="btnCreateAccount" ng-click="loginCtrl.submitSignup(loginCtrl.frmSignup,'saveSignup')" ng-disabled="loginCtrl.frmSignup.$submitted && loginCtrl.frmSignup.$invalid">Create <span class="hidden-xs">your loan singh </span>Account</button>
 
 
                                             <button  ng-show="loginCtrl.changeOTPMobileField" type="submit" class="btn btn-modal-big" id="btnCreateAccount" ng-click="loginCtrl.submitSignup(loginCtrl.frmSignup,'saveChangeMobNo')" ng-disabled="loginCtrl.frmSignup.$submitted && loginCtrl.frmSignup.$invalid">Save</button>
@@ -152,7 +152,7 @@
 
                                     <form name="loginCtrl.frmChangeMobile" novalidate ng-show="loginCtrl.changeOTPMobileField" ng-submit="loginCtrl.frmChangeMobile.$valid && loginCtrl.submitChangeMobile(loginCtrl.frmChangeMobile)">
                                         <div class="form-group">
-                                            <label for="txtOTPMobileNo">Mobile number</label>
+                                            <label class="hidden-xs" for="txtOTPMobileNo">Mobile number</label>
                                             <input type="number" name="txtOTPMobileNo" id="txtOTPMobileNo" class="form-control" ng-model="loginCtrl.modSignup.newmobileno" required ng-maxlength="10" ng-minlength="10" placeholder="Mobile number"/>
 
                                             <div class="error-msg" ng-messages="loginCtrl.frmChangeMobile.$submitted && loginCtrl.frmChangeMobile.txtOTPMobileNo.$error">
@@ -173,7 +173,7 @@
 
                                 
                                 <div class="terms-block text-center" ng-hide="loginCtrl.showSignupOTPPanel">
-                                    By Signing up you agree to our <a href="javascript:void(0)">T&C</a> and <a href="javascript:void(0)">Privacy Policy</a>
+                                    By Signing up you agree to our <a  data-dismiss="modal" href ng-link="['TermsConditions']">T&C</a> and <a  data-dismiss="modal" href ng-link="['PrivacyPolicy']">Privacy Policy</a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -229,7 +229,7 @@
                           
                             <div class="only-msg-panel" ng-show="loginCtrl.showVerifyEmailPanel">
                                 <h4>Please Verify your email</h4>
-                                <p>We have sent you an email verification link to your mailbox. Please click on verify your account link. <a href ng-click="loginCtrl.changeEmailIDTrigger()">change email ID</a> <a href ng-click="loginCtrl.backToLoginScreen(); loginCtrl.resetForm('forgotPwd');">Login</a></p>
+                                <p>We have sent you an email verification link at {{loginCtrl.modSignup.email}}. Please click on verify your account link or <a href ng-click="loginCtrl.changeEmailIDTrigger()">change email ID</a></p>
 
                                 <form name="loginCtrl.frmChangeEmailId" novalidate ng-show="loginCtrl.showChangeEmailIdPanel" ng-if="loginCtrl.successEmailIdFlag === false">
                                     <div class="form-group">
@@ -242,7 +242,7 @@
                                         </div>
                                     </div>
                                     <div class="clearfix">
-                                        <button type="submit" class="btn btn-modal-big" ng-click="loginCtrl.submitChangeEmailId(loginCtrl.frmChangeEmailId)">Save</button>
+                                        <button type="submit" class="btn btn-modal-big" ng-click="loginCtrl.submitChangeEmailId(loginCtrl.frmChangeEmailId)">Send Verification Link</button>
                                     </div>
                                 </form>
 

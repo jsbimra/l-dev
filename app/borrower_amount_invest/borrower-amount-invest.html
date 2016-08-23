@@ -7,28 +7,30 @@
                 </span>
                 <div class="col-md-5 l-col hidden-sm hidden-xs">
                     <img src="../img/loansingh-mustache.png" alt="loansingh-mustache" class="mustache-img" />
-                    <p class="desc text-left"></p>
+                    <p class="desc text-left">You Invest, They Grow, Both Prosper</p>
                     
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-7 r-col">
                     <div class="modal-form-section">
                        <h3>How much do you wish to invest?</h3>
                        <div class="invest-table-wrapper">
-                          <div class="invest-table">
-                              <div class="invest-table-row" ng-repeat="br in amtCtrl.selectedborrowers track by $index">
-                               <div class="invest-table-column">
+                          <div class="invest-table col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                              <div class="invest-table-row row" ng-repeat="br in amtCtrl.selectedborrowers track by $index">
+                                <div class="invest-table-column col-sm-4 col-md-4 col-lg-4">
                                     <p>{{br.name}}</p>
-                                 </div>
-                                 <div class="invest-table-column" ng-repeat="amt in br.split_amount_list" ng-click="amtCtrl.selectAmount($parent.$index, amt)" ng-class="{'active':br.selected_amount==amt}">
+                                </div>
+                                <div class="invest-table-column col-sm-4 col-md-2 col-lg-2" ng-repeat="amt in br.split_amount_list" ng-click="amtCtrl.selectAmount($parent.$index, amt)" ng-class="{'active':br.selected_amount==amt}">
                                     <p>{{amt}}</p>
-                                 </div>
+                                </div>
                               </div>
                            </div>
+                           <div class="invest-amt-error-msg" ng-show="!amtCtrl.amountsSelected">
+                                <p>Please select an amount to invest</p>
                            </div>
-                       
+                       </div>
                        <div class="nav-buttons">
-                          <button type="button" class="btn btn-primary btn-cancel" ng-click="amtCtrl.closeBorrower()">Cancel</button>
-                          <button type="button" class="btn btn-primary btn-next" ng-click="amtCtrl.closeBorrower(); amtCtrl.submitAmounts({borrowerArray:amtCtrl.selectedborrowers})">Next</button>
+                          <button type="button" class="btn btn-primary btn-cancel" ng-click="amtCtrl.closeBorrower(false)">Cancel</button>
+                          <button type="button" class="btn btn-primary btn-next" ng-click="amtCtrl.closeBorrower(true); amtCtrl.submitAmounts({borrowerArray:amtCtrl.selectedborrowers,addToInvest:amtCtrl.amountsSelected})">Next</button>
                        </div>
                     </div>
                 </div>

@@ -24,7 +24,7 @@
                 .bullet-points {
                     font-size: 15px;
                     line-height: 18px;
-                    font-weight: 700;
+                    /*font-weight: 700;*/
                 }
                 .fa-check {
                     margin-top: -3px;
@@ -37,8 +37,11 @@
                         line-height: 32px;
                         font-weight: 600;
                     }
+                    h2{
+                        font-size: 22px;
+                    }
                     h6 {
-                        font-size: 18px;
+                        font-size: 17px;
                         font-weight: lighter;
                     }
                     /*.bullet-points {
@@ -95,6 +98,7 @@
                         font-size: 18px;
                         line-height: 25px;
                         padding-bottom: 10px;
+                        padding-top: 0px;
                     }
                     span {
                         font-size: 12px;
@@ -104,10 +108,11 @@
                     .carousel-indicators > li:nth-child(1),
                     .carousel-indicators > li:nth-child(2),
                     .carousel-indicators > li:nth-child(3) {
-                        margin-right: 10%;
+                        margin-right: 0;
                     }
                     .carousel-indicators li::after {
                         width: 15%;
+                        border: none;
                     }
                     .carousel-indicators {
                         bottom: -60px;
@@ -117,8 +122,8 @@
                     }
                     .carousel-indicators li {
                         font-size: 18px;
-                        width: 34px;
-                        height: 34px;
+                        width: 16px;
+                        height: 16px;
                     }
                 }
             }
@@ -149,9 +154,121 @@
         }
         /*.socialmedia-sec{width: auto;}*/
     }
+    #faq-content .panel-title {
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 @media screen and (max-width: 425px) {
+    footer .circle-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 15px;
+    }
+    #borrowerAmountModal .nav-buttons button {
+        width: 35%;
+        padding: 8px 0;
+        font-size: 12px;
+    }
+    table.dataTable.dtr-inline.collapsed tbody td:first-child:before, table.dataTable.dtr-inline.collapsed tbody th:first-child:before {
+        top: 28px;
+    }
+    .table-data-parent .dataTables_wrapper.no-footer .dataTables_scrollBody .borrower-table {
+        border-collapse: collapse;
+        tr {
+            border-top: 2px solid #f1f1f1;
+        }
+        .child{
+            text-align: left;
+            border-top: 0px;
+            background: #fff;
+            ul{
+                width: 100%;
+                li{
+                    float: left;
+                    width: auto;
+                    border-bottom: none;
+                    padding: 0;
+                    margin-right: 15px;
+                    margin-bottom: 5px;
+                    > span{
+                        float: left;
+                        padding-left: 2px;
+                    }
+                    span div{
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+    .invest-func-sec .btn-primary {
+        padding: 4px 10px;
+        font-size: 10px;
+        margin-left: 8px;
+        border-radius: 12px;
+    }
+    .invest-func-sec p {
+        font-size: 13px;
+        line-height: 26px;
+    }
+    #auto-invest-sec .one-forth-box {
+        padding: 20px;
+        text-align: left;
+    }
+    .mar-neg-10 {
+        margin-top: 10px;
+    }
+    .login-signup-modal .modal-dialog {
+        width: 95%;
+    }
+    .nav-tabs > li > a {
+        padding: 10px 25px;
+    }
+    .tab-abov {
+        display: none;
+    }
+    .login-signup-modal .modal-close-icon {
+        right: 10px;
+        font-size: 22px;
+    }
+    h1, h2 {
+        font-family: "HelveticaNeuelight";
+        font-size: 22.5px;
+    }
+    .panel-heading {
+        padding: 5px 10px;
+    }
+    .faq-section .panel-group .panel-heading .panel-title {
+        font-size: 16px;
+    }
+    .faq-section .panel-group .panel-heading a {
+        padding: 10px 2px 10px 4px;
+    }
+    .app-section .app-content .app-content-inner__child #infographic-sec {
+        padding-bottom: 25px;
+        img {
+            width: 65%;
+        }
+        h6 {
+            text-align: center;
+            font-size: 19px;
+        }
+        span {
+            text-align: center;
+            font-size: 14px;
+            line-height: 18px;
+            margin-bottom: 5px;
+        }
+        .btn-round-corner {
+            margin-top: 55px;
+        }
+        .mob {
+            display: block;
+        }
+    }
     .graph-container {
         font-size: 0.26em;
     }
@@ -163,11 +280,48 @@
             line-height: 32px;
         }
     }
+    /*Auto invest page*/
+    .pool-container{
+        .ib-amountbox {
+            p,.fa-inr{
+                font-size: 19px;
+            }
+        }
+        .invest-text span{
+            &:before,&:after{
+                width: 74%;
+            }
+
+        }
+    }
+    /*Invest Widget*/
+    .ib-container .rate-container .rate-item{
+        margin-right: 3px;
+    }
 }
 
 @media screen and (max-width: 375px) {
+    #lenderInfoModal .l-col, #lenderInfoModal .r-col {
+        padding: 20px 10px;
+    }
+    #lenderInfoModal .nav-tabs > li > a {
+        padding: 10px 12px;
+    }
     .graph-container {
         font-size: 0.22em;
+    }
+
+    /*Auto invest page*/
+    .pool-container{
+        .invest-text span{
+            &:before,&:after{
+                width: 74%;
+            }
+
+        }
+         /*.borrower-empty p{
+            width:80%;
+        }*/
     }
 }
 
@@ -179,9 +333,51 @@
         height: 26px;
         margin-top: 20px;
     }
+     /*Auto invest page*/
+
+     .portfolio-row >div{
+            padding: 0;
+        }
+    .pool-container{
+        .borrower-container{
+            padding: 4px 0px 7px 5px;
+        }
+        .toggle-risk-data{
+            padding: 0;
+        }
+        h5{
+           margin-left: 12px;
+            font-size: 15px; 
+        }
+        .ib-amountbox{
+            margin-left: 12px;
+            font-size: 15px;
+            p,.fa-inr{
+                font-size: 15px;
+            }
+            .fa-inr{
+                margin-top: 4px;
+            }
+        }
+        .invest-text span{
+            &:before,&:after{
+                width: 53%;
+            }
+
+        }
+         /*.borrower-empty p{
+            width:85%;
+        }*/
+
+    }
+    .table tr>th:nth-child(3) img{
+       width:27%;
+    }
 }
 
+
 /* For devices less then ipad potrait view*/
+
 @media screen and (max-width: 767px) {
     header {
         min-height: 0;
@@ -221,31 +417,88 @@
             }
             .navbar-nav {
                 margin: 0;
-
                 &> li {
                     border: 0;
                     border-top: 1px solid #d3d3d3;
-
+                    min-height: 0;
+                    
                     &> a {
                         font-family: $HelveticaNeueregular;
-                        color : #333333;
+                        color: #333333;
                         margin: 10px 25px;
                         font-size: 16px;
                         &> img {
                             width: 20px;
                             margin-right: 15px;
                         }
-
                         &:hover {
-                            color : #333333;
+                            color: #333333;
                         }
                     }
                     .menu-icon {
                         padding-left: 10px;
                     }
+                    &.active{
+                        /*background-color: #ee3224;*/
+                        border-bottom: 0px solid #ee3224;
+                    }
+                    &.active>a, &.active>a:focus, &.active>a:active,&.active>a:link{
+                        color: #333333;
+                        background-color: transparent;
+                    }
                 }
             }
         }
     }
-}
 
+     /*Auto invest page*/
+     .portfolio-section {
+
+     }
+    .portfolio-section{
+        .portfolio-sec{
+            .portfolio-row{
+                margin: 50px auto;
+            }
+            .portfolio-empty{
+             margin-top: 20px;
+          }
+        }
+        .skip-link{
+            margin-top: 30px;
+        }
+    }
+    .auto-invest-pool{
+          .pool-container{
+            margin-top: 20px;
+            height: 100%;
+            width: 100%;
+            float: left;
+          }
+           .borrower{
+            height: 46%;
+           }
+        } 
+     /*Payment Page*/
+    .payment-sec{
+        .payment-details-sec{
+            .bank-details-sec{
+                height: auto;
+            }
+            p.temp-accnt{
+                margin-top: 26px;
+            }
+        }
+        .cart_empty{
+            margin-top: 27px;
+        }
+    } 
+
+    .modal-code-conduct{
+        .modal-dialog{
+            width:90%;
+            margin: 18px;
+        }
+        
+    }
+}

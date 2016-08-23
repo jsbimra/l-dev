@@ -47,7 +47,7 @@
 		/*@ngInject*/
 		.config(['dynamicNumberStrategyProvider', function(dynamicNumberStrategyProvider){
 			dynamicNumberStrategyProvider.addStrategy('price', {
-				// numInt: 3,
+				numInt: 7,
 				numFract: 2,
 				numSep: '.',
 				numPos: true,

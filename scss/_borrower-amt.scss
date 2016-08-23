@@ -9,30 +9,40 @@
        color: #333233;
        margin-top: 0px;
     }
+    &.login-signup-modal .r-col{
+    	max-height: 500px;
+        min-height: 305px;
+    }
 	.invest-table-wrapper{
-		height: 341px;
+		max-height: 341px;
 		overflow: auto;
 		margin-top: 3px;
 
+		.invest-amt-error-msg{
+			color: #ee3224;
+            font-size: 13px;
+            text-align: center;
+		}
+
 		.invest-table{
-			display: table;
+			/*display: table;*/
 			width: 100%;
 			border-collapse: separate;
 			border-spacing: 10px 50px;
 
 			.invest-table-row{
-			   display: table-row;
+			   /*display: table-row;*/
 			}
 
 			.invest-table-column{
-			   display: table-cell;
+			   /*display: table-cell;*/
 			   border: 1px solid #bdbdbd;
 			   text-align: center;
-			   padding: 10px 15px;
-			   width: 20%;
+			   padding: 10px 0px;
 			   color: #303030;
-			   border-radius: 2px;
 			   cursor: pointer;
+			   border-radius: 5px;
+		       /*margin-right: 5px;*/
 
 			   &:first-child{
 			     border: none;
@@ -48,7 +58,7 @@
 
 			   p{
 			      margin: 0;
-			      font-size: 18px;
+			      font-size: 14px;
 			      font-family: $HelveticaNeuemedium;
 			   }
 			}
@@ -57,12 +67,13 @@
 
 	.nav-buttons{
 		margin-top: 20px;
+		text-align: center;
 
 		button{
 		  width: 177px;
 		  text-transform: uppercase;
 		  font-family: $HelveticaNeuebold;
-		  border-radius: 50px;
+		  border-radius: 5px;
 		}
 
 		.btn-cancel{

@@ -24,48 +24,36 @@
                 onInvestNow: '&onInvestNow',
                 buttonText: '@',
                 investText: '=',
+                buttonColor: '@'
             },
             controller: InvestWidgetController,
             controllerAs: '$ctrl',
-            // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
-            // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+            //require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+           // restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
             // template: '',
             templateUrl: 'app/directives/invest-widget.directive.html',
             // replace: true,
             // transclude: true,
             // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-            link: function($scope, iElm, iAttrs, controller, appFactory, APP_CONSTANT) {
+            link: function($scope, iElm, iAttrs, controller) {
 
                 /* required to invoke after dirctive initialize */
-                $('[data-toggle="tooltip"]').tooltip();
-
+                $('[data-toggle="tooltip"]').tooltip({ html: true });
                 //Controller is created before link, slider wont be available in controller initially if declared here	
-                /*$scope.slider = {
-							  	min: 6,
-								max: 12,
-								options: {
-									floor: 12,
-									ceil: 24,
-									minRange: 1,
-									noSwitching: true,
-									stepsArray : [3, 6, 12, 24, 36],
-									bindIndexForStepsArray : true
-								}
-							};
-*/
+                
             }
         };
     }; /* directive mehod end */
 
      
     /* @ngInject */
-    function InvestWidgetController($scope, $element, $attrs, $transclude, appFactory, APP_CONSTANT) {
+    function InvestWidgetController($scope, $element, $attrs, $transclude, appFactory, APP_CONSTANT,$timeout) {
         var vm = this;
 
         vm.userPreference        = {};
         vm.slider                = {
-            min: 3,
-            max: 24,
+            min: 6,
+            max: 12,
             options: {
                 floor: 3,
                 ceil: 24,
@@ -77,6 +65,9 @@
                 showTicksValues : true
             }
         };
+        vm.buttonStyle = {
+            'background-color': vm.buttonColor
+        };
 
         vm.riskRates             = APP_CONSTANT.RATE_RISKS;
         vm.goToDirectiveInvest   = goToDirectiveInvest;
@@ -85,8 +76,12 @@
 
         function setPreferencesSelected() {
         	setWidgetHeaders();
-
-            vm.userPreference.rateRisk = 'Medium';
+            //Timer required to delay intialization till html through ng-repeat is rendered
+            $timeout(function() {
+                  $('[data-toggle="tooltip"]').tooltip({ html: true });
+              }, 100);
+            
+            vm.userPreference.rateRisk = 'Low';
             vm.userPreference.amounttoinvest = 100000;
             var prefer = JSON.parse(appFactory.getLocalStorageData(APP_CONSTANT.PORTFOLIO_PREF));
             if (prefer) {
@@ -98,6 +93,9 @@
                     vm.slider.min = prefer.tenureMin;
                 if (prefer.hasOwnProperty("tenureMax"))
                     vm.slider.max = prefer.tenureMax;
+            }
+            else{
+                setPreferenceLS();
             }
 
         }
@@ -111,11 +109,16 @@
         		vm.widgetText = vm.investText;
         }
 
-        function goToDirectiveInvest() {
+        function setPreferenceLS(){
             vm.userPreference.tenureMin = vm.slider.min;
             vm.userPreference.tenureMax = vm.slider.max;
             var pref = vm.userPreference;
-            appFactory.setLocalStorageData(APP_CONSTANT.PORTFOLIO_PREF, JSON.stringify(pref));
+            appFactory.setLocalStorageData(APP_CONSTANT.PORTFOLIO_PREF, JSON.stringify(pref)); 
+             
+        }
+
+        function goToDirectiveInvest() {
+            setPreferenceLS();
             vm.onInvestNow();
         }
 

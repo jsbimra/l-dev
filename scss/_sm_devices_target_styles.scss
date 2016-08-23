@@ -9,13 +9,18 @@
                 .padd-top-40 {
                     padding-top: 10px;
                 }
+                .invest-sec{
+                    .padd-top-40{
+                        padding-top: 0;
+                    }
+                }
                 .padd-top-90 {
                     padding-top: 20px;
                 }
                 .bullet-points {
                     font-size: 15px;
                     line-height: 18px;
-                    font-weight: 700;
+                    /*font-weight: 700;*/
                 }
                 .fa-check {
                     margin-top: -3px;
@@ -68,20 +73,21 @@
                     }
                 }
                 #infographic-sec {
-                    padding-bottom: 90px;
+                    padding-bottom: 25px;
                     text-align: center;
                     h1 {
                         font-size: 25px;
                         line-height: 32px;
                     }
                     h6 {
-                        font-size: 18px;
+                        font-size: 24px;
                         line-height: 25px;
                         padding-bottom: 10px;
+                        padding-top: 25px;
                     }
                     span {
-                        font-size: 12px;
-                        line-height: 20px;
+                        font-size: 16px;
+                        line-height: 26px;
                         display: block;
                     }
                     .carousel-indicators > li:nth-child(1),
@@ -102,6 +108,9 @@
                         font-size: 18px;
                         width: 34px;
                         height: 34px;
+                    }
+                    .btn-round-corner {
+                        margin-top: 55px;
                     }
                 }
 
@@ -155,6 +164,7 @@
     footer {
         .footer-menu {
             width: 100%;
+            padding-top: 10px;
             li a {
                 padding: 2px 0px;
             }
@@ -185,6 +195,76 @@
         .contactus-wrapper{width:75%;}
         /*.socialmedia-sec{width: auto;}*/
     }
+
+    /*Auto Invest page*/
+    .pool-container{
+        .ib-amountbox {
+            p,.fa-inr{
+                font-size: 20px;
+            }
+        }
+        .invest-text span{
+            &:before,&:after{
+                width: 87%;
+            }
+
+        }
+    }
+
+    /*Data tables*/
+    table.dataTable thead{
+           th,td{
+              padding: 10px 13px;
+           }
+        } 
+
+    /*Payment Page*/
+    .payment-sec{
+        .payment-details-sec{
+            .bank-details-sec{
+                height: auto;
+            }
+            p.temp-accnt{
+                margin-top: 26px;
+            }
+            .borrower-details-sec{
+                padding-left: 0;
+                margin-top: 15px;
+            }
+        }
+        .cart_empty{
+            margin-top: 27px;
+        }
+    } 
+   .ip-arrow-img {
+        display: none;
+    } 
+    .invest-sec{
+        .padd-top-40{
+            padding-top: 0;
+        }
+        .pool-container{
+            float: left;
+            .borrower{
+                height: 38%;
+                margin: 3px 0;
+            }
+            .borrower-empty{
+                p{
+                  margin: 3px auto 0;
+                } 
+                img{
+                    width: 15%;
+                }
+            }
+        }
+    }
+   .modal-code-conduct{
+        .modal-dialog{
+            width:75%;
+        }
+        
+    }     
 }
 
 
@@ -196,6 +276,27 @@
     }
 }*/
 
+@media screen and (max-width: 767px) { 
+    .ip-arrow-img {
+        display: none;
+    }
+    .mar-neg-10 {
+        margin-top: -10px;
+    }
+    #auto-invest-sec .one-forth-box {
+        padding: 79px 20px 80px 20px;
+        text-align: left;
+    }
+    .pool-container{
+        height: auto;
+        float: left;
+        width: 100%;
+        .borrower-empty p{
+            padding: 0px 15px;
+        }
+    }
+}
+
 @media screen and (max-width: 760px) {
     .graph-container {
         font-size: 0.48em;
@@ -205,4 +306,15 @@
             display: none;
         }
     }
+}
+@media screen and (min-width: 1023px) and (max-width: 1119px) {
+   .payment-sec .payment-details-sec .borrower-details-sec .detail-container .borrower-info-wrapper .details-row p.clmn-fixed{
+     width: 60%;
+   }
+   .modal-code-conduct{
+        .modal-dialog{
+            width:75%;
+        }
+        
+    }   
 }

@@ -4,7 +4,7 @@ module.exports = function(grunt) {
         watch: {
             sass: {
                 files: 'scss/*.scss',
-                tasks: ['sass', 'concat', 'cssmin']
+                tasks: ['sass', 'concat:css', 'cssmin']
             },
             jsdoc: {
                 files: ['app/*.js', 'app/**/*.js', 'app/**/**/*.js', 'libs/*.js'],
@@ -15,7 +15,11 @@ module.exports = function(grunt) {
             },
             build: {
                 files: ['*.html', 'GruntFile.js','app/*.js', 'app/**/*.js'],
-                tasks: ['clean:contents', 'concat', 'cssmin', 'ngtemplates', 'ngAnnotate', 'uglify', 'processhtml', 'copy', 'clean:folder']
+                tasks: ['clean:contents', 'concat:prod', 'concat:css', 'concat:libDist', 'cssmin', 'ngtemplates', 'ngAnnotate', 'uglify', 'processhtml', 'copy', 'clean:folder']
+            },
+            dev: {
+                files: ['*.html', 'GruntFile.js','app/*.js', 'app/**/*.js'],
+                tasks: ['clean:contents', 'concat:dev', 'concat:css', 'concat:libDist', 'cssmin', 'ngtemplates', 'ngAnnotate', 'uglify', 'processhtml', 'copy', 'clean:folder']
             }
         },
         sass: {
@@ -66,7 +70,44 @@ module.exports = function(grunt) {
             folder: ['pre-build']
         },
         concat: {
-            dist: {
+            dev: {
+                options: {
+                    separator: '\n ;'
+                },
+                src: [
+                    'app/app.module.js',
+                    'app/app.widget.js',
+                    'app/app.config.js',
+                    'app/app.constant.js',
+                    'app/app.factory.js',
+                    'app/app.service.js',
+                    'app/app.staging.constant.js',
+                    'app/directives/invest-widget.directive.js',
+                    'app/directives/risk_meter/risk-meter.directive.js',
+                    'app/layout/core-shell.js',
+                    'app/home/home.component.js',
+                    'app/login/login.component.js',
+                    'app/dashboard/dashboard.component.js',
+                    'app/invest/invest.component.js',
+                    'app/auto_invest/auto-invest.component.js',
+                    'app/lender_info/lender-info.component.js',
+                    'app/payment/payment.component.js',
+                    'app/components/pool_component/portfolio-pool.component.js',
+                    'app/components/tab_pane_component/tab.component.js',
+                    'app/components/tab_pane_component/pane.component.js',
+                    'app/set_password/set-password.component.js',
+                    'app/borrower_amount_invest/borrower-amount-invest.component.js',
+                    'app/dashboard/dashboard_EMI/dashboard-emi.component.js',
+                    'app/components/faq.component.js',
+                    'app/components/privacy-policy.component.js',
+                    'app/components/terms-conditions.component.js',
+                    'app/components/about-us.component.js',
+                    'app/components/contact-us.component.js',
+                    'app/components/how-it-works.component.js'
+                ],
+                dest: 'pre-build/app-combined-full.js'
+            },
+            prod: {
                 options: {
                     separator: '\n ;'
                 },
@@ -86,7 +127,7 @@ module.exports = function(grunt) {
                     'app/dashboard/dashboard.component.js',
                     'app/invest/invest.component.js',
                     'app/auto_invest/auto-invest.component.js',
-                    'app/borrower_info/borrower-info.component.js',
+                    'app/lender_info/lender-info.component.js',
                     'app/payment/payment.component.js',
                     'app/components/pool_component/portfolio-pool.component.js',
                     'app/components/tab_pane_component/tab.component.js',
@@ -107,7 +148,17 @@ module.exports = function(grunt) {
                 options: {
                     separator: '\n'
                 },
-                src: ['libs/assests/font-awesome/css/font-awesome.min.css', 'css/bootstrap.min.css', 'css/introjs.css', 'css/rzslider.min.css', 'css/graph/graph.css', 'css/data_tables/datatables.min.css', 'css/data_tables/angular-datatables.min.css', 'css/data_tables/dataTables.responsive.css', 'css/main.css'],
+                src: [
+                    'libs/assests/font-awesome/css/font-awesome.min.css', 
+                    'css/bootstrap.min.css', 
+                    'css/introjs.css', 
+                    'css/rzslider.min.css', 
+                    'css/graph/graph.css', 
+                    'css/data_tables/datatables.min.css', 
+                    'css/data_tables/angular-datatables.min.css', 
+                    'css/data_tables/dataTables.responsive.css', 
+                    'css/on-board/bootstrap-tour.min.css',
+                    'css/main.css'],
                 dest: 'css/main.combined-full.css'
             },
             libDist: {
@@ -125,7 +176,8 @@ module.exports = function(grunt) {
                     'libs/dynamic-number/custom-dynamic-number.js',
                     'libs/bootstrap/bootstrap.min.js',
                     'libs/bootstrap/ui-bootstrap-tpls-1.3.3.min.js',
-                    'libs/intro.js',
+                    'libs/jquery.mobile.custom.min.js',
+                    'libs/on-board/custom-bootstrap-tour.js',
                     'libs/data_tables/angular-datatables.min.js',
                     'libs/data_tables/angular-datatables.scroller.min.js',
                     'libs/data_tables/dataTables.responsive.js',
@@ -211,7 +263,7 @@ module.exports = function(grunt) {
             main: {
                 files: [{
                     expand: true,
-                    src: 'img/**',
+                    src: ['img/**', 'favicon.ico'],
                     dest: 'build/',
                 }, 
                 {
@@ -219,6 +271,7 @@ module.exports = function(grunt) {
                     src: [
                         'libs/modernizr-2.8.3.min.js',
                         'libs/jQuery/jquery-1.12.0.min.js',
+                        'libs/jquery.mobile.custom.min.js',
                         'libs/data_tables/jquery.dataTables.min.js',
                         'libs/angular/angular.min.js',
                         'libs/angular/angular-route-component.js',
@@ -273,4 +326,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['browserSync', 'watch:sass']);
     grunt.registerTask('servedoc', ['watch:jsdoc']);
     grunt.registerTask('build', ['watch:build']);
+    grunt.registerTask('dev', ['watch:dev']);
 };

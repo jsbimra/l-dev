@@ -398,9 +398,12 @@
         }
 
         parsedValue = removePrependAppendChars(parsedValue, prepend, append);
+
+
         if (new RegExp('^[\.,' + thousandSeparator + ']{2,}').test(parsedValue)) {
-            changeViewValue(ngModelController, 0, prepend, append);
-            return 0;
+            /* passed parsedValue parameter instead 0 also to return*/
+            changeViewValue(ngModelController, parsedValue, prepend, append);
+            return parsedValue;
         }
         var cursorPosition = getCaretPosition(element[0]);
         if (prepend) {
@@ -413,8 +416,10 @@
         parsedValue = removeLeadingZero(parsedValue);
 
         if (parsedValue === '' && String(value).charAt(0) === '0') {
-            changeViewValue(ngModelController, 0, prepend, append);
-            return 0;
+            // console.info('parsedValue', value); 
+            /* passed value parameter instead 0 also to return*/
+            changeViewValue(ngModelController, value, prepend, append);
+            return value;
         }
         if (parsedValue === undefined || parsedValue === '') {
             return 0;

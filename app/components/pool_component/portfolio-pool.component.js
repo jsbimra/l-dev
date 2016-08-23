@@ -17,12 +17,15 @@
         var INVEST_API = API_ENDPOINT + 'investment/invest_now/';
         var config;         
 
-        vm.showRiskData = true;
+        //vm.showRiskData = true;
         vm.riskFactor;
+        vm.createdpool = undefined;
 
         vm.investnow        = investnow;
         vm.changePoolAmount = changePoolAmount;
-        vm.deleteFromPool       = deleteFromPool;
+        vm.deleteFromPool   = deleteFromPool;
+        vm.collapsePoolData = collapsePoolData;
+
 
         function calculateRiskFactor() {
             var riskCumilative = 0;
@@ -53,7 +56,7 @@
                           $rootRouter.navigate(['Payment']);
                         }
                        else{
-                        $('#borrowerInfoModal').modal({
+                        $('#lenderInfoModal').modal({
                             backdrop: 'static',
                             keyboard: false
                         });
@@ -62,7 +65,7 @@
                     }
                 }
             }, function() {
-                $('#borrowerInfoModal').modal({
+                $('#lenderInfoModal').modal({
                     backdrop: 'static',
                     keyboard: false
                 });
@@ -104,6 +107,13 @@
 
         function deleteFromPool(borrower){
             vm.deletepool({brwr:borrower});
+        }
+
+        /*Function to collapse pool*/
+        function collapsePoolData(){
+            if(vm.showRiskData)
+                $('.pool-container').css('height', $('.pool-container').height());
+            vm.showRiskData=!vm.showRiskData;
         }
         $scope.$watch('poolCtrl.createdpool', function(newVal, oldVal){
             calculateRiskFactor();
@@ -161,7 +171,8 @@
                 userpref: '=',
                 collapsible: '@',
                 changepoolpop: '&',
-                deletepool: '&'
+                deletepool: '&',
+                showRiskData: '='
             },
             $routeConfig: []
         });

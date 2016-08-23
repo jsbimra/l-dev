@@ -13,15 +13,13 @@ $linesHeight: 10px;
 
 /*Animations*/
 
-.animate-hide {
-    transition: all linear 0.5s;
-    opacity: 1;
-    height: 148px;
+.animate-height {
+    transition: all 0.5s cubic-bezier(0.35, 0, 0.25, 1);
+    /*//height: 556px;*/
 }
 
-.animate-hide.ng-hide {
-    opacity: 0;
-    height: 0;
+.animate-height.collapse-height {
+    height: 67px!important;
 }
 
 .auto-invest-padd-container {
@@ -38,12 +36,15 @@ $linesHeight: 10px;
     }
 }
 
+#lenderInfoModal {
+    text-align: left;
+}
+
 .portfolio-section {
     .portfolio-sec {
         padding-top: 106px;
         text-align: center;
         .portfolio-row {
-            width: 67%;
             margin: 94px auto 112px;
         }
         .portfolio-empty {
@@ -75,13 +76,32 @@ $linesHeight: 10px;
         cursor: pointer;
     }
 }
+.auto-invest-pool{
+    .pool-container {
+        height: 518px;
+        margin-bottom: 0px;
+    }
+}
 
 .pool-container {
-    height: 520px;
+    height: 556px;
     background-color: #fff;
     padding: 5px 9px 20px;
     text-align: center;
-    position: relative;
+    margin-bottom: 25px;
+
+    &.collapse-height {
+        padding: 5px 9px;
+    }
+    .pool-wrapper{
+        position: relative;
+        height: 93.5%;
+
+        >div {
+            text-align: left;
+        }
+    }
+
     h3 {
         margin-left: 9px;
         text-align: left;
@@ -103,9 +123,21 @@ $linesHeight: 10px;
         font-family: $HelveticaNeuemedium;
         display: inline-block;
     }
-    >div {
-        text-align: left;
+    .borrower-empty{
+        img{
+            width: 20%;
+            margin: 0 auto;
+        }
+        p{
+            font-size: 14px;
+            margin: 15px auto 0;
+            padding: 0 30px;
+            display: block;
+            color: #404040;
+            text-align: center;
+        }
     }
+    
     .dropdown-menu {
         border-radius: 4px;
         box-shadow: none;
@@ -155,11 +187,11 @@ $linesHeight: 10px;
         }
     }
     .borrower {
-        height: 34%;
+        height: 43%;
         overflow-y: auto;
         float: left;
         width: 100%;
-        margin: 18px 0;
+        margin: 10px 0;
         i {
             margin-right: 10px;
             color: #c5c5c5;
@@ -169,15 +201,14 @@ $linesHeight: 10px;
             font-size: 16px;
         }
     }
-    .fill-height {
-        height: 64%;
-    }
+    
     .invest-text {
         font-size: 16px;
         color: #c5c5c5;
         margin-top: 10px;
         float: left;
         width: 100%;
+        text-align: center;
         span {
             position: relative;
         }
@@ -240,7 +271,7 @@ $linesHeight: 10px;
     .borrower-container {
         float: left;
         width: 100%;
-        padding: 4px 3px 7px 15px;
+        padding: 4px 3px 7px 8px;
         border: 1px solid #c5c5c5;
         /* border-left: 1px solid #c5c5c5;
 		border-right: 1px solid #c5c5c5; */
@@ -266,7 +297,7 @@ $linesHeight: 10px;
 
 /***Borrower Info styles***/
 
-#borrowerInfoModal {
+#lenderInfoModal {
     .dob-group > div {
         float: left;
     }
@@ -334,5 +365,14 @@ $linesHeight: 10px;
                  left: 4px;
                }
         }
+       }
+       .btn-continue{
+         background-color: #303030;
+         color: #fff;
+         text-transform: uppercase;
+         padding: 6px 25px;
+         &:hover{
+
+         }
        }
 }

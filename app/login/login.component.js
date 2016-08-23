@@ -27,25 +27,17 @@
         vm.OTPTimer = APP_CONSTANT.COUNT_DOWN_VALUE;
         vm.tempOTP = 1234;
         vm.regexMobileEmail = /^([_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5}))|^[0-9]{10,10}$/;
-        vm.user = {
-            /*mobOrEmail: '7020427374',
-            password: 'LyE3mPqQne'*/
-        };
+        vm.user = {};
         vm.createPassword = {
             newPassword: '',
             confirmPasword: ''
         };
-        vm.modSignup = {
-            /*mobileno: 1230456789,
-            email: 'test@test.com',
-            password: '15420'*/
-        };
+        vm.modSignup = {};
         vm.modForgotPwdEmail = '';
         vm.alreadyRegisterUserMsg = '';
         vm.loginServerErrorMsg = undefined;
+        vm.loggedIn = false;
 
-        /* Invoking default and defining in callback to use it other scenarios */
-        setDefaultViewOffFlags();
 
         function setDefaultViewOffFlags() {
 
@@ -84,6 +76,10 @@
         vm.resetModalToNormal = resetModalToNormal;
         vm.timerCountDown = timerCountDown;
         vm.submitCreatePassword = submitCreatePassword;
+        vm.setDefaultViewOffFlags = setDefaultViewOffFlags;
+
+        /* Invoking default and defining in callback to use it other scenarios */
+        vm.setDefaultViewOffFlags();
 
         vm.$routerOnActivate = function(next, prev) {
 
@@ -154,9 +150,10 @@
                                     }else{
                                         $rootRouter.navigate(['Home']);
                                     }
-                                    
+                                   // $modalInstance.dismiss('cancel');
                                    // 
-                                    $('#loginSignupModal').modal('hide'); 
+                                   $('#loginSignupModal').modal('hide'); 
+                                   // vm.loggedIn = true;
 
                             /* Fire emit to show menu visible after login */
                             $scope.$emit('userLoggedInStatus', true);
@@ -350,10 +347,13 @@
                             /*Starting resend countdown timer once showSignupResendOTPPanel shown */
                             startCountDownTimer();
 
-                        } else if (!data.status && 'message' in data) {
+                        } else if (!data.status) {
                             console.info('reposne message ', data.message);
                             vm.alreadyRegisterUserFlag = true;
-                            vm.alreadyRegisterUserMsg = data.message;
+                            if('message' in data)
+                               vm.alreadyRegisterUserMsg = data.message;
+                            if('error' in data)
+                                vm.alreadyRegisterUserMsg = data.error;
                         } else {
                             console.error('Error, looking for key in data object not found ', data);
                         }
@@ -732,6 +732,12 @@
         function hideProcessing(){
             vm.processing = false;
         }
+
+        /*$('#loginSignupModal').on('hidden.bs.modal', function (e) {
+            $timeout(function(){
+        console.log("modal closed");
+      },1000);
+        });*/
 
     }; /* controller code end */
 

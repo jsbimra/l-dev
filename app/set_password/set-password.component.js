@@ -10,7 +10,7 @@
 	*/
 
 	/* @ngInject */
-	function pwdSetComponentCtrl($scope, $rootScope, $rootRouter, $window, appFactory, dataservice, APP_CONSTANT, API_ENDPOINT,$location){
+	function pwdSetComponentCtrl($scope, $timeout, $rootScope, $rootRouter, $window, appFactory, dataservice, APP_CONSTANT, API_ENDPOINT,$location){
 		var vm = this;
 		var REGISTER_SET_PASSWORD_API = API_ENDPOINT+'auth/change_pass/';
 		var CHECK_VALID_USER_API = API_ENDPOINT+'auth/verify/email/';
@@ -26,15 +26,22 @@
 		vm.submitCreatePassword =submitCreatePassword;
 
         vm.$routerOnActivate = function() {
-            $('.app-header-fixed').addClass('hide');
-            $('.app-footer').addClass('hide');
+            // $('.app-header-fixed').addClass('hide');
+            // $('.app-footer').addClass('hide');
+            $timeout(function() {
+                $('#navbar .nav>li').addClass('hide');
+                $('.fakeNavbar').removeClass('hide');
+            }, 100);
+            
             checkUID();
          }
 
          /*Remove hide class from header and footer*/
          function toggleNavVisibility() {
-            $('.app-header-fixed').removeClass('hide');
-            $('.app-footer').removeClass('hide');
+            $('#navbar .nav>li').removeClass('hide');
+            $('.fakeNavbar').addClass('hide');
+            // $('.app-header-fixed').removeClass('hide');
+            // $('.app-footer').removeClass('hide');
          }
 
 		/*Create Password: new user*/

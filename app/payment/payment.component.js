@@ -10,16 +10,19 @@
      */
 
     /* @ngInject */
-    function paymentController($scope, $rootScope, $rootRouter, appFactory, APP_CONSTANT, dataservice, API_ENDPOINT) {
+    function paymentController($scope, $rootScope, $rootRouter, appFactory, APP_CONSTANT, dataservice, API_ENDPOINT, $timeout) {
         var vm = this;
 
         var PAYMENT_DATA_API = API_ENDPOINT + 'investment/invest_now/';
+        var PAYMENT_DONE_API = API_ENDPOINT + 'investment/mark_paid/';
         var config           = appFactory.setToken();
         var riskMapping      = APP_CONSTANT.RATE_RISKS;
 
         vm.userPref;
-        vm.totalAmount = 0;
-        vm.paymentObj  = [];
+        vm.totalAmount      = 0;
+        vm.paymentObj       = undefined;
+        vm.showBeneficiary  = true;
+        vm.LSfees           = 0;
 
         vm.beneficiary = [{
             dispName: 'Name',
@@ -32,18 +35,21 @@
             value: 'HDFC74893930'
         }];
 
-        vm.deleteBorrower = deleteBorrower;
+        vm.deleteBorrower   = deleteBorrower;
+        vm.markPaymentDone  = markPaymentDone;
+        vm.openConductPopup = openConductPopup;
 
         /* Router Lifecycle hooks */
         vm.$routerOnActivate = function(next, prev) {
 
             /* scroll page to top */
             appFactory.scrollToTop();
-            
+            appFactory.hamburgerOpen();
             /*Redirect user to Home if user not logged in */
-            // appFactory.userLoggedIn();
-
-            getPaymentData();
+            var loggedStatus = appFactory.userLoggedIn();
+            if(loggedStatus){
+                getPaymentData();
+            }
         }
 
         function getPaymentData() {
@@ -55,10 +61,17 @@
                         for (var i in vm.paymentObj) {
                               vm.totalAmount += vm.paymentObj[i].invested_amount;
                         }
+                        vm.LSfees = vm.totalAmount*0.01;
+                        vm.totalAmount += vm.LSfees;
+                    }
+                    else{
+                        vm.paymentObj = [];
                     }
                 }
 
-            }, function() {});
+            }, function() {
+                vm.paymentObj = [];
+            });
 
         }
 
@@ -83,6 +96,40 @@
                 console.log('Create pool API error');
             });
 
+        }
+
+        /*Function to mark payment done*/
+        function markPaymentDone() {
+            var postObj={};
+            postObj.ids=[];
+            for(var i in vm.paymentObj){
+               postObj.ids.push(vm.paymentObj[i].id);
+            }
+
+            dataservice.postData(PAYMENT_DONE_API, postObj, config).then(function(data, status) {
+                if (data) {
+                    if (data.status) {
+                        vm.paymentObj        = [];
+                       // appFactory.scrollToTop();
+                        vm.modSuccessPayment = true;
+                         /*$timeout(function() {
+                            vm.modSuccessPayment = true;
+                              //appFactory.scrollToDiv($('.scrollClass').offset().top);
+                          }, 500);*/
+                    
+                    }
+                }
+
+            }, function() {});
+
+        }
+
+        /*Function to show code of conduct popup*/
+        function openConductPopup(){
+            $('#lender-code-conduct').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
         }
 
     }

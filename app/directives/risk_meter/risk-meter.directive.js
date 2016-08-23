@@ -57,9 +57,9 @@
         var startAngle;
         var endAngle;
         var colorArray = ['#88c61c', '#e29823', '#ec1a26'];
-        var riskArray = [16, 20, 24];
+        var riskArray = [20, 24, 28];
         var riskPosition;
-        var i = 0.9 + (vm.risk - 12) / 2;
+        var i = 0.9 + (vm.risk - 16) / 2;
         var lineAngle;
         var lineEndAngle;
         var lineAngleCircum;
@@ -109,7 +109,7 @@
             if (vm.risk == 0 || isNaN(vm.risk)) {
                 lineEndAngle = 0.55;
             } else {
-                lineEndAngle = ((((vm.risk - 12) / 2) * 0.23) + 0.55);
+                lineEndAngle = ((((vm.risk - 16) / 2) * 0.23) + 0.55);
             }
             if(lineEndAngle<lineAngle)
                 riskNeedleReverse = true;

@@ -1,27 +1,26 @@
 <header class="clearfix">
-
     <div class="head-top hidden-xs">
-
         <div class="container">
-
             <a href="/"><img class="hidden-xs hidden-sm" src="img/logo.png" /></a>
             <a href="/"><img class="hidden-md hidden-lg" src="img/loansingh-mustache-trans_bac.png" /></a>
             <div class="header-callouts hidden-xs hidden-sm">
-                <button class="btn btn-modal-big login-btn"> <i class="fa fa-phone" aria-hidden="true"></i> 1800 274474</button>
+                <!-- <button class="btn btn-modal-big login-btn"> <i class="fa fa-phone" aria-hidden="true"></i> 1800 274474</button>
                 <button class="btn btn-primary" ng-show="shellCtrl.loggedIn" ng-click="shellCtrl.logout()">LOGOUT</button>
-                <button class="btn btn-primary" ng-show="!shellCtrl.loggedIn" ng-click="shellCtrl.login()">LOGIN | SIGNUP</button>
+                <button class="btn btn-primary" ng-show="!shellCtrl.loggedIn" ng-click="shellCtrl.login()">LOGIN | SIGNUP</button> -->
+                <span class="call-btn"> <i class="fa fa-phone" aria-hidden="true"></i> 1800 274474</span>
+                <a ng-show="shellCtrl.loggedIn" ng-click="shellCtrl.logout()">LOGOUT</a>
+                <a ng-show="!shellCtrl.loggedIn" ng-click="shellCtrl.login()">LOGIN</a> <span ng-show="!shellCtrl.loggedIn">|</span>
+                <a ng-show="!shellCtrl.loggedIn" ng-click="shellCtrl.showSignUpModal()">SIGNUP</a>
                 <!-- <button class="btn btn-default dropdown-toggle jsDropDownMenu" type="button" id="dropdownMenu1" data-toggle="dropdown">Dropdown
                     <span class="caret"></span>
                   </button> -->
             </div>
-
             <div class="header-callouts hidden-md hidden-lg">
                 <button type="button" class="btn btn-modal-big login-btn"> <i class="fa fa-phone" aria-hidden="true"></i></button>
                 <button class="btn btn-primary" ng-show="shellCtrl.loggedIn" ng-hide="!shellCtrl.loggedIn" ng-click="shellCtrl.logout()"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
-                <button type="button"class="btn btn-primary" ng-show="!shellCtrl.loggedIn" ng-click="shellCtrl.login()"><i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-primary" ng-show="!shellCtrl.loggedIn" ng-click="shellCtrl.login()"><i class="fa fa-user" aria-hidden="true"></i></button>
             </div>
         </div>
-
     </div>
     <!-- <div class="loginDropdown">
       <div class="container">
@@ -46,29 +45,42 @@
     </div> -->
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="/"><img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/logo.png" /></a>
-          <a href="/" class="hidden-sm hidden-md hidden-lg log-xs" ng-show="!shellCtrl.loggedIn" ng-click="shellCtrl.login()"><img class="log-img-xs" src="img/login-signup_ico.png"/></a>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/"><img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/logo.png" /></a>
+                <a href="/" class="hidden-sm hidden-md hidden-lg log-xs" ng-show="!shellCtrl.loggedIn" ng-click="shellCtrl.login()"><img class="log-img-xs" src="img/login-signup_ico.png" /></a>
+                <a href="/" class="hidden-sm hidden-md hidden-lg log-xs" ng-show="shellCtrl.loggedIn" ng-click="shellCtrl.logout()"><img class="log-img-xs" src="img/logout.png" /></a>
+            </div>
+            <div class="fakeNavbar hide"> </div>
+            <div id="navbar" class="navbar-collapse collapse nav-overlay">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{'active' : shellCtrl.isActiveMenu('/invest')}" ng-if="shellCtrl.loggedIn">
+                        <a href ng-click="shellCtrl.getUserVisit()" class="menu-icon invest-icon"> <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/invest_ico.png" /> Invest Now</a>
+                    </li>
+                    <!--Not going in current sprint - please dont delete-->
+                    <!-- <li ng-if="shellCtrl.loggedIn"><a href ng-link="['Dashboard']" class="menu-icon dashboard-icon"> <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/dashboard_ico.png" /> My Dashboard</a></li> -->
+                    <li ng-class="{'active' : shellCtrl.isActiveMenu('/payment')}" ng-if="shellCtrl.loggedIn">
+                        <a href ng-link="['Payment']" class="menu-icon payment-icon"> <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/wallet_ico.png" /> My Payments</a>
+                    </li>
+                    <li ng-class="{'active' : shellCtrl.isActiveMenu('/how-it-works')}">
+                        <a href ng-link="['HowItWorks']" class="menu-icon howitworks-icon"> <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/cog_ico.png" /> HOW IT WORKS</a>
+                    </li>
+                    <li ng-class="{'active' : shellCtrl.isActiveMenu('/about-us')}">
+                        <a href ng-link="['AboutUs']"> <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/about_ico.png" /> <img class="hidden-xs" src="img/about_us.png" /> ABOUT US</a>
+                    </li>
+                    <li class="hidden-sm hidden-md hidden-lg">
+                        <a href="tel:1800274474"> <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/phone_ico.png" /> CALL US</a>
+                    </li>
+                </ul>
+            </div>
+            <!--  ng-class="{'active' : shellCtrl.isActiveMenu('/about-us')}" -->
+            <!--/.nav-collapse -->
         </div>
-        <div id="navbar" class="navbar-collapse collapse nav-overlay">
-          <ul class="nav navbar-nav">
-            
-            <li ng-if="shellCtrl.loggedIn"><a href ng-click="shellCtrl.getUserVisit()" class="menu-icon invest-icon"> <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/invest_ico.png" /> Invest Now</a></li>
-            <li ng-if="shellCtrl.loggedIn"><a href ng-link="['Dashboard']" class="menu-icon dashboard-icon"> <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/dashboard_ico.png" /> My Dashboard</a></li>
-            <li ng-if="shellCtrl.loggedIn"><a href ng-link="['Payment']" class="menu-icon payment-icon"> <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/wallet_ico.png" /> My Payments</a></li>
-
-            <li><a href ng-link="['HowItWorks']" class="menu-icon howitworks-icon">  <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/cog_ico.png" />  HOW IT WORKS</a></li>
-            <li><a href ng-link="['AboutUs']"> <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/about_ico.png" /> ABOUT US</a></li>
-            <li class="hidden-sm hidden-md hidden-lg"><a href=""> <img class="hidden-sm hidden-md hidden-lg logo-xs" src="img/phone_ico.png" /> CALL US</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
     </nav>
 </header>

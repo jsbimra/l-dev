@@ -18,27 +18,29 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "            <div class=\"row portfolio-row\">\r" +
     "\n" +
-    "                <div class=\"col-md-6\">\r" +
+    "                <div class=\"col-lg-offset-2 col-lg-4 col-md-offset-1 col-md-5 col-sm-6 col-xs-12\">\r" +
     "\n" +
     "                  <div class=\"auto-invest-padd-container\">\r" +
     "\n" +
-    "                    <invest-widget on-invest-now=\"autoCtrl.buildPortfolio()\" button-text=\"BUILD PORTFOLIO\"></invest-widget>\r" +
+    "                    <invest-widget on-invest-now=\"autoCtrl.buildPortfolio()\" button-text=\"BUILD PORTFOLIO\" button-color=\"#404040\"></invest-widget>\r" +
     "\n" +
     "                  </div>\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
-    "                <div class=\"col-md-6\">\r" +
+    "                <div class=\"col-lg-4 col-md-5 col-sm-6 col-xs-12\">\r" +
     "\n" +
-    "                   <portfolio-pool-component ng-if=\"autoCtrl.showPool\" createdpool=\"autoCtrl.createdpool\" userpref=\"autoCtrl.userPref\" investnow=\"autoCtrl.investNow()\" collapsible=\"false\"></portfolio-pool-component><!--To be changed to component child routing-->\r" +
+    "                   <portfolio-pool-component ng-if=\"autoCtrl.showPool\" createdpool=\"autoCtrl.createdpool\" userpref=\"autoCtrl.userPref\" investnow=\"autoCtrl.investNow()\" collapsible=\"false\" show-risk-data=\"true\" class=\"auto-invest-pool scrollClass\"></portfolio-pool-component><!--To be changed to component child routing-->\r" +
     "\n" +
-    "                   <div class=\"portfolio-empty\" ng-if=\"!autoCtrl.showPool\">\r" +
+    "                   <div class=\"portfolio-empty scrollClass\" ng-if=\"!autoCtrl.showPool\">\r" +
     "\n" +
     "                      <div class=\"wrapper\">\r" +
     "\n" +
     "                         <i class=\"fa fa-clipboard\" aria-hidden=\"true\"></i>\r" +
     "\n" +
     "                         <p>Your Portfolio<br>will appear here</p>\r" +
+    "\n" +
+    "\r" +
     "\n" +
     "                      </div>\r" +
     "\n" +
@@ -87,7 +89,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                    <img src=\"../img/loansingh-mustache.png\" alt=\"loansingh-mustache\" class=\"mustache-img\" />\r" +
     "\n" +
-    "                    <p class=\"desc text-left\"></p>\r" +
+    "                    <p class=\"desc text-left\">You Invest, They Grow, Both Prosper</p>\r" +
     "\n" +
     "                    \r" +
     "\n" +
@@ -101,315 +103,41 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                       <div class=\"invest-table-wrapper\">\r" +
     "\n" +
-    "                          <div class=\"invest-table\">\r" +
+    "                          <div class=\"invest-table col-xs-12 col-sm-12 col-md-12 col-lg-12\">\r" +
     "\n" +
-    "                              <div class=\"invest-table-row\" ng-repeat=\"br in amtCtrl.selectedborrowers track by $index\">\r" +
+    "                              <div class=\"invest-table-row row\" ng-repeat=\"br in amtCtrl.selectedborrowers track by $index\">\r" +
     "\n" +
-    "                               <div class=\"invest-table-column\">\r" +
+    "                                <div class=\"invest-table-column col-sm-4 col-md-4 col-lg-4\">\r" +
     "\n" +
     "                                    <p>{{br.name}}</p>\r" +
     "\n" +
-    "                                 </div>\r" +
+    "                                </div>\r" +
     "\n" +
-    "                                 <div class=\"invest-table-column\" ng-repeat=\"amt in br.split_amount_list\" ng-click=\"amtCtrl.selectAmount($parent.$index, amt)\" ng-class=\"{'active':br.selected_amount==amt}\">\r" +
+    "                                <div class=\"invest-table-column col-sm-4 col-md-2 col-lg-2\" ng-repeat=\"amt in br.split_amount_list\" ng-click=\"amtCtrl.selectAmount($parent.$index, amt)\" ng-class=\"{'active':br.selected_amount==amt}\">\r" +
     "\n" +
     "                                    <p>{{amt}}</p>\r" +
     "\n" +
-    "                                 </div>\r" +
+    "                                </div>\r" +
     "\n" +
     "                              </div>\r" +
     "\n" +
     "                           </div>\r" +
     "\n" +
+    "                           <div class=\"invest-amt-error-msg\" ng-show=\"!amtCtrl.amountsSelected\">\r" +
+    "\n" +
+    "                                <p>Please select an amount to invest</p>\r" +
+    "\n" +
     "                           </div>\r" +
-    "\n" +
-    "                       \r" +
-    "\n" +
-    "                       <div class=\"nav-buttons\">\r" +
-    "\n" +
-    "                          <button type=\"button\" class=\"btn btn-primary btn-cancel\" ng-click=\"amtCtrl.closeBorrower()\">Cancel</button>\r" +
-    "\n" +
-    "                          <button type=\"button\" class=\"btn btn-primary btn-next\" ng-click=\"amtCtrl.closeBorrower(); amtCtrl.submitAmounts({borrowerArray:amtCtrl.selectedborrowers})\">Next</button>\r" +
     "\n" +
     "                       </div>\r" +
     "\n" +
-    "                    </div>\r" +
+    "                       <div class=\"nav-buttons\">\r" +
     "\n" +
-    "                </div>\r" +
+    "                          <button type=\"button\" class=\"btn btn-primary btn-cancel\" ng-click=\"amtCtrl.closeBorrower(false)\">Cancel</button>\r" +
     "\n" +
-    "                <div class=\"clearfix\"></div>\r" +
+    "                          <button type=\"button\" class=\"btn btn-primary btn-next\" ng-click=\"amtCtrl.closeBorrower(true); amtCtrl.submitAmounts({borrowerArray:amtCtrl.selectedborrowers,addToInvest:amtCtrl.amountsSelected})\">Next</button>\r" +
     "\n" +
-    "            </div>\r" +
-    "\n" +
-    "        </div>\r" +
-    "\n" +
-    "    </div>\r" +
-    "\n" +
-    "</div>\r" +
-    "\n"
-  );
-
-
-  $templateCache.put('app/borrower_info/borrower-info.html',
-    "<div class=\"modal fade in login-signup-modal\" id=\"borrowerInfoModal\">\r" +
-    "\n" +
-    "    <div class=\"modal-dialog\">\r" +
-    "\n" +
-    "        <div class=\"modal-content clearfix\">\r" +
-    "\n" +
-    "            <div class=\"modal-body\">\r" +
-    "\n" +
-    "                <span class=\"modal-close-icon\">\r" +
-    "\n" +
-    "                    <i class=\"fa fa-times font_2em\" ng-click=\"infoCtrl.saveDataToLocal()\" data-dismiss=\"modal\" aria-hidden=\"true\"></i>\r" +
-    "\n" +
-    "                </span>\r" +
-    "\n" +
-    "                <div class=\"col-md-5 l-col hidden-sm hidden-xs\">\r" +
-    "\n" +
-    "                    <img src=\"../img/loansingh-mustache.png\" alt=\"loansingh-mustache\" class=\"mustache-img\" />\r" +
-    "\n" +
-    "                    <p class=\"desc text-left\">We just need you to input some more details to get started.</p>\r" +
-    "\n" +
-    "                    \r" +
-    "\n" +
-    "                </div>\r" +
-    "\n" +
-    "                <div class=\"col-xs-12 col-sm-12 col-md-7 r-col\">\r" +
-    "\n" +
-    "                    <div class=\"modal-form-section\">\r" +
-    "\n" +
-    "                       <tab-component>\r" +
-    "\n" +
-    "                         <form name=\"infoCtrl.frmInfo\" id=\"infoCtrl.frmInfo\" novalidate ng-submit=\"infoCtrl.frmInfo.$valid && infoCtrl.saveLenderInfo()\">\r" +
-    "\n" +
-    "                            <pane-component title=\"Profile\">\r" +
-    "\n" +
-    "                            \r" +
-    "\n" +
-    "                                <div class=\"form-group\">\r" +
-    "\n" +
-    "                                    <label for=\"userName\">Name*</label>\r" +
-    "\n" +
-    "                                    <input type=\"text\" id=\"userName\" name=\"userName\" ng-trim=\"false\" placeholder=\"Enter your name\" ng-model=\"infoCtrl.userProfile.name\" class=\"form-control\" ng-pattern=\"/^[a-zA-Z_ ]*$/\"  autofocus required autocomplete=\"off\" ng-class=\"{ 'errorbox': infoCtrl.frmInfo.userName.$touched && infoCtrl.frmInfo.userName.$invalid && infoCtrl.frmInfo.$submitted}\"/>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                    <div class=\"error-msg\" ng-messages=\"infoCtrl.frmInfo.$submitted && infoCtrl.frmInfo.userName.$error\">\r" +
-    "\n" +
-    "                                        <div ng-message=\"required\">Please enter your full name</div>\r" +
-    "\n" +
-    "                                        <div ng-message=\"pattern\">Please enter a valid full name</div>\r" +
-    "\n" +
-    "                                    </div>\r" +
-    "\n" +
-    "                                </div>\r" +
-    "\n" +
-    "                                \r" +
-    "\n" +
-    "                                <div class=\"form-group dob-group\">\r" +
-    "\n" +
-    "                                    <label for=\"userSurName\">DOB*</label>\r" +
-    "\n" +
-    "                                   <input type=\"text\" class=\"form-control\" name=\"dob\" uib-datepicker-popup=\"{{infoCtrl.format}}\" ng-model=\"infoCtrl.userProfile.dob\" is-open=\"infoCtrl.popup1.opened\" datepicker-options=\"infoCtrl.dateOptions\" ng-required=\"true\" close-text=\"\" alt-input-formats=\"altInputFormats\" show-button-bar=false ng-click=\"infoCtrl.popup1.opened=!infoCtrl.popup1.opened\"/>\r" +
-    "\n" +
-    "                                 \r" +
-    "\n" +
-    "                                    <div class=\"error-msg\" ng-messages=\"infoCtrl.frmInfo.$submitted && infoCtrl.frmInfo.dob.$error\">\r" +
-    "\n" +
-    "                                        <div ng-message=\"required\">Please select your date of birth</div>\r" +
-    "\n" +
-    "                                    </div>\r" +
-    "\n" +
-    "                                </div>\r" +
-    "\n" +
-    "                                \r" +
-    "\n" +
-    "                              </pane-component>\r" +
-    "\n" +
-    "                              <pane-component title=\"Identity\">\r" +
-    "\n" +
-    "                                <div class=\"form-group\">\r" +
-    "\n" +
-    "                                    <label for=\"userPan\">Pan Number*</label>\r" +
-    "\n" +
-    "                                    <input type=\"text\" id=\"userPan\" name=\"userPan\" placeholder=\"Enter your pan number\" ng-model=\"infoCtrl.userProfile.pan\" class=\"form-control\"  autofocus required autocomplete=\"off\" ng-pattern=\"/^[\\w]{3}(p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G)[\\w][\\d]{4}[\\w]$/\" ng-class=\"{ 'errorbox': infoCtrl.frmInfo.userPan.$touched && infoCtrl.frmInfo.userPan.$invalid && infoCtrl.frmInfo.$submitted}\"/>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                    <div class=\"error-msg\" ng-messages=\"infoCtrl.frmInfo.$submitted && infoCtrl.frmInfo.userPan.$error\">\r" +
-    "\n" +
-    "                                        <div ng-message=\"required\">Please enter your pan number</div>\r" +
-    "\n" +
-    "                                        <div class=\"errormsg\" ng-message=\"pattern\">Please enter a valid pan number</div>\r" +
-    "\n" +
-    "                                    </div>\r" +
-    "\n" +
-    "                                </div>\r" +
-    "\n" +
-    "                                <div class=\"form-group\">\r" +
-    "\n" +
-    "                                    <label for=\"userAddress\">Upload Address Proof</label>\r" +
-    "\n" +
-    "                                     <select class=\"form-control\" ng-model=\"infoCtrl.userProfile.documentType\" ng-options=\"address.name for address in infoCtrl.profileAddressOption track by address.value\" id=\"documentType\" name=\"documentType\">\r" +
-    "\n" +
-    "                                         <option disabled selected value> -- Address Proof --</option>\r" +
-    "\n" +
-    "                                    </select>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                                    <!-- <div class=\"error-msg\" ng-messages=\"infoCtrl.frmInfo.$submitted && infoCtrl.frmInfo.documentType.$error\">\r" +
-    "\n" +
-    "                                        <div ng-message=\"required\">Please upload address proof document</div>\r" +
-    "\n" +
-    "                                    </div> -->\r" +
-    "\n" +
-    "                                </div>\r" +
-    "\n" +
-    "                                 <!--input type=\"file\" -->\r" +
-    "\n" +
-    "                                   <div class=\"col-md-12 no-padding\" ng-if=\"infoCtrl.userProfile.documentType\">\r" +
-    "\n" +
-    "                                       <div class=\"col-md-6 no-padding\">\r" +
-    "\n" +
-    "                                            <div class=\"ng-scope drop uploadFileDrop\" ngf-drop=\"infoCtrl.uploadAddressProof($files)\" ng-model=\"infoCtrl.uploadAddress\" ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"false\" ngf-allow-dir=\"false\" ngf-keep=\"distinct\" accept=\"image/*,application/pdf\" ngf-pattern=\"'image/*,application/pdf'\">\r" +
-    "\n" +
-    "                                                <i class=\"fa fa-file-o\" aria-hidden=\"true\"></i>\r" +
-    "\n" +
-    "                                                <p> Drag &amp; Drop<br> {{infoCtrl.documentType}} scan here </p>\r" +
-    "\n" +
-    "                                            </div>\r" +
-    "\n" +
-    "                                        </div>\r" +
-    "\n" +
-    "                                        <div class=\"col-md-2 no-padding center-text\">\r" +
-    "\n" +
-    "                                        OR\r" +
-    "\n" +
-    "                                        </div>\r" +
-    "\n" +
-    "                                        <div class=\"col-md-4 browsebtn\" ngf-select=\"infoCtrl.uploadAddressProof($files)\" ng-model=\"infoCtrl.uploadAddress\" ngf-multiple=\"false\" ngf-allow-dir=\"false\" ngf-keep=\"distinct\" accept=\"image/*,application/pdf\" ngf-pattern=\"'image/*,application/pdf'\" >\r" +
-    "\n" +
-    "                                            <span class=\"browse\">UPLOAD<input style=\"visibility: hidden; position: absolute;\" type=\"file\" file=\"addressDocument\" name=\"statementDoc\" id=\"statementDoc\"></span>\r" +
-    "\n" +
-    "                                        </div>\r" +
-    "\n" +
-    "                                    </div>\r" +
-    "\n" +
-    "                                        <p class=\"help-text\" ng-if=\"infoCtrl.userProfile.documentType\"> Document File Format Allowed: JPG, PNG, PDF - Max File Size: 3MB</p>\r" +
-    "\n" +
-    "                                         <div class=\"filename-wrap\" ng-if=\"infoCtrl.uploadedDocument\">\r" +
-    "\n" +
-    "                                            <div class=\"stmntName\">\r" +
-    "\n" +
-    "                                                <p class=\"fileName\" rel=\"tooltip\" tooltip=\"infoCtrl.uploadAddress.name\"> {{infoCtrl.trimName(infoCtrl.uploadAddress.name)}} </p>\r" +
-    "\n" +
-    "                                                <button class=\"delBut\" type=\"button\" ng-click=\"infoCtrl.deleteSelectedDocument(infoCtrl.uploadAddress)\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button>\r" +
-    "\n" +
-    "                                            </div>\r" +
-    "\n" +
-    "                                        </div>\r" +
-    "\n" +
-    "                                        <div class=\"filename-wrap\">\r" +
-    "\n" +
-    "                                            <div class=\"transfer-box clearfix ng-scope ng-binding\" ng-if=\"!infoCtrl.uploadAddress.remove && infoCtrl.uploadAddress.fileProgress>0\">\r" +
-    "\n" +
-    "                                                <p>{{infoCtrl.trimName(infoCtrl.uploadAddress.name)}} </p>\r" +
-    "\n" +
-    "                                                <div class=\"progress progress-striped\" ng-class=\"active\">\r" +
-    "\n" +
-    "                                                    <div style=\"width: 100%;\" class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"100\" aria-valuemin=\"0\" aria-valuemax=\"100\" ng-style=\"{width: (infoCtrl.uploadAddress.fileProgress) + '%'}\">\r" +
-    "\n" +
-    "                                                        <!--<span class=\"ng-binding\">{{file.progress() * 100}}% Complete</span>-->\r" +
-    "\n" +
-    "                                                        <!--<span class=\"ng-binding\">{{file.isUploading()}}</span>-->\r" +
-    "\n" +
-    "                                                    </div>\r" +
-    "\n" +
-    "                                                </div>\r" +
-    "\n" +
-    "                                            </div>\r" +
-    "\n" +
-    "                                        </div>\r" +
-    "\n" +
-    "                              </pane-component>\r" +
-    "\n" +
-    "                              <pane-component title=\"Financials\">\r" +
-    "\n" +
-    "                                    <div class=\"form-group\">\r" +
-    "\n" +
-    "                                            <div>\r" +
-    "\n" +
-    "                                                <label for=\"ifscCode\">IFSC Code*</label>\r" +
-    "\n" +
-    "                                            </div>\r" +
-    "\n" +
-    "                                            \r" +
-    "\n" +
-    "                                            <input type=\"text\" class=\"form-control\" value=\"\" placeholder=\"Enter IFSC Code\" ng-model=\"infoCtrl.userProfile.ifsc\" id=\"ifscCode\" required ng-pattern=\"/[A-Z|a-z]{4}[0][a-zA-Z0-9]{6}$/\" name=\"ifscCode\" ng-class=\"{ 'errorbox': infoCtrl.frmInfo.ifscCode.$touched && infoCtrl.frmInfo.ifscCode.$invalid && infoCtrl.frmInfo.$submitted}\">\r" +
-    "\n" +
-    "                                            <div class=\"error-msg\" ng-messages='infoCtrl.frmInfo.ifscCode.$error'  ng-if='infoCtrl.frmInfo.$submitted'>\r" +
-    "\n" +
-    "                                                <div ng-message=\"required\">Please enter your IFSC Code.</div>\r" +
-    "\n" +
-    "                                                <div ng-message=\"pattern\">Please enter a valid IFSC Code.</div>\r" +
-    "\n" +
-    "                                            </div>\r" +
-    "\n" +
-    "                                           \r" +
-    "\n" +
-    "                                            <div class=\"clearfix\"></div>\r" +
-    "\n" +
-    "                                    </div>\r" +
-    "\n" +
-    "                                    <div class=\"form-group\">\r" +
-    "\n" +
-    "                                        <div>\r" +
-    "\n" +
-    "                                            <label for=\"accountNumber\">Account Number*</label>\r" +
-    "\n" +
-    "                                        </div>\r" +
-    "\n" +
-    "                                        <input type=\"number\" class=\"form-control\" value=\"\" placeholder=\"Enter Bank Account Number\" ng-model=\"infoCtrl.userProfile.account_number\" id=\"accountNumber\" required name=\"accountNumber\" ng-class=\"{ 'errorbox': infoCtrl.frmInfo.accountNumber.$touched && infoCtrl.frmInfo.accountNumber.$invalid && infoCtrl.frmInfo.$submitted}\">\r" +
-    "\n" +
-    "                                        <div class=\"error-msg\" ng-messages='infoCtrl.frmInfo.accountNumber.$error' ng-if='infoCtrl.frmInfo.$submitted'>\r" +
-    "\n" +
-    "                                            <div ng-message=\"required\">Please enter your account number.</div>\r" +
-    "\n" +
-    "                                            <div ng-message=\"number\">Please enter a valid account number.</div>\r" +
-    "\n" +
-    "                                        </div>\r" +
-    "\n" +
-    "                                        \r" +
-    "\n" +
-    "                                        <div class=\"clearfix\"></div>\r" +
-    "\n" +
-    "                                   </div>\r" +
-    "\n" +
-    "                              </pane-component>\r" +
-    "\n" +
-    "                              <div class=\"text-center mar-top30\">\r" +
-    "\n" +
-    "                                <button type=\"submit\" class=\"btn btn-continue mar-btm125\" id=\"continue10\" ng-disabled=\"infoCtrl.frmInfo.$submitted && infoCtrl.frmInfo.$invalid\">Done\r" +
-    "\n" +
-    "                                    <span ng-show=\"\">&nbsp;</span>\r" +
-    "\n" +
-    "                                    <i class=\"fa fa-arrow-circle-right font_15\" ng-hide=\"infoCtrl.frmInfo.$submitted\" aria-hidden=\"true\"></i>\r" +
-    "\n" +
-    "                                    <i class=\"fa fa-spinner faa-spin animated font_15\" ng-show=\"infoCtrl.frmInfo.$submitted && infoCtrl.frmInfo.$valid\"></i>\r" +
-    "\n" +
-    "                                </button>\r" +
-    "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "                              \r" +
-    "\n" +
-    "                          </form>\r" +
-    "\n" +
-    "                       </tab-component>\r" +
-    "\n" +
-    "\r" +
+    "                       </div>\r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -447,7 +175,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                <div class=\"row profile-container\">\r" +
     "\n" +
-    "                    <div class=\"col-xs-12 col-md-6\">\r" +
+    "                    <div class=\"col-xs-12 col-md-6 padd-top-40\">\r" +
     "\n" +
     "                       <img src=\"../img/vinod.jpg\" class=\"pull-left profile-img\" /> \r" +
     "\n" +
@@ -469,7 +197,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\r" +
     "\n" +
-    "                    <div class=\"col-xs-12 col-md-6\">\r" +
+    "                    <div class=\"col-xs-12 col-md-6 padd-top-40\">\r" +
     "\n" +
     "                       <img src=\"../img/siddharth.jpg\" class=\"pull-left profile-img\" /> \r" +
     "\n" +
@@ -495,7 +223,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\r" +
     "\n" +
-    "                    <div class=\"col-xs-12 col-md-6\">\r" +
+    "                    <div class=\"col-xs-12 col-md-6 padd-top-40\">\r" +
     "\n" +
     "                       <img src=\"../img/vijay.jpg\" class=\"pull-left profile-img\" /> \r" +
     "\n" +
@@ -515,9 +243,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\r" +
     "\n" +
-    "                <div class=\"row profile-container\">\r" +
-    "\n" +
-    "                    <div class=\"col-xs-12 col-md-6\">\r" +
+    "                    <div class=\"col-xs-12 col-md-6 padd-top-40\">\r" +
     "\n" +
     "                       <img src=\"http://placehold.it/95x95\" class=\"pull-left profile-img\" /> \r" +
     "\n" +
@@ -1349,7 +1075,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                		<div class=\"row toggle-content-view fade-in-up ng-enter jsToggleContentView\" ng-show=\"$hCtrl.toggleContentView\">\r" +
     "\n" +
-    "                			<div class=\"cols-xs-12 col-md-6\">\r" +
+    "                			<div class=\"cols-xs-12 col-md-6 text-left\">\r" +
     "\n" +
     "	                			<ul class=\"bullet-points\">\r" +
     "\n" +
@@ -1367,7 +1093,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "	                		</div>\r" +
     "\n" +
-    "                			<div class=\"cols-xs-12 col-md-6\"><img src=\"../img/verify-machine.png\" alt=\"verify-machine\" class=\"pull-right\" /></div>\r" +
+    "                			<div class=\"cols-xs-12 col-md-6\"><img src=\"../img/verify-machine.png\" alt=\"verify-machine\" class=\"pull-right img-responsive\" /></div>\r" +
     "\n" +
     "                		</div>\r" +
     "\n" +
@@ -1423,84 +1149,101 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('app/components/pool_component/portfolio-pool.html',
-    "<div class=\"pool-container\">\r" +
+    "<div class=\"pool-container animate-height\"  ng-class=\"{'collapse-height' : !poolCtrl.showRiskData}\">\r" +
     "\n" +
-    "    <h3>My Pool <i class=\"fa\" ng-hide=\"poolCtrl.collapsible=='false'\" ng-class=\"{'fa-chevron-up' : poolCtrl.showRiskData, 'fa-chevron-down' : !poolCtrl.showRiskData}\" aria-hidden=\"true\" ng-click=\"poolCtrl.showRiskData=!poolCtrl.showRiskData\"></i></h3>\r" +
+    "    <h3>My Pool <i class=\"fa\" ng-hide=\"poolCtrl.collapsible=='false'\" ng-class=\"{'fa-chevron-up' : poolCtrl.showRiskData, 'fa-chevron-down' : !poolCtrl.showRiskData}\" aria-hidden=\"true\" ng-click=\"poolCtrl.collapsePoolData()\"></i></h3>\r" +
     "\n" +
-    "    <div class=\"col-md-12 toggle-risk-data animate-hide\" ng-hide=\"!poolCtrl.showRiskData\">\r" +
+    "    <div class=\"pool-wrapper animate-hide\" ng-hide=\"!poolCtrl.showRiskData\">\r" +
     "\n" +
-    "        <div class=\"ib-riskmeter col-md-5\">\r" +
+    "        <div class=\"col-md-12 toggle-risk-data col-sm-12 col-xs-12\">\r" +
     "\n" +
-    "            <risk-meter risk=\"poolCtrl.riskFactor\"></risk-meter>\r" +
+    "            <div class=\"ib-riskmeter col-md-5 col-sm-5 col-xs-5\">\r" +
     "\n" +
-    "        </div>\r" +
-    "\n" +
-    "        <div class=\"col-md-7\">\r" +
-    "\n" +
-    "            <h5>Total Amount to invest</h5>\r" +
-    "\n" +
-    "            <div class=\"ib-amountbox\">\r" +
-    "\n" +
-    "                <i class=\"fa fa-inr\" aria-hidden=\"true\"></i>\r" +
-    "\n" +
-    "                <p>{{poolCtrl.userpref.amounttoinvest|awnum:'price'}}</p>\r" +
+    "                <risk-meter risk=\"poolCtrl.riskFactor\"></risk-meter>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <p>Risk: <span class=\"ib-risk\">{{poolCtrl.userpref.rateRisk}}</span></p>\r" +
+    "            <div class=\"col-md-7 col-sm-7 col-xs-7\">\r" +
     "\n" +
-    "        </div>\r" +
+    "                <h5>Total Amount to invest</h5>\r" +
     "\n" +
-    "    </div>\r" +
+    "                <div class=\"ib-amountbox\">\r" +
     "\n" +
-    "    <p class=\"invest-text\"><span>I will invest on</span></p>\r" +
+    "                    <i class=\"fa fa-inr\" aria-hidden=\"true\"></i>\r" +
     "\n" +
-    "    <div class=\"borrower\" ng-class=\"{'fill-height' : !poolCtrl.showRiskData}\">\r" +
+    "                    <p>{{poolCtrl.userpref.amounttoinvest|awnum:'price'}}</p>\r" +
     "\n" +
-    "        <div class=\"borrower-container\" ng-repeat=\"brwr in poolCtrl.createdpool\">\r" +
+    "                </div>\r" +
     "\n" +
-    "            <p><i class=\"fa fa-user\" aria-hidden=\"true\"></i>{{brwr.name}}</p>\r" +
-    "\n" +
-    "            <a class=\"jsPoolDropdownTrigger flyout-menu\" data-target=\"dropdown-menu-item{{$index+1}}\" ng-hide=\"poolCtrl.collapsible=='false'\"><i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i></a>\r" +
-    "\n" +
-    "            <div class=\"details\">\r" +
-    "\n" +
-    "                <p><span><i class=\"fa fa-inr\" aria-hidden=\"true\"></i> {{brwr.selected_amount}}</span>\r" +
-    "\n" +
-    "                    <span><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{brwr.tenure}}Months</span>\r" +
-    "\n" +
-    "                    <span><i class=\"fa fa-percent\" aria-hidden=\"true\">%</i> {{brwr.rate_of_interest}}%</span></p>\r" +
+    "                <p>Risk: <span class=\"ib-risk\">{{poolCtrl.userpref.rateRisk}}</span></p>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
-    "    </div>\r" +
+    "        <p class=\"invest-text\"><span>I will invest on</span></p>\r" +
     "\n" +
-    "    <div class=\"dropdown-container\" ng-hide=\"poolCtrl.collapsible=='false'\">\r" +
+    "        <div class=\"borrower\">\r" +
     "\n" +
-    "        <ul class=\"dropdown-menu jsDropDownMenu\" ng-repeat=\"brwr in poolCtrl.createdpool\" id=\"dropdown-menu-item{{$index+1}}\">\r" +
+    "            <div class=\"borrower-container\" ng-repeat=\"brwr in poolCtrl.createdpool\">\r" +
     "\n" +
-    "            <!--  <li><a href><i class=\"fa fa-angle-right\" aria-hidden=\"true\"></i> View Profile</a></li>\r" +
+    "                <p><i class=\"fa fa-user\" aria-hidden=\"true\"></i>{{brwr.name}}</p>\r" +
     "\n" +
-    "            <li class=\"divider\"></li> -->\r" +
+    "                <a class=\"jsPoolDropdownTrigger flyout-menu\" data-target=\"dropdown-menu-item{{$index+1}}\" ng-hide=\"poolCtrl.collapsible=='false'\"><i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i></a>\r" +
     "\n" +
-    "            <li ng-click=\"poolCtrl.changePoolAmount(brwr)\"><a href><i class=\"fa fa-angle-right\" aria-hidden=\"true\"></i> Change Amount</a></li>\r" +
+    "                <div class=\"details\">\r" +
     "\n" +
-    "            <li class=\"divider\"></li>\r" +
+    "                    <p><span><i class=\"fa fa-inr\" aria-hidden=\"true\"></i> {{brwr.selected_amount}}</span>\r" +
     "\n" +
-    "            <li ng-click=\"poolCtrl.deleteFromPool(brwr)\"><a href><i class=\"fa fa-angle-right\" aria-hidden=\"true\"></i> Delete</li>\r" +
+    "                        <span><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{brwr.tenure}}Months</span>\r" +
     "\n" +
-    "        </ul>\r" +
+    "                        <span><i class=\"fa fa-percent\" aria-hidden=\"true\">%</i> {{brwr.rate_of_interest}}%</span></p>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"borrower-empty\" ng-if=\"!poolCtrl.createdpool || poolCtrl.createdpool.length==0\">\r" +
+    "\n" +
+    "              <img class=\"img-responsive\" src=\"img/no-result-woo.png\" alt=\"no-borrowers\">\r" +
+    "\n" +
+    "              <p>Sorry,we could not find borrowers matching your preferences.</p><p>We have noted your intent, and will get back to you shortly !</p>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "        \r" +
+    "\n" +
+    "        <div class=\"dropdown-container\" ng-hide=\"poolCtrl.collapsible=='false'\">\r" +
+    "\n" +
+    "            <ul class=\"dropdown-menu jsDropDownMenu\" ng-repeat=\"brwr in poolCtrl.createdpool\" id=\"dropdown-menu-item{{$index+1}}\">\r" +
+    "\n" +
+    "                <!--  <li><a href><i class=\"fa fa-angle-right\" aria-hidden=\"true\"></i> View Profile</a></li>\r" +
+    "\n" +
+    "                <li class=\"divider\"></li> -->\r" +
+    "\n" +
+    "                <li ng-click=\"poolCtrl.changePoolAmount(brwr)\"><a><i class=\"fa fa-angle-right\" aria-hidden=\"true\"></i> Change Amount</a></li>\r" +
+    "\n" +
+    "                <li class=\"divider\"></li>\r" +
+    "\n" +
+    "                <li ng-click=\"poolCtrl.deleteFromPool(brwr)\"><a><i class=\"fa fa-angle-right\" aria-hidden=\"true\"></i> Delete</a></li>\r" +
+    "\n" +
+    "            </ul>\r" +
     "\n" +
     "\r" +
     "\n" +
+    "        </div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "        <button type=\"button\" id=\"investBtn\" class=\"btn btn-primary\" ng-click=\"poolCtrl.investnow()\" ng-if=\"poolCtrl.createdpool && poolCtrl.createdpool.length>0\">INVEST NOW </button>\r" +
+    "\n" +
     "    </div>\r" +
     "\n" +
-    "    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"poolCtrl.investnow()\" ng-hide=\"poolCtrl.createdpool.length==0\">INVEST NOW</button>\r" +
-    "\n" +
     "</div>\r" +
-    "\n"
+    "\n" +
+    "<lenderinfo-component></lenderinfo-component>"
   );
 
 
@@ -2055,6 +1798,8 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "        <div class=\"form-pref-group-TEMP invest-data-wrapper\">\r" +
     "\n" +
+    "        <div class=\"form-group\">\r" +
+    "\n" +
     "            <div class=\"amount_wrapper\">\r" +
     "\n" +
     "                <h3 ng-bind=\"$ctrl.widgetText[0]\"></h3>\r" +
@@ -2063,27 +1808,41 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                    <i class=\"fa fa-inr\" aria-hidden=\"true\"></i>\r" +
     "\n" +
-    "                    <input type=\"text\" name=\"amounttoinvest\" placeholder=\"Amount\" ng-model=\"$ctrl.userPreference.amounttoinvest\" required awnum=\"price\" />\r" +
+    "                    <input type=\"text\" name=\"amounttoinvest\" placeholder=\"Amount\" ng-model=\"$ctrl.userPreference.amounttoinvest\" required awnum=\"price\" autocomplete=\"off\" range-validator/>\r" +
     "\n" +
     "                </div>\r" +
     "\n" +
+    "\r" +
+    "\n" +
     "            </div>\r" +
     "\n" +
-    "            \r" +
+    "\r" +
+    "\n" +
+    "             <div class=\"error-msg\" ng-messages=\"$ctrl.prefForm.$submitted && $ctrl.prefForm.amounttoinvest.$error\">\r" +
+    "\n" +
+    "                <div ng-message=\"required\">Please enter a amount</div>\r" +
+    "\n" +
+    "                <div ng-message=\"invalidRange\">Please enter a amount between 10,000 & 50,00,000</div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            </div>\r" +
     "\n" +
     "            <div class=\"rate-container form-pref-group\">\r" +
     "\n" +
     "                <h3 ng-bind=\"$ctrl.widgetText[1]\"></h3>\r" +
     "\n" +
-    "                <!-- <div class=\"rate-item\" ng-repeat=\"risk in $ctrl.riskRates\">\r" +
+    "                <div class=\"rate-item\" ng-repeat=\"risk in $ctrl.riskRates\">\r" +
     "\n" +
-    "            <button type=\"button\" class=\"btn rate-button\" ng-class=\"risk.class\" ng-click=\"$ctrl.userPreference.rateRisk=risk.name\"><i class=\"fa fa-check-circle-o\" aria-hidden=\"true\" ng-if=\"$ctrl.userPreference.rateRisk==risk.name\"></i>{{risk.name}}</button>\r" +
+    "                    <button ng-if=\"risk.code==1\" type=\"button\" class=\"btn rate-button low\" ng-class=\"{'border-class' : $ctrl.userPreference.rateRisk==risk.name}\" ng-click=\"$ctrl.userPreference.rateRisk=risk.name\">{{risk.name}}</button>\r" +
     "\n" +
-    "            <br/> {{risk.value}}\r" +
+    "                    <a ng-if=\"risk.code!=1\" href=\"javascript:void(0)\" class=\"btn rate-button\" ng-class=\"risk.class\" data-toggle=\"tooltip\" title=\"Stay tuned for the risk <br /> category\" data-html=\"true\">{{risk.name}}</a>\r" +
     "\n" +
-    "        </div> -->\r" +
+    "                    <br/> <div ng-class=\"{'rate-value' : risk.code!=1}\">{{risk.value}}</div>\r" +
     "\n" +
-    "                <div class=\"rate-item\">\r" +
+    "                </div>\r" +
+    "\n" +
+    "                 <!--<div class=\"rate-item\">\r" +
     "\n" +
     "                    <button type=\"button\" class=\"btn rate-button low\">Low</button>\r" +
     "\n" +
@@ -2105,15 +1864,15 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                        <br/> <span>24-28%</span>\r" +
     "\n" +
-    "                </div>\r" +
+    "                </div>-->\r" +
     "\n" +
     "                <!-- <p>risk category <i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></p> -->\r" +
     "\n" +
-    "                <div class=\"error-msg\" ng-show=\"$ctrl.prefForm.amounttoinvest.$error.required && $ctrl.prefForm.$submitted\">\r" +
+    "                <!-- <div class=\"error-msg\" ng-show=\"$ctrl.prefForm.amounttoinvest.$error.required && $ctrl.prefForm.$submitted\">\r" +
     "\n" +
     "                    Please enter a amount to invest.\r" +
     "\n" +
-    "                </div>\r" +
+    "                </div> -->\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
@@ -2169,7 +1928,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "            </div>\r" +
     "\n" +
-    "            <button type=\"submit\" class=\"btn btn-primary full-width\">{{$ctrl.buttonText}}</button>\r" +
+    "            <button type=\"submit\" class=\"btn btn-primary full-width\" ng-style=\"$ctrl.buttonStyle\">{{$ctrl.buttonText}}</button>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
@@ -2214,43 +1973,41 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                        <div class=\"col-sm-offset-3 col-sm-6 col-md-offset-0 col-md-12 col-lg-12\">\r" +
     "\n" +
-    "                            <h1>Earn Big Returns by<br/>\r" +
+    "\r" +
     "\n" +
-    "                                Financing Small Dreams</h1>\r" +
+    "                            <h1>Earn Big Returns by</h1>\r" +
+    "\n" +
+    "                            <h2>Financing Small Dreams</h2>\r" +
     "\n" +
     "                           <!--  <img src=\"img/loansingh-mustache-trans_bac.png\" /> -->\r" +
     "\n" +
     "                            <!-- <h2 class=\"red-highlight\">Looking to invest?</h2> -->\r" +
     "\n" +
-    "                            <h6 class=\"padd-top-40\">Meet Loan Singh, your tech-enabled<br/> P2P lending platform.</h6>\r" +
+    "                            <h6 class=\"padd-top-20\">Meet Loan Singh, your tech-enabled<br/> P2P lending platform.</h6>\r" +
     "\n" +
     "                            <p class=\"bullet-points\">\r" +
     "\n" +
-    "                                <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Safe lending option</span><br/>\r" +
+    "                                <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Safe lending option</span>\r" +
     "\n" +
-    "                                <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Up to 24% ROI</span><br/>\r" +
+    "                                <br/>\r" +
+    "\n" +
+    "                                <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Up to 24% ROI</span>\r" +
+    "\n" +
+    "                                <br/>\r" +
     "\n" +
     "                            </p>\r" +
     "\n" +
-    "                            \r" +
-    "\n" +
     "                            <div class=\"row\">\r" +
     "\n" +
-    "                                <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-4 \">\r" +
+    "                                <div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-4 padd-top-20\">\r" +
     "\n" +
-    "                                    <invest-widget on-invest-now=\"homeCtrl.submitInvestNow()\" button-text=\"INVEST NOW\"></invest-widget>\r" +
+    "                                    <invest-widget on-invest-now=\"homeCtrl.submitInvestNow()\" button-text=\"INVEST NOW\" button-color=\"#e74c3c\"></invest-widget>\r" +
     "\n" +
     "                                </div>\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
-    "                            \r" +
-    "\n" +
     "                        </div>\r" +
-    "\n" +
-    "                        \r" +
-    "\n" +
-    "                       \r" +
     "\n" +
     "                    </div>\r" +
     "\n" +
@@ -2274,9 +2031,13 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                <p class=\"bullet-points\">\r" +
     "\n" +
-    "                                    <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Risk Adjusted Returns</span><br/>\r" +
+    "                                    <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Risk Adjusted Returns</span>\r" +
     "\n" +
-    "                                    <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Diversified Portfolios to Invest in</span><br/>\r" +
+    "                                    <br/>\r" +
+    "\n" +
+    "                                    <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Diversified Portfolios to Invest in</span>\r" +
+    "\n" +
+    "                                    <br/>\r" +
     "\n" +
     "                                    <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Monthly Cashflows</span>\r" +
     "\n" +
@@ -2290,15 +2051,11 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                            </div>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                            <input type=\"radio\" name=\"resize-graph\" id=\"graph-normal\" checked=\"checked\" />\r" +
     "\n" +
     "                            <input type=\"radio\" name=\"paint-graph\" id=\"graph-blue\" checked=\"checked\" />\r" +
     "\n" +
     "                            <input type=\"radio\" name=\"fill-graph\" id=\"f-product1\" />\r" +
-    "\n" +
-    "                            \r" +
     "\n" +
     "                            <ul class=\"graph-container mobile-graph-container hidden-xs hidden-sm\">\r" +
     "\n" +
@@ -2306,15 +2063,15 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                    <!-- <span>2008</span> -->\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                                    <div class=\"bar-wrapper\">\r" +
     "\n" +
     "                                        <div class=\"bar-container\">\r" +
     "\n" +
     "                                            <div class=\"bar-background\"></div>\r" +
     "\n" +
-    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\">Savings Account<br/> <span>4%</span></span></div>\r" +
+    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\">Savings Account<br/> <span>4%</span></span>\r" +
+    "\n" +
+    "                                            </div>\r" +
     "\n" +
     "                                            <div class=\"bar-foreground\"></div>\r" +
     "\n" +
@@ -2323,8 +2080,6 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "                                    </div>\r" +
     "\n" +
     "                                </li>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                                <li>\r" +
     "\n" +
@@ -2336,7 +2091,9 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                            <div class=\"bar-background\"></div>\r" +
     "\n" +
-    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\">SENSEX (5 yrs CAGR)<br/> <span>6.23%</span></span></div>\r" +
+    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\">SENSEX (5 yrs CAGR)<br/> <span>6.23%</span></span>\r" +
+    "\n" +
+    "                                            </div>\r" +
     "\n" +
     "                                            <div class=\"bar-foreground\"></div>\r" +
     "\n" +
@@ -2356,7 +2113,9 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                            <div class=\"bar-background\"></div>\r" +
     "\n" +
-    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\">Fixed Deposit<br/> <span>8%</span></span></div>\r" +
+    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\">Fixed Deposit<br/> <span>8%</span></span>\r" +
+    "\n" +
+    "                                            </div>\r" +
     "\n" +
     "                                            <div class=\"bar-foreground\"></div>\r" +
     "\n" +
@@ -2376,7 +2135,9 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                            <div class=\"bar-background\"></div>\r" +
     "\n" +
-    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\">Gold 5yrs<br/> <span>9%</span></span></div>\r" +
+    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\">Gold 5yrs<br/> <span>9%</span></span>\r" +
+    "\n" +
+    "                                            </div>\r" +
     "\n" +
     "                                            <div class=\"bar-foreground\"></div>\r" +
     "\n" +
@@ -2396,7 +2157,9 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                            <div class=\"bar-background\"></div>\r" +
     "\n" +
-    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\">Average Debt<br/> <span>11.75%</span></span></div>\r" +
+    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\">Average Debt<br/> <span>11.75%</span></span>\r" +
+    "\n" +
+    "                                            </div>\r" +
     "\n" +
     "                                            <div class=\"bar-foreground\"></div>\r" +
     "\n" +
@@ -2410,17 +2173,15 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                    <!-- <span>2012</span> -->\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "                                    <div class=\"bar-wrapper\">\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                                        <div class=\"bar-container\">\r" +
     "\n" +
     "                                            <div class=\"bar-background\"></div>\r" +
     "\n" +
-    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\"><br/><br/> <span>16%</span></span></div>\r" +
+    "                                            <div class=\"bar-inner\"><span class=\"bar-data-value\"><br/><br/> <span>16%</span></span>\r" +
+    "\n" +
+    "                                            </div>\r" +
     "\n" +
     "                                            <div class=\"bar-foreground\"></div>\r" +
     "\n" +
@@ -2448,13 +2209,13 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                            </ul>\r" +
     "\n" +
-    "                            \r" +
-    "\n" +
     "                            <div class=\"responsive-graph-container visible-xs visible-sm hidden-md hidden-lg\">\r" +
     "\n" +
     "                                <ul class=\"inflation-text\" list-style-type=\"disc\">\r" +
     "\n" +
-    "                                    <li><span>Inflation</span> <h5>7%</h5></li>\r" +
+    "                                    <li><span>Inflation</span>\r" +
+    "\n" +
+    "                                        <h5>7%</h5></li>\r" +
     "\n" +
     "                                </ul>\r" +
     "\n" +
@@ -2568,10 +2329,6 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                            </div>\r" +
     "\n" +
-    "                            \r" +
-    "\n" +
-    "\r" +
-    "\n" +
     "                            <!-- <img class=\"img-overlay\" src=\"img/yellow.png\" /> -->\r" +
     "\n" +
     "                            <div class=\"note\">\r" +
@@ -2589,8 +2346,6 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "                                </ul>\r" +
     "\n" +
     "                            </div>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
@@ -2630,9 +2385,13 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                    <p class=\"bullet-points\">\r" +
     "\n" +
-    "                                        <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Data-driven Credit Scoring Model</span><br/>\r" +
+    "                                        <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Data-driven Credit Scoring Model</span>\r" +
     "\n" +
-    "                                        <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Comprehensive Verification Process</span><br/>\r" +
+    "                                        <br/>\r" +
+    "\n" +
+    "                                        <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Comprehensive Verification Process</span>\r" +
+    "\n" +
+    "                                        <br/>\r" +
     "\n" +
     "                                        <i class=\"fa fa-circle-o\" aria-hidden=\"true\"></i><i class=\"fa fa-check\" aria-hidden=\"true\"></i> <span>Machine Learning Algorithm)</span>\r" +
     "\n" +
@@ -2686,7 +2445,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                <!-- Indicators -->\r" +
     "\n" +
-    "                                <ol class=\"carousel-indicators\">\r" +
+    "                                <ol class=\"carousel-indicators tab-abov\">\r" +
     "\n" +
     "                                    <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\">1</li>\r" +
     "\n" +
@@ -2695,6 +2454,18 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "                                    <li data-target=\"#myCarousel\" data-slide-to=\"2\">3</li>\r" +
     "\n" +
     "                                    <li data-target=\"#myCarousel\" data-slide-to=\"3\">4</li>\r" +
+    "\n" +
+    "                                </ol>\r" +
+    "\n" +
+    "                                <ol class=\"carousel-indicators mob\">\r" +
+    "\n" +
+    "                                    <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>\r" +
+    "\n" +
+    "                                    <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>\r" +
+    "\n" +
+    "                                    <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>\r" +
+    "\n" +
+    "                                    <li data-target=\"#myCarousel\" data-slide-to=\"3\"></li>\r" +
     "\n" +
     "                                </ol>\r" +
     "\n" +
@@ -2718,8 +2489,6 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                                    <h6>Sign Up to Invest</h6>\r" +
     "\n" +
-    "                                                    \r" +
-    "\n" +
     "                                                    <span>\r" +
     "\n" +
     "                                                        Quick Signup<br/>\r" +
@@ -2729,8 +2498,6 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "                                                        Start Investing in Minutes.<br/>\r" +
     "\n" +
     "                                                    </span>\r" +
-    "\n" +
-    "                                                    <!-- <a class=\"btn btn-round-corner\" href ng-click=\"homeCtrl.submitInvestNow()\">Start Investing</a> -->\r" +
     "\n" +
     "                                                </div>\r" +
     "\n" +
@@ -2756,8 +2523,6 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                                    <h6>Fill In Investment Preferences</h6>\r" +
     "\n" +
-    "                                                    \r" +
-    "\n" +
     "                                                    <span>\r" +
     "\n" +
     "                                                        Minimum Investment INR 10,000 <br/>\r" +
@@ -2767,8 +2532,6 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "                                                        Earn 16-24% Interest <br/>\r" +
     "\n" +
     "                                                    </span>\r" +
-    "\n" +
-    "                                                    <!-- <a class=\"btn btn-round-corner\" href ng-click=\"homeCtrl.submitInvestNow()\">Start Investing</a> -->\r" +
     "\n" +
     "                                                </div>\r" +
     "\n" +
@@ -2794,8 +2557,6 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                                    <h6>Customize Your Portfolio</h6>\r" +
     "\n" +
-    "                                                    \r" +
-    "\n" +
     "                                                    <span>\r" +
     "\n" +
     "                                                        Verified & Risk-assessed Borrowers<br/>\r" +
@@ -2805,8 +2566,6 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "                                                        Seamless Disbursements<br/>\r" +
     "\n" +
     "                                                    </span>\r" +
-    "\n" +
-    "                                                    <!-- <a class=\"btn btn-round-corner\" href ng-click=\"homeCtrl.submitInvestNow()\">Start Investing</a> -->\r" +
     "\n" +
     "                                                </div>\r" +
     "\n" +
@@ -2832,8 +2591,6 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                                    <h6>Integrated Dashboard</h6>\r" +
     "\n" +
-    "                                                    \r" +
-    "\n" +
     "                                                    <span>\r" +
     "\n" +
     "                                                        Real-time EMI Updates<br/>\r" +
@@ -2844,8 +2601,6 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                                    </span>\r" +
     "\n" +
-    "                                                    <!-- <a class=\"btn btn-round-corner\" href ng-click=\"homeCtrl.submitInvestNow()\">Start Investing</a> -->\r" +
-    "\n" +
     "                                                </div>\r" +
     "\n" +
     "                                            </div>\r" +
@@ -2854,31 +2609,13 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                    </div>\r" +
     "\n" +
-    "                                </div>\r" +
-    "\n" +
-    "                                <!-- Left and right controls -->\r" +
-    "\n" +
-    "                               <!--  <a class=\"left carousel-control\" hdata-target=\"#myCarousel\" role=\"button\" data-slide=\"prev\">\r" +
-    "\n" +
-    "                                    <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\r" +
-    "\n" +
-    "                                    <span class=\"sr-only\">Previous</span>\r" +
-    "\n" +
-    "                                </a>\r" +
-    "\n" +
-    "                                <a class=\"right carousel-control\" data-target=\"#myCarousel\" role=\"button\" data-slide=\"next\">\r" +
-    "\n" +
-    "                                    <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\r" +
-    "\n" +
-    "                                    <span class=\"sr-only\">Next</span>\r" +
-    "\n" +
-    "                                </a> -->\r" +
+    "                                </div>                                \r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
     "                            <div class=\"text-center\">\r" +
     "\n" +
-    "                                <a class=\"btn btn-round-corner\" href ng-click=\"homeCtrl.submitInvestNow()\">Start Investing</a>\r" +
+    "                                <a class=\"btn btn-round-corner mar-top-60\" href ng-click=\"homeCtrl.submitInvestNow()\">Start Investing</a>\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
@@ -2914,97 +2651,163 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "        <div class=\"app-content-inner__child clearfix\">\r" +
     "\n" +
-    "            <section id=\"auto-invest-sec\" class=\"table-data-parent\">\r" +
+    "            <section id=\"auto-invest-sec\" class=\"table-data-parent invest-sec\">\r" +
     "\n" +
     "                <div class=\"container\">\r" +
     "\n" +
     "                    <div class=\"row\">\r" +
     "\n" +
-    "                        <a class=\"btn btn-large btn-success hide\" href=\"javascript:void(0);\" onclick=\"startIntro();\">Show me how</a>\r" +
-    "\n" +
     "                        <div class=\"col-md-12 padd-top-90\">\r" +
     "\n" +
     "                            <div class=\"row\">\r" +
     "\n" +
-    "                                <div class=\"one-forth-box\" id=\"step1\" >\r" +
+    "                                <div class=\"col-sm-6 col-md-12 \">\r" +
     "\n" +
-    "                                  <invest-widget on-invest-now=\"investCtrl.buildPool()\" button-text=\"CREATE\" invest-text=\"investCtrl.investWidgetString\" class=\"invest-sec\"></invest-widget>\r" +
+    "                                    <div class=\"one-forth-box\" id=\"step1\">\r" +
     "\n" +
-    "                                </div>\r" +
+    "                                        <invest-widget on-invest-now=\"investCtrl.buildPool(true)\" button-text=\"CREATE\" invest-text=\"investCtrl.investWidgetString\" button-color=\"#404040\" class=\"invest-sec\"></invest-widget>\r" +
     "\n" +
-    "                                <!--  <p>{{100000.0005}}</p>\r" +
+    "                                        <img class=\"ip-arrow-img\" src=\"img/line.png\" />\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                    <!--  <p>{{100000.0005}}</p>\r" +
     "\n" +
     "                                <p>{{100000.0808|awnum:'price'}}</p> -->\r" +
     "\n" +
-    "                            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "                            <div class=\"row tableSection\">\r" +
-    "\n" +
-    "                                <div class=\"col-md-8 tableColumn\" id=\"step3\">\r" +
-    "\n" +
-    "                                    <div class=\"invest-func-sec\">\r" +
-    "\n" +
-    "                              \r" +
-    "\n" +
-    "                                  <button type=\"button\" class=\"btn btn-primary pull-right\" ng-click=\"investCtrl.addBorrowersToPool()\" ng-disabled=\"investCtrl.borrowerNumber==0\">ADD TO POOL</button>\r" +
-    "\n" +
-    "                                  <p class=\"pull-right\"><span ng-bind=\"investCtrl.borrowerNumber\"></span> Borrower Selected</p>\r" +
-    "\n" +
     "                                </div>\r" +
     "\n" +
-    "                                <table datatable=\"\" dt-options=\"investCtrl.dtOptions\" dt-columns=\"investCtrl.dtColumns\" dt-instance=\"investCtrl.dtInstance\" class=\"borrower-table table datatable dt-responsive\"></table>\r" +
+    "                                <div class=\"col-md-12 padd-top-40\">\r" +
     "\n" +
-    "                                    <!-- <table id=\"invest-datatable\" datatable=\"\" class=\"table datatable dt-responsive nowrap\" cellspacing=\"0\" width=\"100%\" dt-options=\"investCtrl.dtOptions\"> -->\r" +
+    "                                    <div class=\"row\">\r" +
     "\n" +
-    "                                        <!-- <thead>\r" +
+    "                                        <div class=\"col-sm-6 col-md-4 col-xs-12 scrollClass pull-right mar-neg-10\" id=\"step2\">\r" +
     "\n" +
-    "                                          <th><input type=\"checkbox\" id=\"select-all\" name=\"rowSelected\" id=\"rowSelected\" ng-model=\"investCtrl.rowSelector\" ng-change=\"investCtrl.selectAllBorrowers()\"></th>\r" +
+    "                                            <portfolio-pool-component createdpool=\"investCtrl.createdpool\" userpref=\"investCtrl.userPref\" investnow=\"investCtrl.investNow()\" collapsible=\"true\" changepoolpop=\"investCtrl.changePoolAmount(brwr)\" deletepool=\"investCtrl.deleteFromPool(brwr)\" show-risk-data=\"investCtrl.collapsePool\"></portfolio-pool-component>\r" +
     "\n" +
-    "                                          <th>Name</th>\r" +
+    "                                        </div>\r" +
     "\n" +
-    "                                          <th>Purpose</th>\r" +
+    "                                        <div class=\"col-md-8 col-xs-12\" id=\"step3\">\r" +
     "\n" +
-    "                                          <th>Amount</th>\r" +
+    "                                            <div class=\"invest-func-sec\">\r" +
     "\n" +
-    "                                          <th>Tenure</th>\r" +
+    "                                                <div ng-show=\"investCtrl.borrowerNumber!=0\">\r" +
     "\n" +
-    "                                          <th>Interest</th>\r" +
+    "                                                    <button type=\"button\" class=\"btn btn-primary btn-pool pull-right\" ng-click=\"investCtrl.addBorrowersToPool(false)\" ng-disabled=\"investCtrl.borrowerNumber==0\">ADD TO POOL</button>\r" +
     "\n" +
-    "                                          <th>Status</th>\r" +
+    "                                                    <button type=\"button\" class=\"btn btn-primary pull-right\" ng-click=\"investCtrl.addBorrowersToPool(true)\" ng-disabled=\"investCtrl.borrowerNumber==0\">INVEST NOW</button>\r" +
     "\n" +
-    "                                        </thead>\r" +
+    "                                                </div>\r" +
     "\n" +
-    "                                        <tbody>\r" +
+    "                                                <div ng-show=\"investCtrl.borrowerNumber==0\">\r" +
     "\n" +
-    "                                            <tr ng-repeat=\"borrower in investCtrl.dataInfo track by $index\">\r" +
+    "                                                    <a class=\"btn btn-primary btn-pool pull-right\" data-toggle=\"tooltip\" title=\"Please select a borrower from the list\">ADD TO POOL</a>\r" +
     "\n" +
-    "                                                <td><input type=\"checkbox\" id=\"borrowerCheck\" ng-checked=\"investCtrl.rowSelector\" ng-model=\"borrower.check\" ng-change=\"investCtrl.setCheckboxValue($index)\"></td>\r" +
+    "                                                    <a class=\"btn btn-primary pull-right\" data-toggle=\"tooltip\" title=\"Please select a borrower from the list\">INVEST NOW</a>\r" +
     "\n" +
-    "                                                <td>{{ borrower.name }}</td>\r" +
+    "                                                </div>\r" +
     "\n" +
-    "                                                <td>{{ borrower.purpose }}</td>\r" +
+    "                                                <p class=\"pull-right\"><span ng-bind=\"investCtrl.borrowerNumber\"></span> Selected</p>\r" +
     "\n" +
-    "                                                <td>{{ borrower.loan_amount }}</td>\r" +
+    "                                            </div>\r" +
     "\n" +
-    "                                                <td>{{ borrower.tenure}} %</td>\r" +
+    "                                            <!--Not going in current sprint - please dont delete-->\r" +
     "\n" +
-    "                                                <td>{{ borrower.rate_of_interest}} Months</td>\r" +
+    "                                            <!-- <div class=\"carousel-view\" ng-hide=true>\r" +
     "\n" +
-    "                                                <td class=\"dt-body-status\"><div class=\"status_wrapper\"><p><span  ng-bind=\"borrower.status[0].val\"></span> %</p><div class=\"progress progress-striped\"><div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"100\" aria-valuemin=\"0\" aria-valuemax=\"100\" ng-style=\"{width: borrower.status[0].val + '%'}\"></div></div><p>need <span ng-bind=\"borrower.status[0].remAmt\"></span> more</p></div></td>\r" +
+    "                                  <div id=\"borrower-view\" class=\"owl-carousel\">\r" +
     "\n" +
-    "                                            </tr>\r" +
+    "                                     <div class=\"borrower-data item\" ng-repeat=\"brwr in investCtrl.tableData\">\r" +
     "\n" +
-    "                                        </tbody> -->\r" +
+    "                                          <div class=\"brwrName\">\r" +
     "\n" +
-    "                                    <!-- </table> -->\r" +
+    "                                            <p><img src=\"img/profile_icon.png\"/><span ng-bind=\"brwr.name\"></span></p>\r" +
     "\n" +
-    "                                </div>\r" +
+    "                                          </div>\r" +
     "\n" +
-    "                                <div class=\"col-md-4 no-padding\"  id=\"step2\">\r" +
+    "                                          <div class=\"borrower-details\">\r" +
     "\n" +
-    "                                    <portfolio-pool-component createdpool=\"investCtrl.createdpool\" userpref=\"investCtrl.userPref\"  investnow=\"investCtrl.investNow()\" collapsible=\"true\" changepoolpop=\"investCtrl.changePoolAmount(brwr)\" deletepool=\"investCtrl.deleteFromPool(brwr)\"></portfolio-pool-component>\r" +
+    "                                            <div class=\"row\">\r" +
+    "\n" +
+    "                                              <div class=\"col-md-6\">\r" +
+    "\n" +
+    "                                                <img src=\"img/purpose_icon.png\"/>\r" +
+    "\n" +
+    "                                                <p>Purpose</p>\r" +
+    "\n" +
+    "                                                <p ng-bind=\"brwr.purpose\"></p>\r" +
+    "\n" +
+    "                                              </div>\r" +
+    "\n" +
+    "                                              <div class=\"col-md-6\">\r" +
+    "\n" +
+    "                                                <img src=\"img/rupee_icon.png\"/>\r" +
+    "\n" +
+    "                                                <p>Amount</p>\r" +
+    "\n" +
+    "                                                <p ng-bind=\"brwr.loan_amount\"></p>\r" +
+    "\n" +
+    "                                              </div>\r" +
+    "\n" +
+    "                                            </div>\r" +
+    "\n" +
+    "                                            <div class=\"row\">\r" +
+    "\n" +
+    "                                              <div class=\"col-md-6\">\r" +
+    "\n" +
+    "                                                <img src=\"img/tenure_icon.png\"/>\r" +
+    "\n" +
+    "                                                <p>Tenure</p>\r" +
+    "\n" +
+    "                                                <p ng-bind=\"brwr.tenure\"></p>\r" +
+    "\n" +
+    "                                              </div>\r" +
+    "\n" +
+    "                                              <div class=\"col-md-6\">\r" +
+    "\n" +
+    "                                                <img src=\"img/interest_icon.png\"/>\r" +
+    "\n" +
+    "                                                <p>Interest</p>\r" +
+    "\n" +
+    "                                                <p ng-bind=\"brwr.rate_of_interest\"></p>\r" +
+    "\n" +
+    "                                              </div>\r" +
+    "\n" +
+    "                                            </div>\r" +
+    "\n" +
+    "                                            <div class=\"row\">\r" +
+    "\n" +
+    "                                              <div class=\"col-md-9\">\r" +
+    "\n" +
+    "                                                <img src=\"img/status_icon.png\"/>\r" +
+    "\n" +
+    "                                                <p>Status</p>\r" +
+    "\n" +
+    "                                                <p ng-bind=\"brwr.percent_invested\"></p>\r" +
+    "\n" +
+    "                                                <div class=\"status_wrapper\"><p><span  ng-bind=\"brwr.percent_invested\"></span> %</p><div class=\"progress progress-striped\"><div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"100\" aria-valuemin=\"0\" aria-valuemax=\"100\" ng-style=\"{width: (brwr.percent_invested) + '%'}\"></div></div><p>need <span ng-bind=\"brwr.remaining_amount\"></span> more</p></div>\r" +
+    "\n" +
+    "                                              </div>\r" +
+    "\n" +
+    "                                              <div class=\"col-md-3\">\r" +
+    "\n" +
+    "                                              </div>\r" +
+    "\n" +
+    "                                            </div>\r" +
+    "\n" +
+    "                                          </div>\r" +
+    "\n" +
+    "                                     </div>\r" +
+    "\n" +
+    "                                  </div>\r" +
+    "\n" +
+    "                                </div> -->\r" +
+    "\n" +
+    "                                            <table id=\"investTable\" datatable=\"\" dt-options=\"investCtrl.dtOptions\" dt-columns=\"investCtrl.dtColumns\" dt-instance=\"investCtrl.dtInstance\" class=\"borrower-table table datatable dt-responsive no-wrap\" width=\"100%\"></table>\r" +
+    "\n" +
+    "                                        </div>\r" +
+    "\n" +
+    "                                    </div>\r" +
     "\n" +
     "                                </div>\r" +
     "\n" +
@@ -3030,7 +2833,8 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "<!-- app-section -->\r" +
     "\n" +
-    "<borrower-amount-component selectedborrowers=\"investCtrl.selectedBorrowers\" submit-amounts=\"investCtrl.submitedAmounts(borrowerArray)\"></borrower-amount-component>"
+    "<borrower-amount-component selectedborrowers=\"investCtrl.selectedBorrowers\" submit-amounts=\"investCtrl.submitedAmounts(borrowerArray,addToInvest)\"></borrower-amount-component>\r" +
+    "\n"
   );
 
 
@@ -3087,10 +2891,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "<!-- Login modal for sign in -->\r" +
     "\n" +
-    "<login-component></login-component>\r" +
-    "\n" +
-    "<borrowerinfo-component></borrowerinfo-component>\r" +
-    "\n"
+    "<login-component></login-component>"
   );
 
 
@@ -3154,15 +2955,9 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
   $templateCache.put('app/layout/header.html',
     "<header class=\"clearfix\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "    <div class=\"head-top hidden-xs\">\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "        <div class=\"container\">\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "            <a href=\"/\"><img class=\"hidden-xs hidden-sm\" src=\"img/logo.png\" /></a>\r" +
     "\n" +
@@ -3170,11 +2965,19 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "            <div class=\"header-callouts hidden-xs hidden-sm\">\r" +
     "\n" +
-    "                <button class=\"btn btn-modal-big login-btn\"> <i class=\"fa fa-phone\" aria-hidden=\"true\"></i> 1800 274474</button>\r" +
+    "                <!-- <button class=\"btn btn-modal-big login-btn\"> <i class=\"fa fa-phone\" aria-hidden=\"true\"></i> 1800 274474</button>\r" +
     "\n" +
     "                <button class=\"btn btn-primary\" ng-show=\"shellCtrl.loggedIn\" ng-click=\"shellCtrl.logout()\">LOGOUT</button>\r" +
     "\n" +
-    "                <button class=\"btn btn-primary\" ng-show=\"!shellCtrl.loggedIn\" ng-click=\"shellCtrl.login()\">LOGIN | SIGNUP</button>\r" +
+    "                <button class=\"btn btn-primary\" ng-show=\"!shellCtrl.loggedIn\" ng-click=\"shellCtrl.login()\">LOGIN | SIGNUP</button> -->\r" +
+    "\n" +
+    "                <span class=\"call-btn\"> <i class=\"fa fa-phone\" aria-hidden=\"true\"></i> 1800 274474</span>\r" +
+    "\n" +
+    "                <a ng-show=\"shellCtrl.loggedIn\" ng-click=\"shellCtrl.logout()\">LOGOUT</a>\r" +
+    "\n" +
+    "                <a ng-show=\"!shellCtrl.loggedIn\" ng-click=\"shellCtrl.login()\">LOGIN</a> <span ng-show=\"!shellCtrl.loggedIn\">|</span>\r" +
+    "\n" +
+    "                <a ng-show=\"!shellCtrl.loggedIn\" ng-click=\"shellCtrl.showSignUpModal()\">SIGNUP</a>\r" +
     "\n" +
     "                <!-- <button class=\"btn btn-default dropdown-toggle jsDropDownMenu\" type=\"button\" id=\"dropdownMenu1\" data-toggle=\"dropdown\">Dropdown\r" +
     "\n" +
@@ -3184,21 +2987,17 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "            </div>\r" +
     "\n" +
-    "\r" +
-    "\n" +
     "            <div class=\"header-callouts hidden-md hidden-lg\">\r" +
     "\n" +
     "                <button type=\"button\" class=\"btn btn-modal-big login-btn\"> <i class=\"fa fa-phone\" aria-hidden=\"true\"></i></button>\r" +
     "\n" +
     "                <button class=\"btn btn-primary\" ng-show=\"shellCtrl.loggedIn\" ng-hide=\"!shellCtrl.loggedIn\" ng-click=\"shellCtrl.logout()\"><i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i></button>\r" +
     "\n" +
-    "                <button type=\"button\"class=\"btn btn-primary\" ng-show=\"!shellCtrl.loggedIn\" ng-click=\"shellCtrl.login()\"><i class=\"fa fa-sign-in\" aria-hidden=\"true\"></i></button>\r" +
+    "                <button type=\"button\" class=\"btn btn-primary\" ng-show=\"!shellCtrl.loggedIn\" ng-click=\"shellCtrl.login()\"><i class=\"fa fa-user\" aria-hidden=\"true\"></i></button>\r" +
     "\n" +
     "            </div>\r" +
     "\n" +
     "        </div>\r" +
-    "\n" +
-    "\r" +
     "\n" +
     "    </div>\r" +
     "\n" +
@@ -3248,57 +3047,379 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <nav class=\"navbar navbar-default navbar-fixed-top\">\r" +
     "\n" +
-    "      <div class=\"container\">\r" +
+    "        <div class=\"container\">\r" +
     "\n" +
-    "        <div class=\"navbar-header\">\r" +
+    "            <div class=\"navbar-header\">\r" +
     "\n" +
-    "          <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r" +
+    "                <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r" +
     "\n" +
-    "            <span class=\"sr-only\">Toggle navigation</span>\r" +
+    "                    <span class=\"sr-only\">Toggle navigation</span>\r" +
     "\n" +
-    "            <span class=\"icon-bar\"></span>\r" +
+    "                    <span class=\"icon-bar\"></span>\r" +
     "\n" +
-    "            <span class=\"icon-bar\"></span>\r" +
+    "                    <span class=\"icon-bar\"></span>\r" +
     "\n" +
-    "            <span class=\"icon-bar\"></span>\r" +
+    "                    <span class=\"icon-bar\"></span>\r" +
     "\n" +
-    "          </button>\r" +
+    "                </button>\r" +
     "\n" +
-    "          <a href=\"/\"><img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/logo.png\" /></a>\r" +
+    "                <a href=\"/\"><img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/logo.png\" /></a>\r" +
     "\n" +
-    "          <a href=\"/\" class=\"hidden-sm hidden-md hidden-lg log-xs\" ng-show=\"!shellCtrl.loggedIn\" ng-click=\"shellCtrl.login()\"><img class=\"log-img-xs\" src=\"img/login-signup_ico.png\"/></a>\r" +
+    "                <a href=\"/\" class=\"hidden-sm hidden-md hidden-lg log-xs\" ng-show=\"!shellCtrl.loggedIn\" ng-click=\"shellCtrl.login()\"><img class=\"log-img-xs\" src=\"img/login-signup_ico.png\" /></a>\r" +
+    "\n" +
+    "                <a href=\"/\" class=\"hidden-sm hidden-md hidden-lg log-xs\" ng-show=\"shellCtrl.loggedIn\" ng-click=\"shellCtrl.logout()\"><img class=\"log-img-xs\" src=\"img/logout.png\" /></a>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <div class=\"fakeNavbar hide\"> </div>\r" +
+    "\n" +
+    "            <div id=\"navbar\" class=\"navbar-collapse collapse nav-overlay\">\r" +
+    "\n" +
+    "                <ul class=\"nav navbar-nav\">\r" +
+    "\n" +
+    "                    <li ng-class=\"{'active' : shellCtrl.isActiveMenu('/invest')}\" ng-if=\"shellCtrl.loggedIn\">\r" +
+    "\n" +
+    "                        <a href ng-click=\"shellCtrl.getUserVisit()\" class=\"menu-icon invest-icon\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/invest_ico.png\" /> Invest Now</a>\r" +
+    "\n" +
+    "                    </li>\r" +
+    "\n" +
+    "                    <!--Not going in current sprint - please dont delete-->\r" +
+    "\n" +
+    "                    <!-- <li ng-if=\"shellCtrl.loggedIn\"><a href ng-link=\"['Dashboard']\" class=\"menu-icon dashboard-icon\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/dashboard_ico.png\" /> My Dashboard</a></li> -->\r" +
+    "\n" +
+    "                    <li ng-class=\"{'active' : shellCtrl.isActiveMenu('/payment')}\" ng-if=\"shellCtrl.loggedIn\">\r" +
+    "\n" +
+    "                        <a href ng-link=\"['Payment']\" class=\"menu-icon payment-icon\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/wallet_ico.png\" /> My Payments</a>\r" +
+    "\n" +
+    "                    </li>\r" +
+    "\n" +
+    "                    <li ng-class=\"{'active' : shellCtrl.isActiveMenu('/how-it-works')}\">\r" +
+    "\n" +
+    "                        <a href ng-link=\"['HowItWorks']\" class=\"menu-icon howitworks-icon\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/cog_ico.png\" /> HOW IT WORKS</a>\r" +
+    "\n" +
+    "                    </li>\r" +
+    "\n" +
+    "                    <li ng-class=\"{'active' : shellCtrl.isActiveMenu('/about-us')}\">\r" +
+    "\n" +
+    "                        <a href ng-link=\"['AboutUs']\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/about_ico.png\" /> <img class=\"hidden-xs\" src=\"img/about_us.png\" /> ABOUT US</a>\r" +
+    "\n" +
+    "                    </li>\r" +
+    "\n" +
+    "                    <li class=\"hidden-sm hidden-md hidden-lg\">\r" +
+    "\n" +
+    "                        <a href=\"tel:1800274474\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/phone_ico.png\" /> CALL US</a>\r" +
+    "\n" +
+    "                    </li>\r" +
+    "\n" +
+    "                </ul>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "            <!--  ng-class=\"{'active' : shellCtrl.isActiveMenu('/about-us')}\" -->\r" +
+    "\n" +
+    "            <!--/.nav-collapse -->\r" +
     "\n" +
     "        </div>\r" +
-    "\n" +
-    "        <div id=\"navbar\" class=\"navbar-collapse collapse nav-overlay\">\r" +
-    "\n" +
-    "          <ul class=\"nav navbar-nav\">\r" +
-    "\n" +
-    "            \r" +
-    "\n" +
-    "            <li ng-if=\"shellCtrl.loggedIn\"><a href ng-click=\"shellCtrl.getUserVisit()\" class=\"menu-icon invest-icon\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/invest_ico.png\" /> Invest Now</a></li>\r" +
-    "\n" +
-    "            <li ng-if=\"shellCtrl.loggedIn\"><a href ng-link=\"['Dashboard']\" class=\"menu-icon dashboard-icon\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/dashboard_ico.png\" /> My Dashboard</a></li>\r" +
-    "\n" +
-    "            <li ng-if=\"shellCtrl.loggedIn\"><a href ng-link=\"['Payment']\" class=\"menu-icon payment-icon\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/wallet_ico.png\" /> My Payments</a></li>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <li><a href ng-link=\"['HowItWorks']\" class=\"menu-icon howitworks-icon\">  <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/cog_ico.png\" />  HOW IT WORKS</a></li>\r" +
-    "\n" +
-    "            <li><a href ng-link=\"['AboutUs']\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/about_ico.png\" /> ABOUT US</a></li>\r" +
-    "\n" +
-    "            <li class=\"hidden-sm hidden-md hidden-lg\"><a href=\"\"> <img class=\"hidden-sm hidden-md hidden-lg logo-xs\" src=\"img/phone_ico.png\" /> CALL US</a></li>\r" +
-    "\n" +
-    "          </ul>\r" +
-    "\n" +
-    "        </div><!--/.nav-collapse -->\r" +
-    "\n" +
-    "      </div>\r" +
     "\n" +
     "    </nav>\r" +
     "\n" +
     "</header>\r" +
+    "\n"
+  );
+
+
+  $templateCache.put('app/lender_info/lender-info.html',
+    "<div class=\"modal fade in login-signup-modal\" id=\"lenderInfoModal\">\r" +
+    "\n" +
+    "    <div class=\"modal-dialog\">\r" +
+    "\n" +
+    "        <div class=\"modal-content clearfix\">\r" +
+    "\n" +
+    "            <div class=\"modal-body\">\r" +
+    "\n" +
+    "                <span class=\"modal-close-icon\">\r" +
+    "\n" +
+    "                    <i class=\"fa fa-times font_2em\" ng-click=\"infoCtrl.saveDataToLocal()\" data-dismiss=\"modal\" aria-hidden=\"true\"></i>\r" +
+    "\n" +
+    "                </span>\r" +
+    "\n" +
+    "                <div class=\"col-md-5 l-col hidden-sm hidden-xs\">\r" +
+    "\n" +
+    "                    <img src=\"../img/loansingh-mustache.png\" alt=\"loansingh-mustache\" class=\"mustache-img\" />\r" +
+    "\n" +
+    "                    <p class=\"desc text-left\">We just need you to input some more details to get started.</p>\r" +
+    "\n" +
+    "                    \r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "                <div class=\"col-xs-12 col-sm-12 col-md-7 r-col\">\r" +
+    "\n" +
+    "                    <div class=\"modal-form-section\">\r" +
+    "\n" +
+    "                       <tab-component>\r" +
+    "\n" +
+    "                            <pane-component title=\"Profile\">\r" +
+    "\n" +
+    "                                <form name=\"infoCtrl.frmInfoProfile\" id=\"infoCtrl.frmInfoProfile\" novalidate ng-submit=\"infoCtrl.frmInfoProfile.$valid && infoCtrl.gotToTab(1)\">\r" +
+    "\n" +
+    "                                <div class=\"form-group\">\r" +
+    "\n" +
+    "                                    <label for=\"userName\">Name*</label>\r" +
+    "\n" +
+    "                                    <input type=\"text\" id=\"userName\" name=\"userName\" ng-trim=\"false\" placeholder=\"Enter your name\" ng-model=\"infoCtrl.userProfile.name\" class=\"form-control\" ng-pattern=\"/^[a-zA-Z_ ]*$/\"  autofocus required autocomplete=\"off\" ng-class=\"{ 'errorbox': infoCtrl.frmInfoProfile.userName.$touched && infoCtrl.frmInfoProfile.userName.$invalid && infoCtrl.frmInfoProfile.$submitted}\"/>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                    <div class=\"error-msg\" ng-messages=\"infoCtrl.frmInfoProfile.$submitted && infoCtrl.frmInfoProfile.userName.$error\">\r" +
+    "\n" +
+    "                                        <div ng-message=\"required\">Please enter your full name</div>\r" +
+    "\n" +
+    "                                        <div ng-message=\"pattern\">Please enter a valid full name</div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                \r" +
+    "\n" +
+    "                                <div class=\"form-group dob-group\">\r" +
+    "\n" +
+    "                                    <label for=\"userSurName\">DOB*</label>\r" +
+    "\n" +
+    "                                   <input type=\"text\" class=\"form-control\" name=\"dob\" uib-datepicker-popup=\"{{infoCtrl.format}}\" ng-model=\"infoCtrl.userProfile.dob\" is-open=\"infoCtrl.popup1.opened\" datepicker-options=\"infoCtrl.dateOptions\" ng-required=\"true\" close-text=\"\" alt-input-formats=\"altInputFormats\" show-button-bar=false ng-click=\"infoCtrl.popup1.opened=!infoCtrl.popup1.opened\" placeholder=\"DD/MM/YYYY\" />\r" +
+    "\n" +
+    "                                 \r" +
+    "\n" +
+    "                                    <div class=\"error-msg\" ng-messages=\"infoCtrl.frmInfoProfile.$submitted && infoCtrl.frmInfoProfile.dob.$error\">\r" +
+    "\n" +
+    "                                        <div ng-message=\"required\">Please select your date of birth</div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                <div class=\"text-center mar-top30\" ng-click=\"\">\r" +
+    "\n" +
+    "                                    <button type=\"submit\" class=\"btn btn-continue mar-btm125\" id=\"continue10\" ng-disabled=\"infoCtrl.frmInfoProfile.$submitted && infoCtrl.frmInfoProfile.$invalid\">Next\r" +
+    "\n" +
+    "                                    </button>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                </form>\r" +
+    "\n" +
+    "                              </pane-component>\r" +
+    "\n" +
+    "                              <pane-component title=\"Identity\">\r" +
+    "\n" +
+    "                              <form name=\"infoCtrl.frmInfoIdentity\" id=\"infoCtrl.frmInfoIdentity\" novalidate ng-submit=\"infoCtrl.frmInfoIdentity.$valid && infoCtrl.gotToTab(2)\">\r" +
+    "\n" +
+    "                                <div class=\"form-group\">\r" +
+    "\n" +
+    "                                    <label for=\"userPan\">Pan Number*</label>\r" +
+    "\n" +
+    "                                    <input type=\"text\" id=\"userPan\" name=\"userPan\" placeholder=\"Enter your pan number\" ng-model=\"infoCtrl.userProfile.pan\" class=\"form-control\"  autofocus required autocomplete=\"off\" ng-pattern=\"/^[\\w]{3}(p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G)[\\w][\\d]{4}[\\w]$/\" ng-class=\"{ 'errorbox': infoCtrl.frmInfoIdentity.userPan.$touched && infoCtrl.frmInfoIdentity.userPan.$invalid && infoCtrl.frmInfoIdentity.$submitted}\"/>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                    <div class=\"error-msg\" ng-messages=\"infoCtrl.frmInfoIdentity.$submitted && infoCtrl.frmInfoIdentity.userPan.$error\">\r" +
+    "\n" +
+    "                                        <div ng-message=\"required\">Please enter your pan number</div>\r" +
+    "\n" +
+    "                                        <div class=\"errormsg\" ng-message=\"pattern\">Please enter a valid pan number</div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                <div class=\"form-group\">\r" +
+    "\n" +
+    "                                    <label for=\"userAddress\">Upload Address Proof</label>\r" +
+    "\n" +
+    "                                     <select class=\"form-control\" ng-model=\"infoCtrl.userProfile.documentType\" ng-options=\"address.name for address in infoCtrl.profileAddressOption track by address.value\" id=\"documentType\" name=\"documentType\">\r" +
+    "\n" +
+    "                                         <option disabled selected value> -- Address Proof --</option>\r" +
+    "\n" +
+    "                                    </select>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                                    <!-- <div class=\"error-msg\" ng-messages=\"infoCtrl.frmInfo.$submitted && infoCtrl.frmInfo.documentType.$error\">\r" +
+    "\n" +
+    "                                        <div ng-message=\"required\">Please upload address proof document</div>\r" +
+    "\n" +
+    "                                    </div> -->\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                 <!--input type=\"file\" -->\r" +
+    "\n" +
+    "                                   <div class=\"col-md-12 no-padding\" ng-if=\"infoCtrl.userProfile.documentType\">\r" +
+    "\n" +
+    "                                       <div class=\"col-md-6 no-padding\">\r" +
+    "\n" +
+    "                                            <div class=\"ng-scope drop uploadFileDrop\" ngf-drop=\"infoCtrl.uploadAddressProof($files)\" ng-model=\"infoCtrl.uploadAddress\" ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"false\" ngf-allow-dir=\"false\" ngf-keep=\"distinct\" accept=\"image/*,application/pdf\" ngf-pattern=\"'image/*,application/pdf'\">\r" +
+    "\n" +
+    "                                                <i class=\"fa fa-file-o\" aria-hidden=\"true\"></i>\r" +
+    "\n" +
+    "                                                <p> Drag &amp; Drop<br> {{infoCtrl.documentType}} scan here </p>\r" +
+    "\n" +
+    "                                            </div>\r" +
+    "\n" +
+    "                                        </div>\r" +
+    "\n" +
+    "                                        <div class=\"col-md-2 no-padding center-text\">\r" +
+    "\n" +
+    "                                        OR\r" +
+    "\n" +
+    "                                        </div>\r" +
+    "\n" +
+    "                                        <div class=\"col-md-4 browsebtn\" ngf-select=\"infoCtrl.uploadAddressProof($files)\" ng-model=\"infoCtrl.uploadAddress\" ngf-multiple=\"false\" ngf-allow-dir=\"false\" ngf-keep=\"distinct\" accept=\"image/*,application/pdf\" ngf-pattern=\"'image/*,application/pdf'\" >\r" +
+    "\n" +
+    "                                            <span class=\"browse\">UPLOAD<input style=\"visibility: hidden; position: absolute;\" type=\"file\" file=\"addressDocument\" name=\"statementDoc\" id=\"statementDoc\"></span>\r" +
+    "\n" +
+    "                                        </div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                        <p class=\"help-text\" ng-if=\"infoCtrl.userProfile.documentType\"> Document File Format Allowed: JPG, PNG, PDF - Max File Size: 3MB</p>\r" +
+    "\n" +
+    "                                         <div class=\"filename-wrap\" ng-if=\"infoCtrl.uploadedDocument\">\r" +
+    "\n" +
+    "                                            <div class=\"stmntName\">\r" +
+    "\n" +
+    "                                                <p class=\"fileName\" rel=\"tooltip\" tooltip=\"infoCtrl.uploadAddress.name\"> {{infoCtrl.trimName(infoCtrl.uploadAddress.name)}} </p>\r" +
+    "\n" +
+    "                                                <button class=\"delBut\" type=\"button\" ng-click=\"infoCtrl.deleteSelectedDocument(infoCtrl.uploadAddress)\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button>\r" +
+    "\n" +
+    "                                            </div>\r" +
+    "\n" +
+    "                                        </div>\r" +
+    "\n" +
+    "                                        <div class=\"filename-wrap\">\r" +
+    "\n" +
+    "                                            <div class=\"transfer-box clearfix ng-scope ng-binding\" ng-if=\"!infoCtrl.uploadAddress.remove && infoCtrl.uploadAddress.fileProgress>0\">\r" +
+    "\n" +
+    "                                                <p>{{infoCtrl.trimName(infoCtrl.uploadAddress.name)}} </p>\r" +
+    "\n" +
+    "                                                <div class=\"progress progress-striped\" ng-class=\"active\">\r" +
+    "\n" +
+    "                                                    <div style=\"width: 100%;\" class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"100\" aria-valuemin=\"0\" aria-valuemax=\"100\" ng-style=\"{width: (infoCtrl.uploadAddress.fileProgress) + '%'}\">\r" +
+    "\n" +
+    "                                                        <!--<span class=\"ng-binding\">{{file.progress() * 100}}% Complete</span>-->\r" +
+    "\n" +
+    "                                                        <!--<span class=\"ng-binding\">{{file.isUploading()}}</span>-->\r" +
+    "\n" +
+    "                                                    </div>\r" +
+    "\n" +
+    "                                                </div>\r" +
+    "\n" +
+    "                                            </div>\r" +
+    "\n" +
+    "                                        </div>\r" +
+    "\n" +
+    "                                        <div class=\"text-center mar-top30\" ng-click=\"\">\r" +
+    "\n" +
+    "                                    <button type=\"submit\" class=\"btn btn-continue mar-btm125\" id=\"continue10\" ng-disabled=\"infoCtrl.frmInfoIdentity.$submitted && infoCtrl.frmInfoIdentity.$invalid\">Next\r" +
+    "\n" +
+    "                                    </button>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                        </form>\r" +
+    "\n" +
+    "                              </pane-component>\r" +
+    "\n" +
+    "                              <pane-component title=\"Financials\">\r" +
+    "\n" +
+    "                              <form name=\"infoCtrl.frmInfoFinancial\" id=\"infoCtrl.frmInfoFinancial\" novalidate ng-submit=\"infoCtrl.frmInfoFinancial.$valid && infoCtrl.saveLenderInfo()\">\r" +
+    "\n" +
+    "                                    <div class=\"form-group\">\r" +
+    "\n" +
+    "                                            <div>\r" +
+    "\n" +
+    "                                                <label for=\"ifscCode\">IFSC Code*</label>\r" +
+    "\n" +
+    "                                            </div>\r" +
+    "\n" +
+    "                                            \r" +
+    "\n" +
+    "                                            <input type=\"text\" class=\"form-control\" value=\"\" placeholder=\"Enter IFSC Code\" ng-model=\"infoCtrl.userProfile.ifsc\" id=\"ifscCode\" required ng-pattern=\"/[A-Z|a-z]{4}[0][a-zA-Z0-9]{6}$/\" name=\"ifscCode\" ng-class=\"{ 'errorbox': infoCtrl.frmInfoFinancial.ifscCode.$touched && infoCtrl.frmInfoFinancial.ifscCode.$invalid && infoCtrl.frmInfoFinancial.$submitted}\">\r" +
+    "\n" +
+    "                                            <div class=\"error-msg\" ng-messages='infoCtrl.frmInfoFinancial.ifscCode.$error'  ng-if='infoCtrl.frmInfoFinancial.$submitted'>\r" +
+    "\n" +
+    "                                                <div ng-message=\"required\">Please enter your IFSC Code.</div>\r" +
+    "\n" +
+    "                                                <div ng-message=\"pattern\">Please enter a valid IFSC Code.</div>\r" +
+    "\n" +
+    "                                            </div>\r" +
+    "\n" +
+    "                                           \r" +
+    "\n" +
+    "                                            <div class=\"clearfix\"></div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                    <div class=\"form-group\">\r" +
+    "\n" +
+    "                                        <div>\r" +
+    "\n" +
+    "                                            <label for=\"accountNumber\">Account Number*</label>\r" +
+    "\n" +
+    "                                        </div>\r" +
+    "\n" +
+    "                                        <input type=\"number\" class=\"form-control\" value=\"\" placeholder=\"Enter Bank Account Number\" ng-model=\"infoCtrl.userProfile.account_number\" id=\"accountNumber\" required name=\"accountNumber\" ng-class=\"{ 'errorbox': infoCtrl.frmInfoFinancial.accountNumber.$touched && infoCtrl.frmInfoFinancial.accountNumber.$invalid && infoCtrl.frmInfoFinancial.$submitted}\">\r" +
+    "\n" +
+    "                                        <div class=\"error-msg\" ng-messages='infoCtrl.frmInfoFinancial.accountNumber.$error' ng-if='infoCtrl.frmInfoFinancial.$submitted'>\r" +
+    "\n" +
+    "                                            <div ng-message=\"required\">Please enter your account number.</div>\r" +
+    "\n" +
+    "                                            <div ng-message=\"number\">Please enter a valid account number.</div>\r" +
+    "\n" +
+    "                                        </div>\r" +
+    "\n" +
+    "                                        \r" +
+    "\n" +
+    "                                        <div class=\"clearfix\"></div>\r" +
+    "\n" +
+    "                                   </div>\r" +
+    "\n" +
+    "                                   <div class=\"text-center mar-top30\">\r" +
+    "\n" +
+    "                                        <button type=\"submit\" class=\"btn btn-continue mar-btm125\" id=\"continue10\" ng-disabled=\"infoCtrl.frmInfoFinancial.$submitted && infoCtrl.frmInfoFinancial.$invalid\">Done\r" +
+    "\n" +
+    "                                        </button>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                   </form>\r" +
+    "\n" +
+    "                              </pane-component>\r" +
+    "\n" +
+    "                              \r" +
+    "\n" +
+    "                              \r" +
+    "\n" +
+    "                          </form>\r" +
+    "\n" +
+    "                       </tab-component>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "                <div class=\"clearfix\"></div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>\r" +
     "\n"
   );
 
@@ -3314,7 +3435,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                <span class=\"modal-close-icon\">\r" +
     "\n" +
-    "                    <i class=\"fa fa-times font_2em\" data-dismiss=\"modal\" aria-hidden=\"true\"></i>\r" +
+    "                    <i class=\"fa fa-times font_2em\" data-dismiss=\"modal\" ng-click=\"loginCtrl.setDefaultViewOffFlags()\" aria-hidden=\"true\"></i>\r" +
     "\n" +
     "                </span>\r" +
     "\n" +
@@ -3370,11 +3491,11 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                        <div class=\"form-group\">\r" +
     "\n" +
-    "                                            <label for=\"txtUserMobileOrEmail\">Enter your Mobile or Email</label>\r" +
+    "                                            <label class=\"hidden-xs\" for=\"txtUserMobileOrEmail\">Enter your Mobile or Email</label>\r" +
     "\n" +
-    "                                            <input type=\"text\" id=\"txtUserMobileOrEmail\" name=\"txtUserMobileOrEmail\" ng-model=\"loginCtrl.user.mobOrEmail\" class=\"form-control\" placeholder=\"Mobile number\"  autofocus required autocomplete=\"off\"\r" +
+    "                                            <input type=\"text\" id=\"txtUserMobileOrEmail\" name=\"txtUserMobileOrEmail\" ng-model=\"loginCtrl.user.mobOrEmail\" class=\"form-control\" placeholder=\"Mobile number or Email\"  autofocus required autocomplete=\"off\"\r" +
     "\n" +
-    "                                            ng-pattern=\"loginCtrl.regexMobileEmail\" />\r" +
+    "                                            ng-pattern=\"loginCtrl.regexMobileEmail\" ng-change=\"loginCtrl.loginServerErrorMsg=''\" />\r" +
     "\n" +
     "                                            \r" +
     "\n" +
@@ -3394,9 +3515,9 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                        <div class=\"form-group\">\r" +
     "\n" +
-    "                                            <label for=\"txtPassword\">Loan Singh Password</label>\r" +
+    "                                            <label class=\"hidden-xs\" for=\"txtPassword\">Loan Singh Password</label>\r" +
     "\n" +
-    "                                            <input type=\"password\" id=\"txtPassword\" name=\"txtPassword\" ng-model=\"loginCtrl.user.password\" class=\"form-control\"  autofocus required placeholder=\"Password\" />\r" +
+    "                                            <input type=\"password\" id=\"txtPassword\" name=\"txtPassword\" ng-model=\"loginCtrl.user.password\" class=\"form-control\"  autofocus required placeholder=\"Password\" ng-change=\"loginCtrl.loginServerErrorMsg=''\" />\r" +
     "\n" +
     "                                            \r" +
     "\n" +
@@ -3456,7 +3577,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                        <div class=\"form-group\">\r" +
     "\n" +
-    "                                            <label for=\"txtSignupMobileNo\">Mobile number</label>\r" +
+    "                                            <label class=\"hidden-xs\" for=\"txtSignupMobileNo\">Mobile number</label>\r" +
     "\n" +
     "                                            <input type=\"number\" min=\"0\" name=\"txtSignupMobileNo\" id=\"txtSignupMobileNo\" ng-model=\"loginCtrl.modSignup.mobileno\" class=\"form-control\" ng-maxlength=\"10\" ng-minlength=\"10\" required autocomplete=\"off\" ng-pattern=\"/^\\d*$/\" placeholder=\"Mobile number\"/>\r" +
     "\n" +
@@ -3480,7 +3601,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                        <div class=\"form-group\" ng-hide=\"loginCtrl.changeOTPMobileField\">\r" +
     "\n" +
-    "                                            <label for=\"txtSignupEmailId\">Email ID</label>\r" +
+    "                                            <label class=\"hidden-xs\" for=\"txtSignupEmailId\">Email ID</label>\r" +
     "\n" +
     "                                            <input type=\"email\" name=\"txtSignupEmailId\" id=\"txtSignupEmailId\" ng-model=\"loginCtrl.modSignup.email\" class=\"form-control\" required placeholder=\"Email id\" ng-pattern=\"/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/\" />\r" +
     "\n" +
@@ -3520,7 +3641,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                        <div class=\"text-center center-block\">\r" +
     "\n" +
-    "                                            <button ng-hide=\"loginCtrl.changeOTPMobileField\" type=\"submit\" class=\"btn btn-modal-big\" id=\"btnCreateAccount\" ng-click=\"loginCtrl.submitSignup(loginCtrl.frmSignup,'saveSignup')\" ng-disabled=\"loginCtrl.frmSignup.$submitted && loginCtrl.frmSignup.$invalid\">Create your loan singh Account</button>\r" +
+    "                                            <button ng-hide=\"loginCtrl.changeOTPMobileField\" type=\"submit\" class=\"btn btn-modal-big\" id=\"btnCreateAccount\" ng-click=\"loginCtrl.submitSignup(loginCtrl.frmSignup,'saveSignup')\" ng-disabled=\"loginCtrl.frmSignup.$submitted && loginCtrl.frmSignup.$invalid\">Create <span class=\"hidden-xs\">your loan singh </span>Account</button>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -3612,7 +3733,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                        <div class=\"form-group\">\r" +
     "\n" +
-    "                                            <label for=\"txtOTPMobileNo\">Mobile number</label>\r" +
+    "                                            <label class=\"hidden-xs\" for=\"txtOTPMobileNo\">Mobile number</label>\r" +
     "\n" +
     "                                            <input type=\"number\" name=\"txtOTPMobileNo\" id=\"txtOTPMobileNo\" class=\"form-control\" ng-model=\"loginCtrl.modSignup.newmobileno\" required ng-maxlength=\"10\" ng-minlength=\"10\" placeholder=\"Mobile number\"/>\r" +
     "\n" +
@@ -3654,7 +3775,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                <div class=\"terms-block text-center\" ng-hide=\"loginCtrl.showSignupOTPPanel\">\r" +
     "\n" +
-    "                                    By Signing up you agree to our <a href=\"javascript:void(0)\">T&C</a> and <a href=\"javascript:void(0)\">Privacy Policy</a>\r" +
+    "                                    By Signing up you agree to our <a  data-dismiss=\"modal\" href ng-link=\"['TermsConditions']\">T&C</a> and <a  data-dismiss=\"modal\" href ng-link=\"['PrivacyPolicy']\">Privacy Policy</a>\r" +
     "\n" +
     "                                </div>\r" +
     "\n" +
@@ -3766,7 +3887,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                <h4>Please Verify your email</h4>\r" +
     "\n" +
-    "                                <p>We have sent you an email verification link to your mailbox. Please click on verify your account link. <a href ng-click=\"loginCtrl.changeEmailIDTrigger()\">change email ID</a> <a href ng-click=\"loginCtrl.backToLoginScreen(); loginCtrl.resetForm('forgotPwd');\">Login</a></p>\r" +
+    "                                <p>We have sent you an email verification link at {{loginCtrl.modSignup.email}}. Please click on verify your account link or <a href ng-click=\"loginCtrl.changeEmailIDTrigger()\">change email ID</a></p>\r" +
     "\n" +
     "\r" +
     "\n" +
@@ -3792,7 +3913,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                    <div class=\"clearfix\">\r" +
     "\n" +
-    "                                        <button type=\"submit\" class=\"btn btn-modal-big\" ng-click=\"loginCtrl.submitChangeEmailId(loginCtrl.frmChangeEmailId)\">Save</button>\r" +
+    "                                        <button type=\"submit\" class=\"btn btn-modal-big\" ng-click=\"loginCtrl.submitChangeEmailId(loginCtrl.frmChangeEmailId)\">Send Verification Link</button>\r" +
     "\n" +
     "                                    </div>\r" +
     "\n" +
@@ -3870,21 +3991,17 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\r" +
     "\n" +
-    "                        <div class=\"payment-info\">\r" +
+    "                        <div class=\"payment-info animate-hide scrollClass\"  ng-show=\"paymentCtrl.modSuccessPayment && !paymentCtrl.closeMsg\">\r" +
     "\n" +
-    "                            <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>\r" +
+    "                            <!-- <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i> -->\r" +
     "\n" +
-    "                            <p ng-if=\"!paymentCtrl.modSuccessPayment\"> THANK YOU!  For making disbursement we will verify the transaction and get back to you.<br/>You can now track your <a class=\"btn btn-default\" ng-link=\"['Dashboard']\">Dashboard</a></p>\r" +
+    "                            <i class=\"fa fa-times pull-right\" ng-click=\"paymentCtrl.closeMsg=true\"aria-hidden=\"true\"></i>\r" +
     "\n" +
-    "                            \r" +
+    "                            <div> <h3><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i>THANK YOU!</h3>\r" +
     "\n" +
-    "                            <div ng-if=\"paymentCtrl.modSuccessPayment\">\r" +
+    "                            <p>For making disbursement.<br/> We will verify the transaction and get back to you.</p><!-- You can now track your <a class=\"btn btn-default\" ng-link=\"['Dashboard']\">Dashboard</a> --></div>\r" +
     "\n" +
-    "                                <!-- <h4>THANK YOU!</h4> -->\r" +
-    "\n" +
-    "                                <p>Thank you for making disbursement. We will verify the transaction and get back to you.</p>\r" +
-    "\n" +
-    "                            </div>\r" +
+    "\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
@@ -3902,25 +4019,51 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                        <div class=\"payment-details-sec col-md-12 no-padding\">\r" +
     "\n" +
-    "                            <div class=\"col-md-4 bank-details-sec\">\r" +
+    "                          <div class=\"col-md-4 lender-wrapper\">\r" +
     "\n" +
-    "                                <p class=\"beneficiary-border\">Beneficiary Details</p>\r" +
+    "                            <div class=\"bank-details-sec animate-height\" ng-class=\"{'collapse-height' : !paymentCtrl.showBeneficiary}\">\r" +
     "\n" +
-    "                                <div class=\"beneficiary-data beneficiary-border\" ng-repeat=\"data in paymentCtrl.beneficiary\">\r" +
+    "                                <p class=\"beneficiary-border\">Beneficiary Details <i class=\"fa hidden-lg hidden-md\" ng-class=\"{'fa-chevron-up' : paymentCtrl.showBeneficiary, 'fa-chevron-down' : !paymentCtrl.showBeneficiary}\" aria-hidden=\"true\" ng-click=\"paymentCtrl.showBeneficiary=!paymentCtrl.showBeneficiary\"></i></p>\r" +
     "\n" +
-    "                                    <p>{{data.dispName}}:</p>\r" +
+    "                                <div class=\"beneficiary-data-wrapper animate-hide\" ng-hide=\"!paymentCtrl.showBeneficiary\">\r" +
     "\n" +
-    "                                    <p>{{data.value}}</p>\r" +
+    "                                  <p class=\"temp-accnt\">\r" +
+    "\n" +
+    "For disbursement details.<br/>\r" +
+    "\n" +
+    "Please contact :<br/><br/>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    " <i class=\"fa fa-phone\" aria-hidden=\"true\"></i> &nbsp;+91 83903 58545<br/>\r" +
+    "\n" +
+    "    <span class=\"\">OR</span><br/>\r" +
+    "\n" +
+    " <i class=\"fa fa-envelope-o\" aria-hidden=\"true\"></i> &nbsp;ls@loansingh.com\r" +
+    "\n" +
+    "</p>\r" +
+    "\n" +
+    "                                    <!-- <div class=\"beneficiary-data beneficiary-border\" ng-repeat=\"data in paymentCtrl.beneficiary\">\r" +
+    "\n" +
+    "                                        <p>{{data.dispName}}:</p>\r" +
+    "\n" +
+    "                                        <p>{{data.value}}</p>\r" +
+    "\n" +
+    "                                    </div> -->\r" +
     "\n" +
     "                                </div>\r" +
     "\n" +
     "                            </div>\r" +
     "\n" +
+    "                            <a class=\"lender-conduct\" ng-click=\"paymentCtrl.openConductPopup()\">Read Lender's code of conduct</a>\r" +
+    "\n" +
+    "                            </div>\r" +
+    "\n" +
     "                            <div class=\"col-md-8 borrower-details-sec\">\r" +
     "\n" +
-    "                                <div ng-show=\"paymentCtrl.paymentObj.length == 0\" class=\"cart_empty\">Looks like your cart is empty!<br/>You can<br/><a class=\"btn btn-primary\" ng-link=\"['Invest']\">Click To Invest</a><a class=\"btn btn-round-corner-tb\" ng-link=\"['Dashboard']\">See Dashboard</a></div>\r" +
+    "                                <div ng-if=\"paymentCtrl.paymentObj && paymentCtrl.paymentObj.length == 0\" class=\"cart_empty\">Looks like your cart is empty!<br/>You can<br/><a class=\"btn btn-primary\" ng-link=\"['Invest']\">Click To Invest</a><a class=\"btn btn-round-corner-tb hide\" ng-link=\"['Dashboard']\">See Dashboard</a></div>\r" +
     "\n" +
-    "                                <div ng-show=\"paymentCtrl.paymentObj.length != 0\" class=\"detail-container\">\r" +
+    "                                <div ng-if=\"paymentCtrl.paymentObj && paymentCtrl.paymentObj.length != 0\" class=\"detail-container\">\r" +
     "\n" +
     "                                    <div class=\"detail-table\">\r" +
     "\n" +
@@ -3936,7 +4079,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                                <div class=\"details-column\">\r" +
     "\n" +
-    "                                                    <p style=\"text-align:right;width: 50%;\"><img src=\"img/rupee_icon.png\"/> Amount\r" +
+    "                                                    <p><img src=\"img/rupee_icon.png\"/> Amount\r" +
     "\n" +
     "                                                </div>\r" +
     "\n" +
@@ -3968,7 +4111,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                                <div class=\"details-column\">\r" +
     "\n" +
-    "                                                    <p style=\"text-align:right;width: 50%;\">{{data.invested_amount}}</p>\r" +
+    "                                                    <p class=\"clmn-fixed\">{{data.invested_amount}}</p>\r" +
     "\n" +
     "                                                </div>\r" +
     "\n" +
@@ -3996,7 +4139,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                    </div>\r" +
     "\n" +
-    "                                    <div class=\"borrower-info-wrapper\" ng-if=\"paymentCtrl.paymentObj.length>0\">\r" +
+    "                                    <div class=\"borrower-info-wrapper\" ng-if=\"paymentCtrl.paymentObj && paymentCtrl.paymentObj.length>0\">\r" +
     "\n" +
     "                                        <div class=\"details-row\">\r" +
     "\n" +
@@ -4008,7 +4151,13 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                            <div class=\"details-column\">\r" +
     "\n" +
-    "                                                <p style=\"text-align:right;width: 50%;\">500</p>\r" +
+    "                                                <p class=\"clmn-fixed fee-clmn\" ng-bind=\"paymentCtrl.LSfees\"></p>\r" +
+    "\n" +
+    "                                            </div>\r" +
+    "\n" +
+    "                                            <div class=\"details-column\">\r" +
+    "\n" +
+    "                                                <p></p>\r" +
     "\n" +
     "                                            </div>\r" +
     "\n" +
@@ -4030,7 +4179,7 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                    <div class=\"fee-content pull-right\" ng-if=\"paymentCtrl.paymentObj.length>0\">\r" +
     "\n" +
-    "                                        <p><span>Total</span><span>{{paymentCtrl.totalAmount}}</span></p>\r" +
+    "                                        <p><span>Total</span><span ng-bind=\"paymentCtrl.totalAmount\"></span></p>\r" +
     "\n" +
     "                                    </div>\r" +
     "\n" +
@@ -4042,9 +4191,9 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "                        <div class=\"payment-confirm\">\r" +
     "\n" +
-    "                            <input type=\"checkbox\" ng-model=\"paymentCtrl.paymentDone\" name=\"chkPaymentAcceptance\" id=\"chkPaymentAcceptance\" />\r" +
+    "                            <input type=\"checkbox\" ng-disabled=\"!paymentCtrl.paymentObj || paymentCtrl.paymentObj.length == 0\" ng-model=\"paymentCtrl.paymentDone\" name=\"chkPaymentAcceptance\" id=\"chkPaymentAcceptance\" />\r" +
     "\n" +
-    "                            <button type=\"button\" class=\"btn btn-success\" ng-class=\"{'disabled': !paymentCtrl.paymentDone}\" ng-model=\"paymentCtrl.modSuccessPayment\" ng-click=\"paymentCtrl.modSuccessPayment = true\">I have successfully made the payment</button>\r" +
+    "                            <button type=\"button\" class=\"btn btn-success\" ng-disabled=\"!paymentCtrl.paymentDone\" ng-class=\"{'disabled': !paymentCtrl.paymentDone}\" ng-click=\"paymentCtrl.markPaymentDone()\">I have successfully made the payment</button>\r" +
     "\n" +
     "                        </div>\r" +
     "\n" +
@@ -4067,62 +4216,165 @@ angular.module('lsLenderApp').run(['$templateCache', function($templateCache) {
     "</div>\r" +
     "\n" +
     "<!-- app-section -->\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<div class=\"modal fade in modal-code-conduct\" id=\"lender-code-conduct\">\r" +
+    "\n" +
+    "    <div class=\"modal-dialog\">\r" +
+    "\n" +
+    "        <div class=\"modal-content clearfix\">\r" +
+    "\n" +
+    "            <div class=\"modal-body\">\r" +
+    "\n" +
+    "                <span class=\"modal-close-icon\">\r" +
+    "\n" +
+    "                    <i class=\"fa fa-times font_2em\" data-dismiss=\"modal\" aria-hidden=\"true\"></i>\r" +
+    "\n" +
+    "                </span>\r" +
+    "\n" +
+    "                <div class=\"conductcode\">\r" +
+    "\n" +
+    "                    <p> As a part of our Lender Awareness program, we urge all our lending partners to abide by the following code of conduct</p>\r" +
+    "\n" +
+    "                    <ul>\r" +
+    "\n" +
+    "                      <li>\r" +
+    "\n" +
+    "                        Carefully read and understand Loan Singh policy and T&C before investing\r" +
+    "\n" +
+    "                      </li>\r" +
+    "\n" +
+    "                      <li>\r" +
+    "\n" +
+    "                        Once you commit to a loan, retracting later can cause great hardships to borrowers\r" +
+    "\n" +
+    "                      </li>\r" +
+    "\n" +
+    "                      <li>\r" +
+    "\n" +
+    "                        We hold privacy of all our customers in highest regard. In the same sense, a direct interaction between the lender and borrower is never required. That’s why we exist.\r" +
+    "\n" +
+    "                      </li>\r" +
+    "\n" +
+    "                      <li>\r" +
+    "\n" +
+    "                       Be cognizant of, and acknowledge the risk existing in lending money\r" +
+    "\n" +
+    "                      </li>\r" +
+    "\n" +
+    "                      <li>\r" +
+    "\n" +
+    "                        Do not borrow money to lend further as it increases your risk exposure\r" +
+    "\n" +
+    "                      </li>\r" +
+    "\n" +
+    "                      <li>\r" +
+    "\n" +
+    "                       Be a responsible citizen; duly report and pay taxes on income earned through the platform.\r" +
+    "\n" +
+    "                      </li>\r" +
+    "\n" +
+    "                    </ul>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "                <div class=\"clearfix\"></div>\r" +
+    "\n" +
+    "            </div>\r" +
+    "\n" +
+    "        </div>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n" +
+    "\r" +
     "\n"
   );
 
 
   $templateCache.put('app/set_password/set-password.html',
-    "<div style=\"width:30%; margin:50px auto;\">\r" +
+    "<div class=\"app-section fade-in-up ng-enter ng-enter-active\">\r" +
     "\n" +
-    "<form name=\"pwdCtrl.frmCreateNewPassword\" class=\"create-new-password-panel\" ng-show=\"pwdCtrl.showCreateNewPwdPanel\" novalidate ng-submit=\"pwdCtrl.frmCreateNewPassword.$valid && pwdCtrl.submitCreatePassword()\">\r" +
+    "    <article class=\"app-content\">\r" +
     "\n" +
-    "    <h4>Create New Password</h4>\r" +
+    "        <div class=\"app-content-inner__child clearfix\">\r" +
     "\n" +
-    "    <div class=\"form-group\">\r" +
+    "            <section id=\"set-pass-sec\">\r" +
     "\n" +
-    "        <label for=\"txtCreateNewPwd\">New Password</label>\r" +
+    "                <div class=\"container\">\r" +
     "\n" +
-    "        <input type=\"password\" class=\"form-control\" name=\"txtCreateNewPwd\" id=\"txtCreateNewPwd\" ng-model=\"pwdCtrl.createPassword.newPassword\" required />\r" +
+    "                    <div class=\"row\">\r" +
     "\n" +
-    "        \r" +
+    "                        <center><h2 ng-show=\"pwdCtrl.showCreateNewPwdPanel\">Create your new password</h2></center>\r" +
     "\n" +
-    "        <div class=\"error-msg\" ng-messages=\"pwdCtrl.frmCreateNewPassword.$submitted && pwdCtrl.frmCreateNewPassword.txtCreateNewPwd.$error\">\r" +
+    "                        <div class=\"col-sm-offset-3 col-sm-6 col-md-offset-4 col-lg-offset-4 col-md-4 col-lg-4 set-pass-box\">\r" +
     "\n" +
-    "            <div ng-message=\"required\">Please enter new password</div>\r" +
+    "                            <form name=\"pwdCtrl.frmCreateNewPassword\" class=\"create-new-password-panel\" ng-show=\"pwdCtrl.showCreateNewPwdPanel\" novalidate ng-submit=\"pwdCtrl.frmCreateNewPassword.$valid && pwdCtrl.submitCreatePassword()\">\r" +
+    "\n" +
+    "                                <div class=\"form-group\">\r" +
+    "\n" +
+    "                                    <label for=\"txtCreateNewPwd\">New Password</label>\r" +
+    "\n" +
+    "                                    <input type=\"password\" class=\"form-control\" name=\"txtCreateNewPwd\" id=\"txtCreateNewPwd\" ng-model=\"pwdCtrl.createPassword.newPassword\" required />\r" +
+    "\n" +
+    "                                    <div class=\"error-msg\" ng-messages=\"pwdCtrl.frmCreateNewPassword.$submitted && pwdCtrl.frmCreateNewPassword.txtCreateNewPwd.$error\">\r" +
+    "\n" +
+    "                                        <div ng-message=\"required\">Please enter new password</div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                <div class=\"form-group\">\r" +
+    "\n" +
+    "                                    <label for=\"txtCreateConfirmNewPwd\">Confirm New Password</label>\r" +
+    "\n" +
+    "                                    <input type=\"password\" class=\"form-control\" name=\"txtCreateConfirmNewPwd\" id=\"txtCreateConfirmNewPwd\" ng-model=\"pwdCtrl.createPassword.confirmPassword\" required match=\"pwdCtrl.createPassword.newPassword\" />\r" +
+    "\n" +
+    "                                    <div class=\"error-msg\" ng-messages=\"pwdCtrl.frmCreateNewPassword.$submitted && pwdCtrl.frmCreateNewPassword.txtCreateConfirmNewPwd.$error\">\r" +
+    "\n" +
+    "                                        <div ng-message=\"required\">Please enter new password</div>\r" +
+    "\n" +
+    "                                        <div ng-message=\"match\">Password does not match</div>\r" +
+    "\n" +
+    "                                    </div>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                                <div class=\"clearfix\">\r" +
+    "\n" +
+    "                                    <button type=\"submit\" class=\"btn btn-primary full-width ng-binding btn btn-modal-big pull-right\" ng-disabled=\"pwdCtrl.frmCreateNewPassword.$submitted && pwdCtrl.frmCreateNewPassword.$invalid\">Set Password</button>\r" +
+    "\n" +
+    "                                </div>\r" +
+    "\n" +
+    "                            </form>\r" +
+    "\n" +
+    "                            <!-- /. create new password form end -->\r" +
+    "\n" +
+    "                            <center><p ng-if=\"pwdCtrl.emailLinkExpired\"> <img src=\"img/no-result-woo.png\"/> <br/> Your link is expired.</p></center>\r" +
+    "\n" +
+    "                        </div>\r" +
+    "\n" +
+    "                    </div>\r" +
+    "\n" +
+    "                </div>\r" +
+    "\n" +
+    "            </section>\r" +
     "\n" +
     "        </div>\r" +
     "\n" +
-    "    </div>\r" +
+    "        <!-- app-content-inner__child end -->\r" +
     "\n" +
-    "    <div class=\"form-group\">\r" +
+    "    </article>\r" +
     "\n" +
-    "        <label for=\"txtCreateConfirmNewPwd\">Confirm New Password</label>\r" +
+    "    <!-- app-content end -->\r" +
     "\n" +
-    "        <input type=\"password\" class=\"form-control\" name=\"txtCreateConfirmNewPwd\" id=\"txtCreateConfirmNewPwd\" ng-model=\"pwdCtrl.createPassword.confirmPassword\" required match=\"pwdCtrl.createPassword.newPassword\" />\r" +
+    "</div>\r" +
     "\n" +
-    "\r" +
-    "\n" +
-    "        <div class=\"error-msg\" ng-messages=\"pwdCtrl.frmCreateNewPassword.$submitted && pwdCtrl.frmCreateNewPassword.txtCreateConfirmNewPwd.$error\">\r" +
-    "\n" +
-    "            <div ng-message=\"required\">Please enter new password</div>\r" +
-    "\n" +
-    "            <div ng-message=\"match\">Password does not match</div>\r" +
-    "\n" +
-    "        </div>\r" +
-    "\n" +
-    "    </div>\r" +
-    "\n" +
-    "    <div class=\"clearfix\">\r" +
-    "\n" +
-    "        <button type=\"submit\" class=\"btn btn-modal-big pull-right\" ng-disabled=\"pwdCtrl.frmCreateNewPassword.$submitted && pwdCtrl.frmCreateNewPassword.$invalid\">Set Password</button>\r" +
-    "\n" +
-    "    </div>\r" +
-    "\n" +
-    "</form> <!-- /. create new password form end -->\r" +
-    "\n" +
-    "<p ng-if=\"pwdCtrl.emailLinkExpired\">Your link is expired.</p>\r" +
-    "\n" +
-    "</div>"
+    "<!-- app-section -->\r" +
+    "\n"
   );
 
 

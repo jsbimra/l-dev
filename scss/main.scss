@@ -7,7 +7,6 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
-
 /* ==========================================================================
    Font Family inclusions
    ========================================================================== */
@@ -333,18 +332,26 @@ header {
         }
         .header-callouts {
             float: right;
-            margin-top: 10px;
+            margin-top: 20px;
             margin-right: 10px;
+
+            a {
+                color: #000;
+                cursor: pointer;
+            }
+            .call-btn {
+                padding-right: 50px;
+            }
         }
         .btn {
             padding: 8px 20px;
-            border-radius: 21px;
+            /*border-radius: 21px;*/
             /*font-size: 16px;*/
         }
     }
     .navbar-default .navbar-nav>li {
         text-align: left;
-        border-bottom: 1px solid #525151;
+        border-bottom: 0 solid #525151;
         text-transform: uppercase;
         & > .menu-icon {
             padding-left: 45px;
@@ -387,6 +394,9 @@ header {
     text-align: center;
     position: relative;
     z-index: 5;
+    .fakeNavbar {
+        height: 52px;
+    }
     .navbar-header {
         float: right;
         .navbar-toggle {
@@ -406,7 +416,16 @@ header {
         /* width: $layoutWidth; margin: 0 auto;*/
     }
     .navbar-nav {
+        border-bottom: none;
+        
         &>li {
+            min-height: 52px;
+             border-bottom: none;
+
+            -moz-transition: background-color linear .38s;
+            -webkit-transition: background-color linear .38s;
+            transition: background-color linear .38s;
+
             &>a {
                 border-radius: 0;
                 color: #fff;
@@ -418,12 +437,21 @@ header {
                 margin-top: 15px;
                 margin-bottom: 15px;
             }
+
             &:last-child > a {
                 border-right: none;
             }
-            &>a:hover,
-            &>a:focus {
+
+            &>a:hover, &>a:focus {color: #fff;}
+
+            &.active{
+                /*background-color: #ee3224;*/
+                border-bottom: 5px solid #ee3224;
+            }        
+
+            &.active>a, &.active>a:focus, &.active>a:active,&.active>a:link{
                 color: #fff;
+                background-color: transparent;
             }
         }
     }
@@ -625,6 +653,9 @@ form label {
         /* negative margin to handle left & right to gradient image*/
         .app-content-inner__child {
             /*color: #bdc3c7;*/
+            section.invest-sec{
+                padding-bottom: 0;
+            }
             section {
                 padding-bottom: 25px;
                 .btn-round-corner-tb {
@@ -639,6 +670,12 @@ form label {
                     display: inline-block;
                     font-weight: bold;
                 }
+            }
+            .mar-top-60 {
+                margin-top: 60px;
+            }
+            .padd-top-20 {
+                padding-top: 20px;
             }
             .padd-top-40 {
                 padding-top: 40px;
@@ -667,6 +704,44 @@ form label {
                 text-indent: 8px;
                 display: inline-block;
             }
+            .btn-round-corner {
+                border: 2px solid #ed2c16;
+                background-color: transparent;
+                text-transform: uppercase;
+                border-radius: 10px;
+                color: #ff3c3c;
+                padding: 12px 30px;
+                text-decoration: none;
+                display: inline-block;
+                font-weight: bold;
+            }
+            #set-pass-sec {
+                padding: 110px 0px 130px;
+                color: #303030;
+                background-color: #ebedee;
+                background-image: url('../img/home-bottom-bac.png');
+                background-repeat: no-repeat;
+                background-position: right 20%;
+                h2 {
+                    font-size: 36px;
+                    font-family: $HelveticaNeuelight;
+                    line-height: 0px;
+                    text-align: center;
+                }
+                .set-pass-box {
+                    background-color: #fff;
+                    margin-top: 70px;
+                    padding: 25px;
+                    border-radius: 5px;
+                    p {
+                        font-size: 30px;
+                        img {
+                            width: 22%;
+                            padding-bottom: 20px;
+                        }
+                    }
+                }
+            }
             #home-sec {
                 padding: 110px 0px 130px;
                 color: #303030;
@@ -675,15 +750,21 @@ form label {
                 background-repeat: no-repeat;
                 background-position: right bottom;
                 h1 {
-                    font-size: 45px;
+                    font-size: 50px;
                     font-family: $HelveticaNeuelight;
                     line-height: 60px;
                 }
+                h2 {
+                    font-size: 32px;
+                    font-family: $HelveticaNeuelight;
+                    line-height: 0px;
+                }
                 h6 {
-                    font-size: 14px;
-                    line-height: 20px;
+                    font-size: 20px;
+                    line-height: 25px;
                     font-family: $HelveticaNeuemedium;
                     color: #95a5a6;
+                    font-weight: normal;
                 }
                 .bullet-points {
                     color: #475455;
@@ -799,11 +880,11 @@ form label {
                 .inflation-line {
                     border-bottom: 2px dashed #d2d4d6;
                     position: absolute;
-                    width: 60%;
+                    width: 94%;
                     top: 602px;
-                    /*z-index: 9;*/
                     color: #bdc3c7;
                     font-size: 12px;
+                    left: 2%;
                 }
 
             }
@@ -850,6 +931,7 @@ form label {
                     font-family: $HelveticaNeuemedium;
                     color: #2c3e50;
                     text-align: left;
+                    padding-top: 50px;
                 }
                 span {
                     font-size: 16px;
@@ -902,7 +984,7 @@ form label {
                 }
                 .carousel-indicators {
                     position: absolute;
-                    bottom: 0px;
+                    bottom: -35px;
                     left: 50%;
                     z-index: 15;
                     width: 100%;
@@ -915,19 +997,8 @@ form label {
                 .carousel-inner>.item>img {
                     margin: 0 auto;
                 }
-                .btn-round-corner {
-                    border: 2px solid #ed2c16;
-                    background-color: transparent;
-                    text-transform: uppercase;
-                    border-radius: 10px;
-                    color: #ff3c3c;
-                    font-size: 14px;
-                    font-family: $HelveticaNeuebold;
-                    padding: 12px 30px;
-                    text-decoration: none;
-                    display: inline-block;
-                    font-weight: bold;
-                    margin-top: 25px;
+                .mob {
+                    display: none;
                 }
             }
             .page-section {
@@ -962,7 +1033,7 @@ form label {
             margin-top: 0;
         }
         .profile-container {
-            margin-top: 30px;
+            /*margin-top: 30px;*/
         }
         .profile-img {
             border-radius: 50%;
@@ -1084,7 +1155,7 @@ form label {
     .contactus-social-links {
         margin: 20px 0px 50px 0px;
         overflow: hidden;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: normal;
         & p {
             margin-top: 5px;
@@ -1779,27 +1850,33 @@ $pulse-duration: 750ms;
 .faq-section {
     .panel-group {
         .panel {
-            border: none;
+           /* border: none;
             box-shadow: none;
             margin-bottom: 5px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;*/
         }
         .panel-heading {
             background: #fff;
             border: 0;
             box-shadow: none;
-            padding: 0;
+            padding-right: 30px;
+            cursor: pointer;
+            position: relative;
             .panel-title {
                 font-size: 20px;
             }
             a {
                 cursor: pointer;
                 display: block;
-                padding: 10px 15px;
+                padding: 10px 15px 10px 15px;
                 &:hover {
                     text-decoration: none;
                 }
-                ;
+                &>.pull-right {
+                    position: absolute;
+                    right: 12px;
+                }
+                
             }
             &.active a {
                 color: #ee3224;
@@ -1879,6 +1956,17 @@ $pulse-duration: 750ms;
 .fadeOutUp {
     -webkit-animation-name: fadeOutUp;
     animation-name: fadeOutUp;
+}
+
+/*Animations*/
+
+.animate-hide {
+    transition: all linear 0.5s;
+    opacity: 1;
+}
+
+.animate-hide.ng-hide {
+    opacity: 0;
 }
 
 
@@ -2295,6 +2383,9 @@ $pulse-duration: 750ms;
 }
 
 @media screen and (max-width: 1024px) {
+    .login-signup-modal .modal-dialog {
+        width: 90%;
+    }
     .graph-container {
         font-size: 0.62em;
     }
@@ -2305,15 +2396,40 @@ $pulse-duration: 750ms;
     }
     .navbar-default {
         .navbar-nav {
+
             &>li {
+                padding-bottom: 1px;
+
                 &>a {
                     font-size: 14px;
-                    padding: 0 25px 0 25px;
+                    padding: 0 0 0 10px;
                 }
             }    
         }        
     } 
+    .invest-sec {
+        .invest-data-wrapper {
+            &> div:nth-child(1) {
+                width: 23%;
+                padding-left: 10px;
+            }
+            &> div {
+                float: left;
+                margin-top: 10px;
+                margin-right: 34px;
+                padding-right: 34px;
+                border-right: 2px solid #f1f1f1;
+                height: 128px;
+            }
+        }
+    }
+
+    .pool-container .invest-text span:before, .pool-container .invest-text span:after {
+        width: 70%;
+    }
 }
+
+
 
 
 /*

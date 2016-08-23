@@ -11,7 +11,7 @@
     * @desc defining constants to be used for entire applications
     */
     angular.module('lsLenderApp')
-             
+        
         .constant('APP_CONSTANT', {
             "LOGIN_TOKEN"            : 'token',
             
@@ -26,9 +26,9 @@
             "PORTFOLIO_PREF"         : 'portfolio_pref',
 
             "RATE_RISKS"             : [
-                                        {name: 'Low', code: 1, class: 'low', value: '12-16%'},
-                                        {name: 'Medium', code: 2, class: 'medium', value: '16-20%'},
-                                        {name: 'High', code: 3, class: 'high', value: '20-24%'}
+                                        {name: 'Low', code: 1, class: 'low', value: '16-20%'},
+                                        {name: 'Medium', code: 2, class: 'medium', value: '20-24%'},
+                                        {name: 'High', code: 3, class: 'high', value: '28-28%'}
                                        ],
 
             "LENDER_INFO"            : 'lender_info' ,

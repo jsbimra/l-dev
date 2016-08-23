@@ -10,7 +10,7 @@
 	*/
 
 	/* @ngInject */
-	function shellComponentCtrl($scope, $rootScope, $rootRouter, $timeout,API_ENDPOINT, APP_CONSTANT, appFactory, dataservice){
+	function shellComponentCtrl($scope, $rootScope, $rootRouter, $location, $timeout, API_ENDPOINT, APP_CONSTANT, appFactory, dataservice){
 		var vm = this;
 
 		var LOGOUT_API      = API_ENDPOINT+'auth/logout/'; 
@@ -21,9 +21,11 @@
 		vm.selectedMenu   = null;
 		vm.showLoadingBar = false;
 
-		vm.login        = login;
-		vm.logout       = logout;
-		vm.getUserVisit = getUserVisit;
+		vm.login        	= login;
+		vm.logout       	= logout;
+		vm.getUserVisit 	= getUserVisit;
+		vm.showSignUpModal 	= appFactory.showSignUpModal;
+		vm.isActiveMenu		= isActiveMenu;
 
 		/*/* Toggle top nav based if login page or not */
 		$scope.$on('hideNavFlag', function(event, data){
@@ -33,6 +35,7 @@
 
 		 // Highlight current menu item on view 
 		$scope.$on('setActiveMenu', function(event, data){
+			console.info(data);
 			vm.selectedMenu = data;
 		});
 		
@@ -44,7 +47,6 @@
 
 		/* check if user logged in then show other menus */
 		$scope.$on('userLoggedInStatus', function(event, data){
-			console.info('userLoggedInStatus ', data);
 			vm.loggedIn = data;
 		});
 
@@ -86,8 +88,7 @@
                 	}
                 }
 
-            });
-			
+            });		
 		}
 
         /**Function to get uservisit status**/
@@ -108,6 +109,7 @@
             });
         }
 
+        /* WATCH on localStorage login_status key to update the loggedIn value */
 		$scope.$watch(
             function( $scope ) {
                 // This becomes the value we're "watching".
@@ -120,6 +122,25 @@
              	vm.loggedIn = false;
             }
         );
+
+        /* OnRouteChangeSuccess fire certain action */
+		$scope.$on('$routeChangeSuccess', function () {
+            // console.info('fired change');
+			// console.info($location.path())
+				// isActiveMenu($location.path().substr(0, 1));
+
+        });
+
+		function isActiveMenu(path){
+            // console.info($location.path());
+			if(path){
+				if($location.path() === path){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
 
 		
 

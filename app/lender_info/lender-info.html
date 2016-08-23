@@ -1,0 +1,146 @@
+<div class="modal fade in login-signup-modal" id="lenderInfoModal">
+    <div class="modal-dialog">
+        <div class="modal-content clearfix">
+            <div class="modal-body">
+                <span class="modal-close-icon">
+                    <i class="fa fa-times font_2em" ng-click="infoCtrl.saveDataToLocal()" data-dismiss="modal" aria-hidden="true"></i>
+                </span>
+                <div class="col-md-5 l-col hidden-sm hidden-xs">
+                    <img src="../img/loansingh-mustache.png" alt="loansingh-mustache" class="mustache-img" />
+                    <p class="desc text-left">We just need you to input some more details to get started.</p>
+                    
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-7 r-col">
+                    <div class="modal-form-section">
+                       <tab-component>
+                            <pane-component title="Profile">
+                                <form name="infoCtrl.frmInfoProfile" id="infoCtrl.frmInfoProfile" novalidate ng-submit="infoCtrl.frmInfoProfile.$valid && infoCtrl.gotToTab(1)">
+                                <div class="form-group">
+                                    <label for="userName">Name*</label>
+                                    <input type="text" id="userName" name="userName" ng-trim="false" placeholder="Enter your name" ng-model="infoCtrl.userProfile.name" class="form-control" ng-pattern="/^[a-zA-Z_ ]*$/"  autofocus required autocomplete="off" ng-class="{ 'errorbox': infoCtrl.frmInfoProfile.userName.$touched && infoCtrl.frmInfoProfile.userName.$invalid && infoCtrl.frmInfoProfile.$submitted}"/>
+
+                                    <div class="error-msg" ng-messages="infoCtrl.frmInfoProfile.$submitted && infoCtrl.frmInfoProfile.userName.$error">
+                                        <div ng-message="required">Please enter your full name</div>
+                                        <div ng-message="pattern">Please enter a valid full name</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group dob-group">
+                                    <label for="userSurName">DOB*</label>
+                                   <input type="text" class="form-control" name="dob" uib-datepicker-popup="{{infoCtrl.format}}" ng-model="infoCtrl.userProfile.dob" is-open="infoCtrl.popup1.opened" datepicker-options="infoCtrl.dateOptions" ng-required="true" close-text="" alt-input-formats="altInputFormats" show-button-bar=false ng-click="infoCtrl.popup1.opened=!infoCtrl.popup1.opened" placeholder="DD/MM/YYYY" />
+                                 
+                                    <div class="error-msg" ng-messages="infoCtrl.frmInfoProfile.$submitted && infoCtrl.frmInfoProfile.dob.$error">
+                                        <div ng-message="required">Please select your date of birth</div>
+                                    </div>
+                                </div>
+                                <div class="text-center mar-top30" ng-click="">
+                                    <button type="submit" class="btn btn-continue mar-btm125" id="continue10" ng-disabled="infoCtrl.frmInfoProfile.$submitted && infoCtrl.frmInfoProfile.$invalid">Next
+                                    </button>
+                                </div>
+                                </form>
+                              </pane-component>
+                              <pane-component title="Identity">
+                              <form name="infoCtrl.frmInfoIdentity" id="infoCtrl.frmInfoIdentity" novalidate ng-submit="infoCtrl.frmInfoIdentity.$valid && infoCtrl.gotToTab(2)">
+                                <div class="form-group">
+                                    <label for="userPan">Pan Number*</label>
+                                    <input type="text" id="userPan" name="userPan" placeholder="Enter your pan number" ng-model="infoCtrl.userProfile.pan" class="form-control"  autofocus required autocomplete="off" ng-pattern="/^[\w]{3}(p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G)[\w][\d]{4}[\w]$/" ng-class="{ 'errorbox': infoCtrl.frmInfoIdentity.userPan.$touched && infoCtrl.frmInfoIdentity.userPan.$invalid && infoCtrl.frmInfoIdentity.$submitted}"/>
+
+                                    <div class="error-msg" ng-messages="infoCtrl.frmInfoIdentity.$submitted && infoCtrl.frmInfoIdentity.userPan.$error">
+                                        <div ng-message="required">Please enter your pan number</div>
+                                        <div class="errormsg" ng-message="pattern">Please enter a valid pan number</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userAddress">Upload Address Proof</label>
+                                     <select class="form-control" ng-model="infoCtrl.userProfile.documentType" ng-options="address.name for address in infoCtrl.profileAddressOption track by address.value" id="documentType" name="documentType">
+                                         <option disabled selected value> -- Address Proof --</option>
+                                    </select>
+
+                                    <!-- <div class="error-msg" ng-messages="infoCtrl.frmInfo.$submitted && infoCtrl.frmInfo.documentType.$error">
+                                        <div ng-message="required">Please upload address proof document</div>
+                                    </div> -->
+                                </div>
+                                 <!--input type="file" -->
+                                   <div class="col-md-12 no-padding" ng-if="infoCtrl.userProfile.documentType">
+                                       <div class="col-md-6 no-padding">
+                                            <div class="ng-scope drop uploadFileDrop" ngf-drop="infoCtrl.uploadAddressProof($files)" ng-model="infoCtrl.uploadAddress" ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false" ngf-keep="distinct" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'">
+                                                <i class="fa fa-file-o" aria-hidden="true"></i>
+                                                <p> Drag &amp; Drop<br> {{infoCtrl.documentType}} scan here </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 no-padding center-text">
+                                        OR
+                                        </div>
+                                        <div class="col-md-4 browsebtn" ngf-select="infoCtrl.uploadAddressProof($files)" ng-model="infoCtrl.uploadAddress" ngf-multiple="false" ngf-allow-dir="false" ngf-keep="distinct" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'" >
+                                            <span class="browse">UPLOAD<input style="visibility: hidden; position: absolute;" type="file" file="addressDocument" name="statementDoc" id="statementDoc"></span>
+                                        </div>
+                                    </div>
+                                        <p class="help-text" ng-if="infoCtrl.userProfile.documentType"> Document File Format Allowed: JPG, PNG, PDF - Max File Size: 3MB</p>
+                                         <div class="filename-wrap" ng-if="infoCtrl.uploadedDocument">
+                                            <div class="stmntName">
+                                                <p class="fileName" rel="tooltip" tooltip="infoCtrl.uploadAddress.name"> {{infoCtrl.trimName(infoCtrl.uploadAddress.name)}} </p>
+                                                <button class="delBut" type="button" ng-click="infoCtrl.deleteSelectedDocument(infoCtrl.uploadAddress)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="filename-wrap">
+                                            <div class="transfer-box clearfix ng-scope ng-binding" ng-if="!infoCtrl.uploadAddress.remove && infoCtrl.uploadAddress.fileProgress>0">
+                                                <p>{{infoCtrl.trimName(infoCtrl.uploadAddress.name)}} </p>
+                                                <div class="progress progress-striped" ng-class="active">
+                                                    <div style="width: 100%;" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (infoCtrl.uploadAddress.fileProgress) + '%'}">
+                                                        <!--<span class="ng-binding">{{file.progress() * 100}}% Complete</span>-->
+                                                        <!--<span class="ng-binding">{{file.isUploading()}}</span>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center mar-top30" ng-click="">
+                                    <button type="submit" class="btn btn-continue mar-btm125" id="continue10" ng-disabled="infoCtrl.frmInfoIdentity.$submitted && infoCtrl.frmInfoIdentity.$invalid">Next
+                                    </button>
+                                </div>
+                                        </form>
+                              </pane-component>
+                              <pane-component title="Financials">
+                              <form name="infoCtrl.frmInfoFinancial" id="infoCtrl.frmInfoFinancial" novalidate ng-submit="infoCtrl.frmInfoFinancial.$valid && infoCtrl.saveLenderInfo()">
+                                    <div class="form-group">
+                                            <div>
+                                                <label for="ifscCode">IFSC Code*</label>
+                                            </div>
+                                            
+                                            <input type="text" class="form-control" value="" placeholder="Enter IFSC Code" ng-model="infoCtrl.userProfile.ifsc" id="ifscCode" required ng-pattern="/[A-Z|a-z]{4}[0][a-zA-Z0-9]{6}$/" name="ifscCode" ng-class="{ 'errorbox': infoCtrl.frmInfoFinancial.ifscCode.$touched && infoCtrl.frmInfoFinancial.ifscCode.$invalid && infoCtrl.frmInfoFinancial.$submitted}">
+                                            <div class="error-msg" ng-messages='infoCtrl.frmInfoFinancial.ifscCode.$error'  ng-if='infoCtrl.frmInfoFinancial.$submitted'>
+                                                <div ng-message="required">Please enter your IFSC Code.</div>
+                                                <div ng-message="pattern">Please enter a valid IFSC Code.</div>
+                                            </div>
+                                           
+                                            <div class="clearfix"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label for="accountNumber">Account Number*</label>
+                                        </div>
+                                        <input type="number" class="form-control" value="" placeholder="Enter Bank Account Number" ng-model="infoCtrl.userProfile.account_number" id="accountNumber" required name="accountNumber" ng-class="{ 'errorbox': infoCtrl.frmInfoFinancial.accountNumber.$touched && infoCtrl.frmInfoFinancial.accountNumber.$invalid && infoCtrl.frmInfoFinancial.$submitted}">
+                                        <div class="error-msg" ng-messages='infoCtrl.frmInfoFinancial.accountNumber.$error' ng-if='infoCtrl.frmInfoFinancial.$submitted'>
+                                            <div ng-message="required">Please enter your account number.</div>
+                                            <div ng-message="number">Please enter a valid account number.</div>
+                                        </div>
+                                        
+                                        <div class="clearfix"></div>
+                                   </div>
+                                   <div class="text-center mar-top30">
+                                        <button type="submit" class="btn btn-continue mar-btm125" id="continue10" ng-disabled="infoCtrl.frmInfoFinancial.$submitted && infoCtrl.frmInfoFinancial.$invalid">Done
+                                        </button>
+                                    </div>
+                                   </form>
+                              </pane-component>
+                              
+                              
+                          </form>
+                       </tab-component>
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

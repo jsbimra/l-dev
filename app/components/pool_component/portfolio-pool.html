@@ -1,39 +1,48 @@
-<div class="pool-container">
-    <h3>My Pool <i class="fa" ng-hide="poolCtrl.collapsible=='false'" ng-class="{'fa-chevron-up' : poolCtrl.showRiskData, 'fa-chevron-down' : !poolCtrl.showRiskData}" aria-hidden="true" ng-click="poolCtrl.showRiskData=!poolCtrl.showRiskData"></i></h3>
-    <div class="col-md-12 toggle-risk-data animate-hide" ng-hide="!poolCtrl.showRiskData">
-        <div class="ib-riskmeter col-md-5">
-            <risk-meter risk="poolCtrl.riskFactor"></risk-meter>
-        </div>
-        <div class="col-md-7">
-            <h5>Total Amount to invest</h5>
-            <div class="ib-amountbox">
-                <i class="fa fa-inr" aria-hidden="true"></i>
-                <p>{{poolCtrl.userpref.amounttoinvest|awnum:'price'}}</p>
+<div class="pool-container animate-height"  ng-class="{'collapse-height' : !poolCtrl.showRiskData}">
+    <h3>My Pool <i class="fa" ng-hide="poolCtrl.collapsible=='false'" ng-class="{'fa-chevron-up' : poolCtrl.showRiskData, 'fa-chevron-down' : !poolCtrl.showRiskData}" aria-hidden="true" ng-click="poolCtrl.collapsePoolData()"></i></h3>
+    <div class="pool-wrapper animate-hide" ng-hide="!poolCtrl.showRiskData">
+        <div class="col-md-12 toggle-risk-data col-sm-12 col-xs-12">
+            <div class="ib-riskmeter col-md-5 col-sm-5 col-xs-5">
+                <risk-meter risk="poolCtrl.riskFactor"></risk-meter>
             </div>
-            <p>Risk: <span class="ib-risk">{{poolCtrl.userpref.rateRisk}}</span></p>
-        </div>
-    </div>
-    <p class="invest-text"><span>I will invest on</span></p>
-    <div class="borrower" ng-class="{'fill-height' : !poolCtrl.showRiskData}">
-        <div class="borrower-container" ng-repeat="brwr in poolCtrl.createdpool">
-            <p><i class="fa fa-user" aria-hidden="true"></i>{{brwr.name}}</p>
-            <a class="jsPoolDropdownTrigger flyout-menu" data-target="dropdown-menu-item{{$index+1}}" ng-hide="poolCtrl.collapsible=='false'"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
-            <div class="details">
-                <p><span><i class="fa fa-inr" aria-hidden="true"></i> {{brwr.selected_amount}}</span>
-                    <span><i class="fa fa-clock-o" aria-hidden="true"></i> {{brwr.tenure}}Months</span>
-                    <span><i class="fa fa-percent" aria-hidden="true">%</i> {{brwr.rate_of_interest}}%</span></p>
+            <div class="col-md-7 col-sm-7 col-xs-7">
+                <h5>Total Amount to invest</h5>
+                <div class="ib-amountbox">
+                    <i class="fa fa-inr" aria-hidden="true"></i>
+                    <p>{{poolCtrl.userpref.amounttoinvest|awnum:'price'}}</p>
+                </div>
+                <p>Risk: <span class="ib-risk">{{poolCtrl.userpref.rateRisk}}</span></p>
             </div>
         </div>
-    </div>
-    <div class="dropdown-container" ng-hide="poolCtrl.collapsible=='false'">
-        <ul class="dropdown-menu jsDropDownMenu" ng-repeat="brwr in poolCtrl.createdpool" id="dropdown-menu-item{{$index+1}}">
-            <!--  <li><a href><i class="fa fa-angle-right" aria-hidden="true"></i> View Profile</a></li>
-            <li class="divider"></li> -->
-            <li ng-click="poolCtrl.changePoolAmount(brwr)"><a href><i class="fa fa-angle-right" aria-hidden="true"></i> Change Amount</a></li>
-            <li class="divider"></li>
-            <li ng-click="poolCtrl.deleteFromPool(brwr)"><a href><i class="fa fa-angle-right" aria-hidden="true"></i> Delete</li>
-        </ul>
+        <p class="invest-text"><span>I will invest on</span></p>
+        <div class="borrower">
+            <div class="borrower-container" ng-repeat="brwr in poolCtrl.createdpool">
+                <p><i class="fa fa-user" aria-hidden="true"></i>{{brwr.name}}</p>
+                <a class="jsPoolDropdownTrigger flyout-menu" data-target="dropdown-menu-item{{$index+1}}" ng-hide="poolCtrl.collapsible=='false'"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+                <div class="details">
+                    <p><span><i class="fa fa-inr" aria-hidden="true"></i> {{brwr.selected_amount}}</span>
+                        <span><i class="fa fa-clock-o" aria-hidden="true"></i> {{brwr.tenure}}Months</span>
+                        <span><i class="fa fa-percent" aria-hidden="true">%</i> {{brwr.rate_of_interest}}%</span></p>
+                </div>
+            </div>
+            <div class="borrower-empty" ng-if="!poolCtrl.createdpool || poolCtrl.createdpool.length==0">
+              <img class="img-responsive" src="img/no-result-woo.png" alt="no-borrowers">
+              <p>Sorry,we could not find borrowers matching your preferences.</p><p>We have noted your intent, and will get back to you shortly !</p>
+            </div>
+        </div>
+        
+        <div class="dropdown-container" ng-hide="poolCtrl.collapsible=='false'">
+            <ul class="dropdown-menu jsDropDownMenu" ng-repeat="brwr in poolCtrl.createdpool" id="dropdown-menu-item{{$index+1}}">
+                <!--  <li><a href><i class="fa fa-angle-right" aria-hidden="true"></i> View Profile</a></li>
+                <li class="divider"></li> -->
+                <li ng-click="poolCtrl.changePoolAmount(brwr)"><a><i class="fa fa-angle-right" aria-hidden="true"></i> Change Amount</a></li>
+                <li class="divider"></li>
+                <li ng-click="poolCtrl.deleteFromPool(brwr)"><a><i class="fa fa-angle-right" aria-hidden="true"></i> Delete</a></li>
+            </ul>
 
+        </div>
+
+        <button type="button" id="investBtn" class="btn btn-primary" ng-click="poolCtrl.investnow()" ng-if="poolCtrl.createdpool && poolCtrl.createdpool.length>0">INVEST NOW </button>
     </div>
-    <button type="button" class="btn btn-primary" ng-click="poolCtrl.investnow()" ng-hide="poolCtrl.createdpool.length==0">INVEST NOW</button>
 </div>
+<lenderinfo-component></lenderinfo-component>

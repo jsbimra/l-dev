@@ -31,38 +31,59 @@
         function submitInvestNow(pref) {
 
             appFactory.setLocalStorageData(APP_CONSTANT.POOL_CREATION_STATUS, false);
-            if(appFactory.getLocalStorageData(APP_CONSTANT.LOGIN_STATUS) == 'true'){
+            if (appFactory.getLocalStorageData(APP_CONSTANT.LOGIN_STATUS) == 'true') {
                 vm.shellCtrl.getUserVisit();
-            }
-
-            else{
+            } else {
                 appFactory.setLocalStorageData(APP_CONSTANT.INVEST_NOW_BTN, true);
                 vm.fromInvestBtn = true;
                 $('#loginSignupModal').modal({
-                backdrop: 'static',
-                keyboard: false
-            });
+                    backdrop: 'static',
+                    keyboard: false
+                });
             }
 
-            
-		}
 
-		$(window).scroll(function() {
-			if($('#graph-sec').offset()!=undefined){
-				var hT = $('#graph-sec').offset().top,
-			       hH = $('#graph-sec').outerHeight(),
-			       wH = $(window).height(),
-			       wS = $(this).scrollTop();
-			    // console.log((hT-wH) , wS);
-			   if (wS > (hT+hH-wH)){
-			     //alert('you have scrolled to the graph-sec!');
-			     $("#f-product1").attr('checked', 'checked');
-			   }
-			}
-		   
-		});
+        }
 
-	}
+        $(window).scroll(function() {
+            if ($('#graph-sec').offset() != undefined) {
+                var hT = $('#graph-sec').offset().top,
+                    hH = $('#graph-sec').outerHeight(),
+                    wH = $(window).height(),
+                    wS = $(this).scrollTop();
+                // console.log((hT-wH) , wS);
+                if (wS > (hT + hH - wH)) {
+                    //alert('you have scrolled to the graph-sec!');
+                    $("#f-product1").attr('checked', 'checked');
+                }
+            }
+
+        });
+
+        $("#myCarousel").swiperight(function() {
+            $(this).carousel('prev');
+        });
+        $("#myCarousel").swipeleft(function() {
+            $(this).carousel('next');
+        });
+
+        /* To re-initialize the carousel indicators on mobile and other views */
+        var $window = $(window);
+        function resize() {
+            if ($window.width() < 426) {
+                $('.tab-abov').removeClass('carousel-indicators');
+                $('.mob').addClass('carousel-indicators');
+                return;
+            }
+            $('.tab-abov').addClass('carousel-indicators');
+            $('.mob').removeClass('carousel-indicators');
+        }
+        $window
+            .resize(resize)
+            .trigger('resize');
+
+
+    }
 
 
     angular.module('lsLenderApp')
@@ -72,7 +93,7 @@
             controllerAs: 'homeCtrl',
             require: {
                 shellCtrl: '^shellComp'
-              },
+            },
             $routeConfig: [
                 // {path: '/',    redirectTo: ['Login']},
                 // {path: '/', name: 'Login', component: 'loginComponent', useAsDefault: true}

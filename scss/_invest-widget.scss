@@ -53,7 +53,6 @@ $ib-border-radius: 8px;
         }
         margin-top: 10px;
         margin-bottom: 4px;
-        font-weight: 600;
     }
 
 
@@ -63,20 +62,21 @@ $ib-border-radius: 8px;
         margin: 5px 0;
         width: 100%;
         border-radius: $ib-border-radius;
-        padding: 12px 5px;
         display: inline-block;
         overflow: hidden;
+        border: 1px solid #ebedee;
 
         &>input {
             font: {
-                size: 13px;
+                size: 19px;
                 family: $HelveticaNeuemedium;
             }
             border: 0px;
             outline: 0px;
-            width: 80%;
+            width: 79%;
             -webkit-appearance: none;
             color: #777777;
+            line-height: 32px;
 
             &:focus {
                 outline: 0px;
@@ -101,14 +101,20 @@ $ib-border-radius: 8px;
             display: inline-block;
             width: 32%;
             font-weight: 900;
+            margin-right: 4px;
+            margin-top: 10px;
             i {
                 color: darkgreen;
                 position: absolute;
                 right: 1px;
                 top: 1px;
             }
-            &>span{
+            &>div {
+                margin-top: 10px;
+            }
+            &>div.rate-value{
                 opacity: 0.4;
+
             }
             
         }
@@ -124,22 +130,22 @@ $ib-border-radius: 8px;
             color: #ebedee;
             border-radius: 5px;
             text-align: center;
-            padding: 10px 21px;
-            margin: 10px 1px;
+            padding: 10px 0px;
+            /*margin: 10px 1px;*/
             position: relative;
             width: 100%;
             text-transform: uppercase;
             
 
-            &.low { background-color: #88c61c; }
-            &.medium { background-color: #e29823; }/*#c6dcea - Disabled state color*/
-            &.high { background-color: #ec1a26; }
+            &.low { background-color: #88c61c; &:hover { /*opacity: 0.3;*/ background-color: #a6e33c; } &.border-class { border: 1px solid #000; background-color: #73af0c; &:hover { background-color: #a6e33c; } &:focus { background-color: #73af0c; }}}
+            &.medium { background-color: #e29823; opacity: 0.3; }/*#949595- Disabled state color*/
+            &.high { background-color: #ec1a26; opacity: 0.3; }/*#949595 - Disabled state color*/
         }
     } /* rate-container style end*/
 
 
     .tenure-container {
-        margin: 20px 0;
+        margin: 26px 0;
         .valign{
             line-height: 34px;
         }

@@ -17,6 +17,7 @@
 
         vm.$routerOnActivate = function(next,prev){
             appFactory.scrollToTop();
+            appFactory.hamburgerOpen();
         }
     }
 

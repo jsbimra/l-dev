@@ -1,0 +1,330 @@
+/*
+ 	Targeting mobile devices 
+ */
+
+$range1width : 25%;
+$range2width : 38.94%;
+$range3width : 50%;
+$range4width : 56.25%;
+$range5width : 73.44%;
+$range6width : 100%;
+$dashedLeftPos : 29%;
+
+@mixin animate-bars{
+	 -webkit-transition: width 0.8s ease-out, bottom 0.8s ease-out;
+    -moz-transition: width 0.8s ease-out, bottom 0.8s ease-out;
+    -o-transition: width 0.8s ease-out, bottom 0.8s ease-out;
+    -ms-transition: width 0.8s ease-out, bottom 0.8s ease-out;
+    transition: width 0.8s ease-out, bottom 0.8s ease-out;
+}
+
+@media screen and (min-width: 320px) and (max-width: 991px){
+
+	.responsive-graph-container{
+		clear: both;
+		padding: 10px 0 5px;
+		margin: 25px 0 10px;
+		position: relative; /* for Inflation bar */
+		z-index: 1;
+
+		/* Inflation line vertical */
+		&:before{
+    		content: ' ';
+			width: 65%;
+			height: 100%;
+			border-left: 3px dashed white;
+			position:absolute;
+			z-index: -1;
+    		left: $dashedLeftPos;
+			top:0;
+		}	
+
+		h5{
+			margin:0;
+			padding: 0;
+			line-height: normal;
+			font: {
+				size: 20px;
+				family: $HelveticaNeuebold;
+			}
+		}
+
+		span{
+			color:#6f777d;
+			font: {
+				size: 16px;
+			}
+		}
+
+		& .inflation-text{
+		    position: absolute;
+		    top: -24px;
+			left: $dashedLeftPos;
+		    padding: 0;
+		    font-size: 22px;
+		    margin-left: 19px;
+
+		    & > li{
+		    	text-indent: -6px
+		    }
+
+		    h5{display: inline-block; margin-left: 4px;}
+		}
+		.range-1{
+			.bar-box{
+				width: $range6width;
+				background: #eb2226;	
+			}
+
+			.bar-content{
+				h5{color:#fc2d3d;}
+			}
+		}
+
+		.range-2{
+			.bar-box{
+				width: $range5width;
+				background: #47712f;
+			}
+			.bar-content{
+				h5{color:#80cc55;}
+			}
+		}
+
+		.range-3{
+			.bar-box{
+				width: $range4width;
+				background: #075474;
+			}
+			.bar-content{
+				h5{color:#3fadd1;}
+			}
+		}
+
+		.range-4{
+			.bar-box{
+				width: $range3width;
+				background: #75500a;
+			}
+			.bar-content{
+				h5{color:#fece0a;}
+			}
+		}
+
+		.range-5{
+			.bar-box{
+				width: $range2width;
+				background: #742810;
+			}
+			.bar-content{
+				margin-left: 31px;
+
+				h5{color:#ef5625;}
+			}
+		}
+
+		.range-6{
+			.bar-box{
+				width: $range1width;
+				background: #592d65;
+			}
+			.bar-content{
+				margin-left: 65px;
+				
+				h5{color:#a800a7;}
+			}
+		}
+
+		.bar-wrap{
+			overflow: hidden;
+			width: 100%;
+
+			.bar-box-holder{
+				width: 65%;
+			}
+
+
+			.bar-box{
+				height: 50px;
+				margin-bottom: 25px;
+				float: left;
+
+				@include animate-bars;
+
+				
+			} /* bar-box end */
+
+			.bar-content{
+				margin-left: 15px;
+				float: left;				
+			} /*bar-content end */
+		
+			&:last-child .bar-box{margin-bottom: 0;}
+		} /* bar-wrap end */
+	
+	} /* responsive-graph-container */
+
+	.app-section .app-content .app-content-inner__child {
+
+		/* Home page graph style */
+		#graph-sec {
+			.note{
+				padding-top:30px ;
+
+				& ul{
+
+					&>li {
+						float: none; 
+						margin-bottom: 5px;
+						border:none;
+						padding-left: 0;
+
+						&:first-child{
+						}
+					}
+				}
+			}
+			.bullet-points{
+		        span{
+		            font: {
+		                size: 14px;
+		            }
+		            display: inline-block;
+		            margin-bottom: 12px;
+		            vertical-align: middle;
+		        }
+
+		        .fa-circle-o{
+		            font-size: 22px;
+		        }
+
+		        .fa-check{
+		            margin-top: 0;
+		            margin-left: -14px;
+		            font: {
+		                size: 18px;
+		            }
+		        }
+		    }
+	    } /* #graph-sec end */
+
+	    /* Dashboard styles */
+	    #dashboard-sec {
+	    	.one-forth-box {
+
+	    		h6{
+	    			font-size: 16px;
+	    		}
+
+	    		img.pull-left {
+				   	height: 38px;
+				   	padding-left: 5px;
+    				padding-right: 10px;
+				}
+	    	}
+	    }
+	} /* app-section end */
+
+	/* Mobile helper classes */
+	.separator-clearfix{
+		clear: both; 
+	    margin-bottom: 15px;
+	}
+
+	.mob-no-right-pad{padding-right: 0;}
+
+	/*Payment Page*/
+	.payment-sec .payment-confirm{
+		text-align: center;
+	}
+
+} 
+/* meda query end */
+
+
+/* Targeting to smaller mobile devices */
+@media screen and (min-width: 320px) and (max-width: 767px){
+	.static-container.how-it-works-section{
+		.content-pane{
+			text-align: center;
+			padding-bottom: 21px;
+			margin-bottom: 0;
+
+			&>.image-icon-left, &>.image-icon-right{
+				height: 125px;
+				float: none !important;
+				margin: 0 auto;
+			}
+
+			& h3{
+				font-size: 29px;
+
+				& > span{
+					width: 30px;
+					height: 30px;
+					font-size:19px;
+					line-height: 25px;
+				}
+			}
+			& .bec{
+				clear: both;
+			}
+		}
+	}
+
+	.payment-sec{
+		.payment-details-sec{
+			.borrower-details-sec{
+				padding-left: 0;
+                margin-top: 15px;
+                     	
+                 .detail-container{
+                 	height: auto;
+                 	padding: 18px 4px;
+
+                     .borrower-info-wrapper{
+                       
+                       .details-row{
+                       	  &.top-row p{
+	                       	 font-size: 14px;
+	                       	// text-align: center;
+	                       	 img{
+	                       	 	width:17%;
+	                       	 }
+	                       }
+	                        p{
+		                       	font-size: 15px;
+		                       	text-align: center;
+
+		                       	&.clmn-fixed{
+		                       		width: 86%;
+		                       	}
+		                       	&.fee-clmn{
+		                       		padding-right: 14px;
+		                       	}
+		                       }
+                       	}
+                     } 
+                 } 
+                 .fee-content {
+					p{
+						font-size: 15px;
+					}
+				}
+			} 
+		}
+		.delBut{
+			width: 20px;
+            height: 20px;
+            vertical-align: middle;
+    		padding: 0;
+
+    		i{
+    			font-size: 12px;
+    			padding-bottom: 9px;
+    			vertical-align: middle;
+    		}
+		}
+	} 
+
+}

@@ -7,14 +7,12 @@
                     <!-- <h1>Payment Page</h1> -->
                     <div class="row">
 
-                        <div class="payment-info">
-                            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-                            <p ng-if="!paymentCtrl.modSuccessPayment"> THANK YOU!  For making disbursement we will verify the transaction and get back to you.<br/>You can now track your <a class="btn btn-default" ng-link="['Dashboard']">Dashboard</a></p>
-                            
-                            <div ng-if="paymentCtrl.modSuccessPayment">
-                                <!-- <h4>THANK YOU!</h4> -->
-                                <p>Thank you for making disbursement. We will verify the transaction and get back to you.</p>
-                            </div>
+                        <div class="payment-info animate-hide scrollClass"  ng-show="paymentCtrl.modSuccessPayment && !paymentCtrl.closeMsg">
+                            <!-- <i class="fa fa-lightbulb-o" aria-hidden="true"></i> -->
+                            <i class="fa fa-times pull-right" ng-click="paymentCtrl.closeMsg=true"aria-hidden="true"></i>
+                            <div> <h3><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>THANK YOU!</h3>
+                            <p>For making disbursement.<br/> We will verify the transaction and get back to you.</p><!-- You can now track your <a class="btn btn-default" ng-link="['Dashboard']">Dashboard</a> --></div>
+
                         </div>
 
                         <div class="heading">
@@ -23,16 +21,29 @@
                     </div>
                     <div class="row">
                         <div class="payment-details-sec col-md-12 no-padding">
-                            <div class="col-md-4 bank-details-sec">
-                                <p class="beneficiary-border">Beneficiary Details</p>
-                                <div class="beneficiary-data beneficiary-border" ng-repeat="data in paymentCtrl.beneficiary">
-                                    <p>{{data.dispName}}:</p>
-                                    <p>{{data.value}}</p>
+                          <div class="col-md-4 lender-wrapper">
+                            <div class="bank-details-sec animate-height" ng-class="{'collapse-height' : !paymentCtrl.showBeneficiary}">
+                                <p class="beneficiary-border">Beneficiary Details <i class="fa hidden-lg hidden-md" ng-class="{'fa-chevron-up' : paymentCtrl.showBeneficiary, 'fa-chevron-down' : !paymentCtrl.showBeneficiary}" aria-hidden="true" ng-click="paymentCtrl.showBeneficiary=!paymentCtrl.showBeneficiary"></i></p>
+                                <div class="beneficiary-data-wrapper animate-hide" ng-hide="!paymentCtrl.showBeneficiary">
+                                  <p class="temp-accnt">
+For disbursement details.<br/>
+Please contact :<br/><br/>
+
+ <i class="fa fa-phone" aria-hidden="true"></i> &nbsp;+91 83903 58545<br/>
+    <span class="">OR</span><br/>
+ <i class="fa fa-envelope-o" aria-hidden="true"></i> &nbsp;ls@loansingh.com
+</p>
+                                    <!-- <div class="beneficiary-data beneficiary-border" ng-repeat="data in paymentCtrl.beneficiary">
+                                        <p>{{data.dispName}}:</p>
+                                        <p>{{data.value}}</p>
+                                    </div> -->
                                 </div>
                             </div>
+                            <a class="lender-conduct" ng-click="paymentCtrl.openConductPopup()">Read Lender's code of conduct</a>
+                            </div>
                             <div class="col-md-8 borrower-details-sec">
-                                <div ng-show="paymentCtrl.paymentObj.length == 0" class="cart_empty">Looks like your cart is empty!<br/>You can<br/><a class="btn btn-primary" ng-link="['Invest']">Click To Invest</a><a class="btn btn-round-corner-tb" ng-link="['Dashboard']">See Dashboard</a></div>
-                                <div ng-show="paymentCtrl.paymentObj.length != 0" class="detail-container">
+                                <div ng-if="paymentCtrl.paymentObj && paymentCtrl.paymentObj.length == 0" class="cart_empty">Looks like your cart is empty!<br/>You can<br/><a class="btn btn-primary" ng-link="['Invest']">Click To Invest</a><a class="btn btn-round-corner-tb hide" ng-link="['Dashboard']">See Dashboard</a></div>
+                                <div ng-if="paymentCtrl.paymentObj && paymentCtrl.paymentObj.length != 0" class="detail-container">
                                     <div class="detail-table">
                                         <div class="borrower-info-wrapper ">
                                             <div class="details-row top-row">
@@ -40,7 +51,7 @@
                                                     <p><img src="img/profile_icon.png"/> Name</p>
                                                 </div>
                                                 <div class="details-column">
-                                                    <p style="text-align:right;width: 50%;"><img src="img/rupee_icon.png"/> Amount
+                                                    <p><img src="img/rupee_icon.png"/> Amount
                                                 </div>
                                                 <div class="details-column">
                                                     <p><img src="img/tenure_icon.png"/> Tenure</p>
@@ -56,7 +67,7 @@
                                                     <p>{{data.name}}</p>
                                                 </div>
                                                 <div class="details-column">
-                                                    <p style="text-align:right;width: 50%;">{{data.invested_amount}}</p>
+                                                    <p class="clmn-fixed">{{data.invested_amount}}</p>
                                                 </div>
                                                 <div class="details-column">
                                                     <p>{{data.tenure}} Months</p>
@@ -70,13 +81,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="borrower-info-wrapper" ng-if="paymentCtrl.paymentObj.length>0">
+                                    <div class="borrower-info-wrapper" ng-if="paymentCtrl.paymentObj && paymentCtrl.paymentObj.length>0">
                                         <div class="details-row">
                                             <div class="details-column">
                                                 <p>LoanSingh Fees</p>
                                             </div>
                                             <div class="details-column">
-                                                <p style="text-align:right;width: 50%;">500</p>
+                                                <p class="clmn-fixed fee-clmn" ng-bind="paymentCtrl.LSfees"></p>
+                                            </div>
+                                            <div class="details-column">
+                                                <p></p>
                                             </div>
                                             <div class="details-column">
                                                 <p></p>
@@ -87,14 +101,14 @@
                                         </div>
                                     </div>
                                     <div class="fee-content pull-right" ng-if="paymentCtrl.paymentObj.length>0">
-                                        <p><span>Total</span><span>{{paymentCtrl.totalAmount}}</span></p>
+                                        <p><span>Total</span><span ng-bind="paymentCtrl.totalAmount"></span></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="payment-confirm">
-                            <input type="checkbox" ng-model="paymentCtrl.paymentDone" name="chkPaymentAcceptance" id="chkPaymentAcceptance" />
-                            <button type="button" class="btn btn-success" ng-class="{'disabled': !paymentCtrl.paymentDone}" ng-model="paymentCtrl.modSuccessPayment" ng-click="paymentCtrl.modSuccessPayment = true">I have successfully made the payment</button>
+                            <input type="checkbox" ng-disabled="!paymentCtrl.paymentObj || paymentCtrl.paymentObj.length == 0" ng-model="paymentCtrl.paymentDone" name="chkPaymentAcceptance" id="chkPaymentAcceptance" />
+                            <button type="button" class="btn btn-success" ng-disabled="!paymentCtrl.paymentDone" ng-class="{'disabled': !paymentCtrl.paymentDone}" ng-click="paymentCtrl.markPaymentDone()">I have successfully made the payment</button>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -106,3 +120,40 @@
     <!-- app-content end -->
 </div>
 <!-- app-section -->
+
+<div class="modal fade in modal-code-conduct" id="lender-code-conduct">
+    <div class="modal-dialog">
+        <div class="modal-content clearfix">
+            <div class="modal-body">
+                <span class="modal-close-icon">
+                    <i class="fa fa-times font_2em" data-dismiss="modal" aria-hidden="true"></i>
+                </span>
+                <div class="conductcode">
+                    <p> As a part of our Lender Awareness program, we urge all our lending partners to abide by the following code of conduct</p>
+                    <ul>
+                      <li>
+                        Carefully read and understand Loan Singh policy and T&C before investing
+                      </li>
+                      <li>
+                        Once you commit to a loan, retracting later can cause great hardships to borrowers
+                      </li>
+                      <li>
+                        We hold privacy of all our customers in highest regard. In the same sense, a direct interaction between the lender and borrower is never required. That’s why we exist.
+                      </li>
+                      <li>
+                       Be cognizant of, and acknowledge the risk existing in lending money
+                      </li>
+                      <li>
+                        Do not borrow money to lend further as it increases your risk exposure
+                      </li>
+                      <li>
+                       Be a responsible citizen; duly report and pay taxes on income earned through the platform.
+                      </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

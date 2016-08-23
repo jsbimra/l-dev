@@ -1,21 +1,29 @@
 <div class="ib-container">
     <form name="$ctrl.prefForm" id="$ctrl.prefForm" novalidate ng-submit="$ctrl.prefForm.$valid && $ctrl.goToDirectiveInvest()">
         <div class="form-pref-group-TEMP invest-data-wrapper">
+        <div class="form-group">
             <div class="amount_wrapper">
                 <h3 ng-bind="$ctrl.widgetText[0]"></h3>
                 <div class="ib-amountbox">
                     <i class="fa fa-inr" aria-hidden="true"></i>
-                    <input type="text" name="amounttoinvest" placeholder="Amount" ng-model="$ctrl.userPreference.amounttoinvest" required awnum="price" />
+                    <input type="text" name="amounttoinvest" placeholder="Amount" ng-model="$ctrl.userPreference.amounttoinvest" required awnum="price" autocomplete="off" range-validator/>
                 </div>
+
             </div>
-            
+
+             <div class="error-msg" ng-messages="$ctrl.prefForm.$submitted && $ctrl.prefForm.amounttoinvest.$error">
+                <div ng-message="required">Please enter a amount</div>
+                <div ng-message="invalidRange">Please enter a amount between 10,000 & 50,00,000</div>
+            </div>
+            </div>
             <div class="rate-container form-pref-group">
                 <h3 ng-bind="$ctrl.widgetText[1]"></h3>
-                <!-- <div class="rate-item" ng-repeat="risk in $ctrl.riskRates">
-            <button type="button" class="btn rate-button" ng-class="risk.class" ng-click="$ctrl.userPreference.rateRisk=risk.name"><i class="fa fa-check-circle-o" aria-hidden="true" ng-if="$ctrl.userPreference.rateRisk==risk.name"></i>{{risk.name}}</button>
-            <br/> {{risk.value}}
-        </div> -->
-                <div class="rate-item">
+                <div class="rate-item" ng-repeat="risk in $ctrl.riskRates">
+                    <button ng-if="risk.code==1" type="button" class="btn rate-button low" ng-class="{'border-class' : $ctrl.userPreference.rateRisk==risk.name}" ng-click="$ctrl.userPreference.rateRisk=risk.name">{{risk.name}}</button>
+                    <a ng-if="risk.code!=1" href="javascript:void(0)" class="btn rate-button" ng-class="risk.class" data-toggle="tooltip" title="Stay tuned for the risk <br /> category" data-html="true">{{risk.name}}</a>
+                    <br/> <div ng-class="{'rate-value' : risk.code!=1}">{{risk.value}}</div>
+                </div>
+                 <!--<div class="rate-item">
                     <button type="button" class="btn rate-button low">Low</button>
                         <br/> 16-20%
                 </div>
@@ -26,11 +34,11 @@
                 <div class="rate-item">
                     <a href="javascript:void(0)" class="btn rate-button high" data-toggle="tooltip" title="Stay tuned for the risk category">High</a>
                         <br/> <span>24-28%</span>
-                </div>
+                </div>-->
                 <!-- <p>risk category <i class="fa fa-arrow-right" aria-hidden="true"></i></p> -->
-                <div class="error-msg" ng-show="$ctrl.prefForm.amounttoinvest.$error.required && $ctrl.prefForm.$submitted">
+                <!-- <div class="error-msg" ng-show="$ctrl.prefForm.amounttoinvest.$error.required && $ctrl.prefForm.$submitted">
                     Please enter a amount to invest.
-                </div>
+                </div> -->
             </div>
             <div class="tenure-container">
                 <h3 ng-bind="$ctrl.widgetText[2]"></h3>
@@ -58,7 +66,7 @@
                     </li>
                 </ul>
             </div>
-            <button type="submit" class="btn btn-primary full-width">{{$ctrl.buttonText}}</button>
+            <button type="submit" class="btn btn-primary full-width" ng-style="$ctrl.buttonStyle">{{$ctrl.buttonText}}</button>
         </div>
     </form>
 </div>
